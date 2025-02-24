@@ -5,7 +5,8 @@ export function createAccessToken(payload) {
 		jwt.sign(
 			payload,
 			// "1ad4a35d73",
-			process.env.JWT_SECRET_KEY,
+			// process.env.JWT_SECRET_KEY,
+			"secretkey",
 			{
 				expiresIn: "1d",
 			},

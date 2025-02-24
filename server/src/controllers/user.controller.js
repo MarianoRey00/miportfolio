@@ -60,7 +60,8 @@ export const verifyToken = async (req, res) => {
 	const { token } = req.cookies;
 	if (!token) return res.send(false);
 
-	jwt.verify(token, process.env.JWT_SECRET_KEY, async (error, user) => {
+	// jwt.verify(token, process.env.JWT_SECRET_KEY, async (error, user) => {
+	jwt.verify(token, "secretkey", async (error, user) => {
 		if (error) return res.sendStatus(401);
 
 		const userFound = await User.findById(user.id);

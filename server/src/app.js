@@ -26,10 +26,6 @@ app.use(
 	})
 );
 
-app.get("/api/test", (req, res) => {
-	res.json({ message: "API funcionando" });
-});
-
 app.use("/api", userRoutes);
 app.use("/api", projectRoutes);
 app.use("/api", appearanceRoutes);
@@ -47,5 +43,5 @@ export default app;
 //   ]
 // }
 // git add .
-// git commit -m "ayuda"
+// git commit -m "secretkey"
 // git push origin main

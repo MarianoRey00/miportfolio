@@ -26,6 +26,10 @@ app.use(
 	})
 );
 
+app.get("/api/test", (req, res) => {
+	res.json({ message: "API funcionando" });
+});
+
 app.use("/api", userRoutes);
 app.use("/api", projectRoutes);
 app.use("/api", appearanceRoutes);

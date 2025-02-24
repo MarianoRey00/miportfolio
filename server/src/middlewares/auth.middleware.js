@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 export const authRequired = (req, res, next) => {
 	const { token } = req.cookies;
-
+	console.log("Cookies en la solicitud:", req.cookies);
 	if (!token) {
 		return res.status(401).json({ message: "Autorización denegada" });
 	}

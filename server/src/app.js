@@ -19,19 +19,13 @@ app.use(
 	})
 );
 app.use(cookieParser());
-// app.use(
-// 	cors({
-// 		origin: "https://miportfolio18.vercel.app",
-// 		credentials: true,
-// 	})
-// );
 app.use(
 	cors({
-		origin: "https://miportfolio18.vercel.app", // Tu dominio frontend
-		methods: ["GET", "POST", "PUT", "DELETE"],
-		credentials: true, // Permite el envío de cookies
+		origin: "https://miportfolio18.vercel.app",
+		credentials: true,
 	})
 );
+
 app.use("/api", userRoutes);
 app.use("/api", projectRoutes);
 app.use("/api", appearanceRoutes);

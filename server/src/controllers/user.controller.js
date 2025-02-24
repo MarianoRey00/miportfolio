@@ -46,8 +46,11 @@ export const login = async (req, res) => {
 	const user = req.user;
 
 	const token = await createAccessToken({ id: user._id });
-
-	res.cookie("token", token);
+	res.cookie("token", token, {
+		secure: true,
+		sameSite: "None",
+	});
+	// res.cookie("token", token);
 	res.json({
 		id: user._id,
 		username: user.username,
@@ -60,10 +63,8 @@ export const verifyToken = async (req, res) => {
 	const { token } = req.cookies;
 	if (!token) return res.send(false);
 
-	// jwt.verify(token, process.env.JWT_SECRET_KEY, async (error, user) => {
-	jwt.verify(token, "1ad4a35d73", async (error, user) => {
-		// if (error) return res.sendStatus(401);
-		if (error) return res.status(401).json("laconcha de tu madre");
+	jwt.verify(token, process.env.JWT_SECRET_KEY, async (error, user) => {
+		if (error) return res.sendStatus(401);
 
 		const userFound = await User.findById(user.id);
 		if (!userFound) return res.sendStatus(401);

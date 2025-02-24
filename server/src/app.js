@@ -3,9 +3,10 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import fileUpload from "express-fileupload";
-
 import userRoutes from "./routes/user.routes.js";
 import projectRoutes from "./routes/project.routes.js";
+import appearanceRoutes from "./routes/appearance.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
 
 const app = express();
 
@@ -21,12 +22,13 @@ app.use(cookieParser());
 app.use(
 	cors({
 		origin: "http://localhost:5173",
-		// origin: "http://127.0.0.1:5173",
 		credentials: true,
 	})
 );
 
 app.use("/api", userRoutes);
 app.use("/api", projectRoutes);
+app.use("/api", appearanceRoutes);
+app.use("/api", paymentRoutes);
 
 export default app;

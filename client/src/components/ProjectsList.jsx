@@ -1,26 +1,37 @@
-import {useProjects} from '../context/ProjectContext.jsx'
-// import { useNavigate } from 'react-router-dom'
-
-
-export function ProjectList (){
-    const {projects} = useProjects()
-    // const navigate = useNavigate()
-    
-
-    return(
-        <>
-                 
-                {projects.map(project => (                
-                    <div key={project._id} className='text-white mb-2'>
-                    <div className='flex px-2 py-2 bg-zinc-800 text-white rounded-lg  shadow-black hover:bg-zinc-700'>
-                    <img className='w-12 h-12 object-cover rounded' src={project.image.url} alt="" />
-                        <div className="ml-2  flex items-center">
-                                <h3 className='text-[12px]'>{project.title}</h3>
-                        </div>
-                    </div>
-                </div>
-                ))}
-            
-        </>
-    )
-}    
+export function ProjectList({ appearance, projects }) {
+	const publicProjects = projects.filter((project) => project.public);
+	return (
+		<>
+			{publicProjects.map((project) => (
+				<div
+					className="flex p-2 overflow-hidden mb-2"
+					style={{
+						backgroundColor: appearance.projectBackgroundColor,
+						borderRadius: appearance.projectShape,
+						border: appearance.projectBorder,
+						borderColor: appearance.projectBorderColor,
+					}}
+				>
+					<div className="w-[30%]">
+						<img
+							className="w-12 h-12 object-cover"
+							style={{
+								borderRadius: appearance.projectPictureShape,
+							}}
+							src={project.image?.url}
+							alt=""
+						/>
+					</div>
+					<div className="flex items-center w-[70%]">
+						<h2
+							className="text-[11px] break-words line-clamp-3 w-full"
+							style={{ color: appearance.projectTextColor }}
+						>
+							{project.title}
+						</h2>
+					</div>
+				</div>
+			))}
+		</>
+	);
+}

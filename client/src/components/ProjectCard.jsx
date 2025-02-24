@@ -1,79 +1,243 @@
-// import toast from 'react-hot-toast'
+import toast from "react-hot-toast";
 import { useProjects } from "../context/ProjectContext";
-import { AiOutlineDelete } from "react-icons/ai";
-import { AiOutlineEdit } from "react-icons/ai";
-import { RxSwitch } from "react-icons/rx";
-import { AiOutlineDrag } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import EditProjectModal from "./EditProjectModal.jsx";
+import PulseLoader from "react-spinners/PulseLoader";
+import ProjectCardMobile from "../components/ProjectCardMobile";
+import ProjectCardDesktop from "../components/ProjectCardDesktop";
 
-export function ProjectCard({ project }) {
-	const navigate = useNavigate();
-	const { deleteProject } = useProjects();
+export function ProjectCard({ project, backgroundColor }) {
+	const {
+		deleteProject,
+		showProject,
+		hideProject,
+		deleteGalleryImage,
+		deleteProjectVideo,
+		deleteProjectPdf,
+		projectSaveLoading,
+	} = useProjects();
+	const [isExpanded, setIsExpanded] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [id, setId] = useState(null);
+	const [modalContent, setModalContent] = useState("");
+	const [deleteGalleryImageId, setDeleteGalleryImageId] = useState(null);
 
-	//    const handleDelete = (_id) => {
-	//         toast ((t) => (
-	//             <div>
-	//                 <p>¿Desea eliminar el proyecto?</p>
-	//                 <div>
-	//                     <button className='bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rouded-sm mx-2'
-	//                     onClick={() => {
-	//                         deletePost(_id)
-	//                         toast.dismiss(t.id)
-	//                         navigate('/')
-	//                     }}>
-	//                     Eliminar
-	//                     </button>
-	//                     <button className='bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2' onClick={() => toast.dismiss(t.id)}>Cancelar</button>
-	//                 </div>
-	//             </div>
-	//         ))
-	//    }
+	const toggleExpand = () => {
+		setIsExpanded(!isExpanded);
+	};
 
-	return (
-		<div className="flex bg-zinc-800 text-white rounded-xl shadow-black shadow-md">
-			<div className="flex items-center mx-3">
-				<AiOutlineDrag className=" w-[20px] h-[20px]" />
-			</div>
+	const openModal = (data, id) => {
+		setModalContent(data);
+		setId(id);
+		setIsModalOpen(true);
+	};
 
-			<div className="bg-zinc-800 pt-2 pr-2 pb-2 mx-3">
-				<img
-					className="w-32 h-32 rounded object-cover"
-					src={project.image.url}
-					alt=""
-				/>
-			</div>
-			<div className=" w-[400px] h-36 px-4 py-7  ">
-				<div className="flex justify-between ">
-					<div className="px-2 flex-col">
-						<p className="text-xl font-normal">{project.title}</p>
-						<div className="h-12 overflow-hidden">
-							<p>{project.description}</p>
-						</div>
-					</div>
-					<div className="flex flex-col pl-4 border-l border-white ">
-						<div>
-							<button
-								className="text-sm px-2 py-1 rounded-sm hover:bg-gray-200 hover:text-black"
-								onClick={() => navigate(`/admin/${project._id}/delete`)}
-							>
-								<AiOutlineDelete className="w-[20px] h-[20px]" />
-							</button>
-						</div>
-
-						<div>
-							<button
-								className="text-sm px-2 py-1 rounded-sm hover:bg-gray-200 hover:text-black"
-								onClick={() => navigate(`/admin/${project._id}/edit`)}
-							>
-								<AiOutlineEdit className=" w-[20px] h-[20px]" />
-							</button>
-						</div>
-						<div>
-							<RxSwitch className="m-auto w-[25px] h-[25px]" />
-						</div>
-					</div>
+	const handleDeleteGalleryImage = async (imageId) => {
+		toast((t) => (
+			<div className="flex flex-col gap-4">
+				<p className="break-words text-center">
+					¿Desea eliminar la imagen de la galeria?
+				</p>
+				<div className="flex justify-end gap-2">
+					<button
+						className="bg-customColor-blue hover:bg-slate-800 px-3 py-2 text-white text-sm rounded-lg"
+						onClick={() => toast.dismiss(t.id)}
+					>
+						Cancelar
+					</button>
+					<button
+						className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-lg"
+						onClick={async () => {
+							setDeleteGalleryImageId(imageId);
+							toast.dismiss(t.id);
+							const success = await deleteGalleryImage(project._id, imageId);
+							if (success) {
+								toast.success("¡Imagen eliminada con éxito!");
+							}
+						}}
+					>
+						{projectSaveLoading ? (
+							<PulseLoader
+								color="#ff0000"
+								size={14}
+								disabled={projectSaveLoading}
+							/>
+						) : (
+							"Eliminar"
+						)}
+					</button>
 				</div>
 			</div>
-		</div>
+		));
+	};
+
+	const handleDeleteProjectVideo = async (id) => {
+		toast((t) => (
+			<div className="flex flex-col gap-4">
+				<p className="break-words text-center">
+					¿Desea eliminar el video de {project.title}?
+				</p>
+				<div className="flex justify-end gap-2">
+					<button
+						className="bg-customColor-blue hover:bg-slate-800 px-3 py-2 text-white text-sm rounded-lg"
+						onClick={() => toast.dismiss(t.id)}
+					>
+						Cancelar
+					</button>
+					<button
+						className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-lg"
+						onClick={async () => {
+							toast.dismiss(t.id);
+							const success = await deleteProjectVideo(id);
+							if (success) {
+								toast.success("¡Video eliminado con éxito!");
+							}
+						}}
+					>
+						{projectSaveLoading ? (
+							<PulseLoader
+								color="#ff0000"
+								size={14}
+								disabled={projectSaveLoading}
+							/>
+						) : (
+							"Eliminar"
+						)}
+					</button>
+				</div>
+			</div>
+		));
+	};
+
+	const handleDeleteProjectPdf = async (id) => {
+		toast((t) => (
+			<div className="flex flex-col gap-4">
+				<p className="break-words text-center">
+					¿Desea eliminar el pdf de {project.title}?
+				</p>
+				<div className="flex justify-end gap-2">
+					<button
+						className="bg-customColor-blue hover:bg-slate-800 px-3 py-2 text-white text-sm rounded-lg"
+						onClick={() => toast.dismiss(t.id)}
+					>
+						Cancelar
+					</button>
+					<button
+						className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-lg"
+						onClick={async () => {
+							toast.dismiss(t.id);
+							const success = await deleteProjectPdf(id);
+							if (success) {
+								toast.success("¡Pdf eliminado con éxito!");
+							}
+						}}
+					>
+						{projectSaveLoading ? (
+							<PulseLoader
+								color="#ff0000"
+								size={14}
+								disabled={projectSaveLoading}
+							/>
+						) : (
+							"Eliminar"
+						)}
+					</button>
+				</div>
+			</div>
+		));
+	};
+	const handleShowProject = async (id) => {
+		await showProject(id);
+	};
+
+	const handleHideProject = async (id) => {
+		await hideProject(id);
+	};
+
+	const handleDelete = (_id, projectTitle) => {
+		toast((t) => (
+			<div className="flex flex-col gap-4">
+				<p className="break-words text-center">
+					¿Desea eliminar el proyecto {projectTitle}?
+				</p>
+				<div className="flex justify-end gap-2">
+					<button
+						className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-lg"
+						onClick={async () => {
+							await deleteProject(_id);
+							toast.dismiss(t.id);
+							toast.success("¡Proyecto eliminado con exito!");
+						}}
+					>
+						{projectSaveLoading ? (
+							<PulseLoader
+								color="#ff0000"
+								size={14}
+								disabled={projectSaveLoading}
+							/>
+						) : (
+							"Eliminar"
+						)}
+					</button>
+					<button
+						className="bg-customColor-blue hover:bg-slate-800 px-3 py-2 text-white text-sm rounded-lg"
+						onClick={() => toast.dismiss(t.id)}
+					>
+						Cancelar
+					</button>
+				</div>
+			</div>
+		));
+	};
+
+	return (
+		<>
+			<div
+				className={`w-[90%] md:w-[80%] lg:w-[100%] transition-all duration-300 overflow-hidden flex justify-between text-white rounded-xl shadow-gray shadow-md p-4 sm:p-6 md:p-8  mb-3 relative bg-neutral-800 ${
+					isExpanded
+						? "h-[425px] xs:h-[360px] sm:h-[380px] md:h-[400px] lg:h-[420px]"
+						: "h-24 xs:h-32 sm:h-36 md:h-44"
+				}`}
+				style={{
+					backgroundColor: backgroundColor,
+				}}
+			>
+				<ProjectCardMobile
+					isExpanded={isExpanded}
+					openModal={openModal}
+					project={project}
+					handleDeleteGalleryImage={handleDeleteGalleryImage}
+					handleDeleteProjectVideo={handleDeleteProjectVideo}
+					toggleExpand={toggleExpand}
+					projectSaveLoading={projectSaveLoading}
+					handleShowProject={handleShowProject}
+					handleHideProject={handleHideProject}
+					handleDelete={handleDelete}
+					deleteGalleryImageId={deleteGalleryImageId}
+					handleDeleteProjectPdf={handleDeleteProjectPdf}
+				/>
+
+				<ProjectCardDesktop
+					isExpanded={isExpanded}
+					openModal={openModal}
+					project={project}
+					handleDeleteGalleryImage={handleDeleteGalleryImage}
+					handleDeleteProjectVideo={handleDeleteProjectVideo}
+					toggleExpand={toggleExpand}
+					projectSaveLoading={projectSaveLoading}
+					handleShowProject={handleShowProject}
+					handleHideProject={handleHideProject}
+					handleDelete={handleDelete}
+					deleteGalleryImageId={deleteGalleryImageId}
+					handleDeleteProjectPdf={handleDeleteProjectPdf}
+				/>
+			</div>
+			<EditProjectModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				data={modalContent}
+				id={id}
+			/>
+		</>
 	);
 }

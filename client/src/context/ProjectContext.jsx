@@ -1,105 +1,371 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import {createProjectRequest, getProjectsRequest, deleteProjectRequest, editProjectRequest, getProjectRequest} from '../api/projects.js'
+import {
+	createProjectRequest,
+	getProjectsRequest,
+	deleteProjectRequest,
+	editProjectRequest,
+	editProjectImageRequest,
+	editProjectGalleryRequest,
+	editProjectPdfRequest,
+	addImageToGalleryRequest,
+	editProjectVideoRequest,
+	getProjectRequest,
+	getPublicProjectRequest,
+	getPublicProjectsRequest,
+	deleteGalleryImageRequest,
+	deleteProjectVideoRequest,
+	deleteProjectPdfRequest,
+	hideProjectRequest,
+	showProjectRequest,
+	getAdminProjectsRequest,
+} from "../api/projects.js";
+import { useAuth } from "../context/AuthContext.jsx";
 
-const ProjectContext = createContext()
+const ProjectContext = createContext();
 
 export const useProjects = () => {
-    const context = useContext(ProjectContext)
-    return context
-}
+	const context = useContext(ProjectContext);
+	return context;
+};
 
+export function ProjectProvider({ children }) {
+	const [projects, setProjects] = useState([]);
+	const [errors, setErrors] = useState([]);
+	const [projectLoading, setProjectLoading] = useState(false);
+	const [projectSaveLoading, setProjectSaveLoading] = useState(false);
+	const { authUser } = useAuth();
 
-export function ProjectProvider({children}) {
+	const getProjects = async () => {
+		setProjectLoading(true);
+		const res = await getProjectsRequest();
+		setProjectLoading(false);
+		setProjects(res.data);
+	};
 
-    const [projects, setProjects] = useState([])
+	useEffect(() => {
+		(async () => {
+			if (authUser) {
+				await getProjects();
+			}
+		})();
+	}, [authUser]);
 
-    // const createProject = async(project) => {
-    //     try {
-    //         const res = await createProjectRequest(project)
-    //         console.log(res)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+	const getAdminProjects = async (id) => {
+		const res = await getAdminProjectsRequest(id);
+		return res.data || [];
+	};
 
-    // const getProjects = async() => {
-    //     try {
-    //         const res = await getProjectsRequest()
-    //         setProjects(res.data)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+	const getPublicProjects = async (id) => {
+		const res = await getPublicProjectsRequest(id);
+		return res.data || [];
+	};
 
-    // const deleteProject = async (id) => {
-    //     try {
-    //         const res = await deleteProjectRequest(id)
-    //         if(res.status === 204){
-    //             setProjects(projects.filter((project) => {project._id !== id}))
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-        
-    // }
+	const createProject = async (project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await createProjectRequest(project);
+			setProjects([...projects, res.data]);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
+	const deleteProject = async (id) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await deleteProjectRequest(id);
+			if (res.status === 204) {
+				setProjects(projects.filter((project) => project._id !== id));
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    // const getProject = async (id) => {
-    //     const res = await getProjectRequest(id)
-    // }
+	const getPublicProject = async (username, id) => {
+		try {
+			setProjectLoading(true);
+			const res = await getPublicProjectRequest(username, id);
+			return res.data;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+		} finally {
+			setProjectLoading(false);
+		}
+	};
 
-    // const editProject = async(id, project) => {
-    //     try {
-    //         await editProjectRequest(id, project)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+	const getProject = async (id) => {
+		const res = await getProjectRequest(id);
+		return res.data;
+	};
 
-    const getProjects = async () => {
-        const res = await getProjectsRequest()
-        setProjects(res.data)
-    }
+	const editProject = async (id, project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await editProjectRequest(id, project);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    useEffect(() => {
-        getProjects()
-      }, [])
-      
+	const editProjectImage = async (id, project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await editProjectImageRequest(id, project);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    const createProject = async (project) => {
-        const res = await createProjectRequest(project)
-        console.log(res.data)
-        setProjects([...projects, res.data])
-    }
+	const editProjectGallery = async (id, formData) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await editProjectGalleryRequest(id, formData);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    const deleteProject = async (id) => {
-        const res = await deleteProjectRequest(id)
-        if(res.status === 204){
-            setProjects(projects.filter((project) => project._id !== id))
+	const editProjectVideo = async (id, project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await editProjectVideoRequest(id, project);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-        }
-    }
+	const addImageToGallery = async (id, project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await addImageToGalleryRequest(id, project);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    const getProject = async (id) => {
-        const res = await getProjectRequest(id)
-        return res.data
-    }
+	const editProjectPdf = async (id, project) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await editProjectPdfRequest(id, project);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			setErrors([]);
+			return true;
+		} catch (error) {
+			if (error.response && error.response.data) {
+				setErrors(error.response.data.errors);
+			} else {
+				setErrors([
+					{
+						message: "Error con el servidor, reintentar mas tarde",
+					},
+				]);
+			}
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
 
-    const editProject = async(id, project) => {
-        const res = await editProjectRequest(id, project)
-        setProjects(projects.map(project => project._id === id ? res.data : project))
-    }
+	const showProject = async (id) => {
+		await showProjectRequest(id);
+		setProjects(
+			projects.map((project) =>
+				project._id === id ? { ...project, public: true } : project
+			)
+		);
+	};
 
+	const hideProject = async (id) => {
+		await hideProjectRequest(id);
+		setProjects(
+			projects.map((project) =>
+				project._id === id ? { ...project, public: false } : project
+			)
+		);
+	};
 
-    return(
-        <ProjectContext.Provider value={{
-            projects,
-            createProject,
-            getProjects,
-            deleteProject,
-            editProject,
-            getProject,
-        }}>
-            {children}
-        </ProjectContext.Provider>
-    )
+	const deleteGalleryImage = async (id, imageId) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await deleteGalleryImageRequest(id, imageId);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
+
+	const deleteProjectVideo = async (id) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await deleteProjectVideoRequest(id);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
+
+	const deleteProjectPdf = async (id) => {
+		try {
+			setProjectSaveLoading(true);
+			const res = await deleteProjectPdfRequest(id);
+			setProjects(
+				projects.map((project) => (project._id === id ? res.data : project))
+			);
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;
+		} finally {
+			setProjectSaveLoading(false);
+		}
+	};
+
+	return (
+		<ProjectContext.Provider
+			value={{
+				projects,
+				errors,
+				setErrors,
+				createProject,
+				getProjects,
+				getAdminProjects,
+				getPublicProjects,
+				deleteProject,
+				editProject,
+				getProject,
+				getPublicProject,
+				editProjectImage,
+				editProjectGallery,
+				addImageToGallery,
+				editProjectPdf,
+				editProjectVideo,
+				deleteGalleryImage,
+				deleteProjectVideo,
+				deleteProjectPdf,
+				hideProject,
+				showProject,
+				projectLoading,
+				projectSaveLoading,
+			}}
+		>
+			{children}
+		</ProjectContext.Provider>
+	);
 }

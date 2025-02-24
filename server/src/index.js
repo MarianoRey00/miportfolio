@@ -5,5 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 connectDB();
-app.listen(3000);
-console.log("Server on port", 3000);
+
+export default app;
+// app.listen(3000);
+// console.log("Server on port", 3000);

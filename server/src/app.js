@@ -21,7 +21,7 @@ app.use(
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: "https://miportfolio-one.vercel.app",
+		origin: "https://miportfolio18.vercel.app",
 		credentials: true,
 	})
 );

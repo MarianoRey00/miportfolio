@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3000/api',
-    withCredentials: true,
-})
+	baseURL: "https://miportfolio-api.vercel.app/api",
 
-export default instance
+	withCredentials: true,
+});
+
+export default instance;

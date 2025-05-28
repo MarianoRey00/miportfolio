@@ -13,17 +13,24 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(
-	fileUpload({
-		useTempFiles: true,
-		tempFileDir: "./src/upload",
-	})
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./src/upload",
+  })
 );
 app.use(cookieParser());
+
+const allowedOrigins = [
+  "https://miportfolio18.vercel.app",
+  "http://localhost:5173",
+];
+
 app.use(
-	cors({
-		origin: "https://miportfolio18.vercel.app",
-		credentials: true,
-	})
+  cors({
+    // origin: "https://miportfolio18.vercel.app",
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
 );
 
 app.use("/api", userRoutes);

@@ -12,7 +12,7 @@ function UpgradePage() {
   const createPreference = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/create-preference",
+        "http://https://miportfolio-api.onrender.com/api/create-preference",
         {
           title: "Miportfolio Premium",
           quantity: 1,

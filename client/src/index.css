@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "ClashDisplay";
+  src: url("fonts/ClashDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,11 +25,4 @@
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #555;
-}
-
-@font-face {
-  font-family: "ClashDisplay";
-  src: url("fonts/ClashDisplay-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }

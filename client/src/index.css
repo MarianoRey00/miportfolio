@@ -23,7 +23,7 @@
 
 @font-face {
   font-family: "ClashDisplay";
-  src: url("fonts/ClashDisplay-Regular.ttf") format("truetype");
+  src: url("../public/fonts/ClashDisplay-Regular.ttf") format("truetype");
   /* font-weight: normal;
 	font-style: normal; */
 }

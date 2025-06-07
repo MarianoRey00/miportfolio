@@ -12,7 +12,7 @@ function HomePage() {
 
       <section className="flex flex-col justify-between items-center md:items-start bg-orange-50 px-10 py-12 gap-6 md:flex md:flex-row md:justify-between md:bg-orange-50 md:px-10 md:py-12">
         <div className="md:w-[50%] text-customColor-blue ">
-          <h1 className="text-3xl font-ClashDisplay font-bold sm:text-4xl md:text-5xl lg:text-7xl">
+          <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-7xl">
             <span>
               Crea tu portfolio online en minutos con{" "}
               <span className="hidden">miportfolio</span>

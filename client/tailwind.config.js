@@ -4,7 +4,6 @@ export default {
     extend: {
       fontFamily: {
         ClashDisplay: ["ClashDisplay", "sans-serif"],
-        CabinetGrotesk: ["Cabinet Grotesk", "sans-serif"],
       },
       colors: {
         customColor: {

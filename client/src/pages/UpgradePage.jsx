@@ -90,13 +90,12 @@ function UpgradePage() {
             >
               Comprar Plan premium
             </button>
-            {/* {preferenceId && (
-              <div className="w-full overflow-hidden">
-                <Wallet initialization={{ preferenceId: preferenceId }} /> */}
-            {/* customization={{ texts: { valueProp: "smart_option" } }} */}
-            {/* </div>
-            )} */}
             {preferenceId && (
+              <div className="w-full overflow-hidden">
+                <Wallet initialization={{ preferenceId: preferenceId }} />
+              </div>
+            )}
+            {/* {preferenceId && (
               <a
                 href={`https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preferenceId}`}
                 target="_blank"
@@ -104,7 +103,7 @@ function UpgradePage() {
               >
                 Ir a Mercado Pago
               </a>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -113,3 +112,5 @@ function UpgradePage() {
 }
 
 export default UpgradePage;
+
+/* customization={{ texts: { valueProp: "smart_option" } }} */

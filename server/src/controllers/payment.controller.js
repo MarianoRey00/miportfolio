@@ -19,9 +19,9 @@ export const createPreference = async (req, res) => {
         },
       ],
       back_urls: {
-        success: "https://www.instagram.com",
+        success: "https://miportfolio18.vercel.app/panel",
         failure: "https://www.instagram.com",
-        pending: "https://www.instagram.com",
+        pending: "https://miportfolio18.vercel.app/panel/cambiar-plan",
       },
       auto_return: "approved",
       notification_url: "http://localhost:3000/api/webhook",
@@ -29,7 +29,7 @@ export const createPreference = async (req, res) => {
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
-    console.log(result);
+    // console.log(result);
     res.json({
       id: result.id,
     });

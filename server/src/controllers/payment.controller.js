@@ -30,6 +30,7 @@ export const createPreference = async (req, res) => {
     const preference = new Preference(client);
     const result = await preference.create({ body });
     // console.log(result);
+    console.log(JSON.stringify(result, null, 2));
     res.json({
       id: result.id,
     });

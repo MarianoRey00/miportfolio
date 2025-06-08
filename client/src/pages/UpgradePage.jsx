@@ -16,7 +16,7 @@ function UpgradePage() {
         {
           title: "Miportfolio Premium",
           quantity: 1,
-          price: 100,
+          price: 10,
         }
       );
       const { id } = response.data;

@@ -18,6 +18,10 @@ export const createPreference = async (req, res) => {
           currency_id: "ARS",
         },
       ],
+      payer: {
+        // email: req.body.buyerEmail,
+        email: "reyfernandomario@gmail.com",
+      },
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel",
         failure: "https://www.instagram.com",

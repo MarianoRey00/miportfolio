@@ -16,11 +16,15 @@ export const createPreference = async (req, res) => {
           quantity: Number(req.body.quantity),
           unit_price: Number(req.body.price),
           currency_id: "ARS",
+          category_id: "others",
         },
       ],
       payer: {
         // email: req.body.buyerEmail,
         email: "reyfernandomario@gmail.com",
+      },
+      shipments: {
+        mode: "not_specified", // ✅ Evita que Mercado Pago piense que hay un envío físico
       },
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel",

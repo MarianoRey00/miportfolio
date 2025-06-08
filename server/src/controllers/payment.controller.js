@@ -28,7 +28,7 @@ export const createPreference = async (req, res) => {
         pending: "https://miportfolio18.vercel.app/panel/cambiar-plan",
       },
       auto_return: "approved",
-      notification_url: "http://localhost:3000/api/webhook",
+      // notification_url: "http://localhost:3000/api/webhook",
     };
 
     const preference = new Preference(client);

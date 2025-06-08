@@ -4,7 +4,7 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 export const createPreference = async (req, res) => {
   const client = new MercadoPagoConfig({
     accessToken:
-      "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
+      "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
   });
 
   //credenciales de produccion de la cuenta de prueba de vendedor.

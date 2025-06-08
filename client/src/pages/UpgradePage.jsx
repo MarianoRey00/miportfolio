@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("APP_USR-a43915bb-9dff-4ab1-b0c3-568b1b9569a0", {
+  initMercadoPago("APP_USR-46c99d09-a8af-425c-b1ec-d5e5c40616ee", {
     locale: "es-AR",
   });
 
@@ -16,7 +16,7 @@ function UpgradePage() {
         {
           title: "Miportfolio Premium",
           quantity: 1,
-          price: 100,
+          price: 10,
         }
       );
       const { id } = response.data;

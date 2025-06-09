@@ -19,10 +19,13 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
+      type: "online",
+      processing_mode: "automatic",
       payer: {
         // email: req.body.buyerEmail,
-        email: "reyfernandomario@gmail.com",
+        // email: "reyfernandomario@gmail.com",
       },
+      jorgito: "Jorgito",
       shipments: {
         mode: "not_specified", // ✅ Evita que Mercado Pago piense que hay un envío físico
       },
@@ -32,12 +35,11 @@ export const createPreference = async (req, res) => {
         pending: "https://miportfolio18.vercel.app/panel/cambiar-plan",
       },
       auto_return: "approved",
-      // notification_url: "http://localhost:3000/api/webhook",
+      notification_url: "https://miportfolio-api.onrender.com/api/webhook",
     };
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
-    // console.log(result);
     console.log(JSON.stringify(result, null, 2));
     res.json({
       id: result.id,

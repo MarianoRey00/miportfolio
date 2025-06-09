@@ -1,5 +1,8 @@
 import express from "express";
-import { createPreference } from "../controllers/payment.controller.js";
+import {
+  createPreference,
+  webhook,
+} from "../controllers/payment.controller.js";
 
 const router = express.Router();
 
@@ -7,6 +10,6 @@ const router = express.Router();
 router.post("/create-preference", createPreference);
 
 // Ruta para el webhook
-// router.post("/webhook", handleWebhook);
+router.post("/webhook", webhook);
 
 export default router;

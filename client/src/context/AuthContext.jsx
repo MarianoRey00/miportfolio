@@ -77,55 +77,27 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkLogin = async () => {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
       try {
-        console.log("estoy vivo butito");
-        const res = await verifyTokenRequest(cookies.token);
+        const res = await verifyTokenRequest();
         if (!res.data) {
-          return setIsAuthenticated(false);
+          setIsAuthenticated(false);
+          setAuthUser(null);
+          return;
         }
         setIsAuthenticated(true);
         setAuthUser(res.data);
         if (res.data.role === "Admin") {
           setIsAdmin(true);
         }
-        setLoading(false);
       } catch (error) {
         setIsAuthenticated(false);
+        setAuthUser(null);
+      } finally {
         setLoading(false);
       }
     };
     checkLogin();
   }, []);
-
-  //   useEffect(() => {
-  //     const checkLogin = async () => {
-  //       try {
-  //         const res = await verifyTokenRequest();
-  //         if (!res.data) {
-  //           setIsAuthenticated(false);
-  //           setAuthUser(null);
-  //           return;
-  //         }
-  //         setIsAuthenticated(true);
-  //         setAuthUser(res.data);
-  //         if (res.data.role === "Admin") {
-  //           setIsAdmin(true);
-  //         }
-  //       } catch (error) {
-  //         setIsAuthenticated(false);
-  //         setAuthUser(null);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     };
-  //     checkLogin();
-  //   }, []);
 
   return (
     <AuthContext.Provider

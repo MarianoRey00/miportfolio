@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import {
   registerRequest,
   loginRequest,
+  logoutRequest,
   verifyTokenRequest,
 } from "../api/auth.js";
 import Cookies from "js-cookie";
@@ -68,64 +69,68 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    Cookies.remove("token");
-    setIsAuthenticated(false);
-    setIsAdmin(false);
-    setAuthUser(null);
+  const logout = async () => {
+    try {
+      await logoutRequest();
+      setIsAuthenticated(false);
+      setIsAdmin(false);
+      setAuthUser(null);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  // useEffect(() => {
+  //   const checkLogin = async () => {
+  //     const cookies = Cookies.get();
+  //     if (!cookies.token) {
+  //       setIsAuthenticated(false);
+  //       setLoading(false);
+  //       return;
+  //     }
+  //     try {
+  //       console.log("estoy vivo butito");
+  //       const res = await verifyTokenRequest();
+  //       if (!res.data) {
+  //         return setIsAuthenticated(false);
+  //       }
+  //       setIsAuthenticated(true);
+  //       setAuthUser(res.data);
+  //       if (res.data.role === "Admin") {
+  //         setIsAdmin(true);
+  //       }
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setIsAuthenticated(false);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   checkLogin();
+  // }, []);
 
   useEffect(() => {
     const checkLogin = async () => {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
       try {
-        console.log("estoy vivo butito");
         const res = await verifyTokenRequest();
         if (!res.data) {
-          return setIsAuthenticated(false);
+          setIsAuthenticated(false);
+          setAuthUser(null);
+          return;
         }
         setIsAuthenticated(true);
         setAuthUser(res.data);
         if (res.data.role === "Admin") {
           setIsAdmin(true);
         }
-        setLoading(false);
       } catch (error) {
         setIsAuthenticated(false);
+        setAuthUser(null);
+      } finally {
         setLoading(false);
       }
     };
     checkLogin();
   }, []);
-
-  //   useEffect(() => {
-  //     const checkLogin = async () => {
-  //       try {
-  //         const res = await verifyTokenRequest();
-  //         if (!res.data) {
-  //           setIsAuthenticated(false);
-  //           setAuthUser(null);
-  //           return;
-  //         }
-  //         setIsAuthenticated(true);
-  //         setAuthUser(res.data);
-  //         if (res.data.role === "Admin") {
-  //           setIsAdmin(true);
-  //         }
-  //       } catch (error) {
-  //         setIsAuthenticated(false);
-  //         setAuthUser(null);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     };
-  //     checkLogin();
-  //   }, []);
 
   return (
     <AuthContext.Provider

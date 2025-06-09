@@ -1,4 +1,4 @@
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig, Preference, mercadopago } from "mercadopago";
 // import Purchase from "../models/purchase.model.js";
 
 export const createPreference = async (req, res) => {

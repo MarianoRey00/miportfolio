@@ -66,11 +66,11 @@ export const webhook = async (req, res) => {
         "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
     });
 
-    const payment = await new Payment(client).get({ id: paymentData.data.id });
+    const payment = await new Payment(client).get({ id: paymentData.id });
     console.log("payment: ", payment);
 
     if (payment.status === "approved") {
-      console.log("Pago aprobado para:", payment.payer.email);
+      console.log("Pago aprobado para: mi");
       // lógica de activación o guardado
     }
 

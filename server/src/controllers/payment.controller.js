@@ -19,15 +19,14 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
-      type: "online",
-      processing_mode: "automatic",
+      // type: "online",
+      // processing_mode: "automatic",
       payer: {
         // email: req.body.buyerEmail,
         // email: "reyfernandomario@gmail.com",
       },
-      jorgito: "Jorgito",
       shipments: {
-        mode: "not_specified", // ✅ Evita que Mercado Pago piense que hay un envío físico
+        mode: "not_specified",
       },
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel",
@@ -53,32 +52,34 @@ export const webhook = async (req, res) => {
   try {
     const paymentData = req.body;
 
+    console.log(paymentData);
+
     // Valida que venga información necesaria
     if (!paymentData || !paymentData.id || !paymentData.type) {
       return res.status(400).send("Invalid notification");
     }
 
     // Verifica el estado del pago llamando al API de MercadoPago
-    const paymentId = paymentData.id;
-    const client = new MercadoPagoConfig({
-      accessToken:
-        "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
-    });
-    const payment = await client.payment.findById(paymentId);
+    // const paymentId = paymentData.id;
+    // const client = new MercadoPagoConfig({
+    //   accessToken:
+    //     "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
+    // });
+    // const payment = await client.payment.findById(paymentId);
 
     // Guarda los datos en la base de datos
-    if (payment.status === "approved") {
-      const newPurchase = new Purchase({
-        title: payment.additional_info.items[0].title,
-        price: payment.transaction_amount,
-        status: payment.status,
-        buyer: payment.payer.email,
-        createdAt: new Date(),
-      });
-      await newPurchase.save();
-    }
+    // if (payment.status === "approved") {
+    //   const newPurchase = new Purchase({
+    //     title: payment.additional_info.items[0].title,
+    //     price: payment.transaction_amount,
+    //     status: payment.status,
+    //     buyer: payment.payer.email,
+    //     createdAt: new Date(),
+    //   });
+    //   await newPurchase.save();
+    // }
 
-    res.status(200).send("Notification received");
+    // res.status(200).send("Notification received");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

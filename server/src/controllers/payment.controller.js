@@ -55,9 +55,9 @@ export const webhook = async (req, res) => {
     console.log(paymentData);
 
     // Valida que venga información necesaria
-    if (!paymentData || !paymentData.id || !paymentData.type) {
-      return res.status(400).send("Invalid notification");
-    }
+    // if (!paymentData || !paymentData.id || !paymentData.type) {
+    //   return res.status(400).send("Invalid notification");
+    // }
 
     // Verifica el estado del pago llamando al API de MercadoPago
     // const paymentId = paymentData.id;
@@ -82,6 +82,16 @@ export const webhook = async (req, res) => {
     // res.status(200).send("Notification received");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Error papu");
   }
 };
+
+// mercadopago.configurations.setAccessToken(
+//   "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120"
+// );
+// switch (type) {
+//   case "payment":
+//     const payment = await mercadopago.payment.findById(data.id);
+//     console.log(payment);
+//     break;
+// }

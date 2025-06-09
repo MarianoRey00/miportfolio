@@ -46,15 +46,9 @@ export const login = async (req, res) => {
   const user = req.user;
 
   const token = await createAccessToken({ id: user._id });
-  // res.cookie("token", token, {
-  //   secure: true,
-  //   sameSite: "None",
-  // });
   res.cookie("token", token, {
-    httpOnly: true,
-    secure: true, // HTTPS obligatorio
-    sameSite: "None", // Necesario para cross-site (Render + Vercel)
-    maxAge: 24 * 60 * 60 * 1000, // 1 día
+    secure: true,
+    sameSite: "None",
   });
   res.json({
     id: user._id,

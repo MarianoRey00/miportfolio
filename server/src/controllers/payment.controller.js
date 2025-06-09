@@ -1,4 +1,4 @@
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
 // import Purchase from "../models/purchase.model.js";
 
 export const createPreference = async (req, res) => {
@@ -23,7 +23,7 @@ export const createPreference = async (req, res) => {
       // processing_mode: "automatic",
       payer: {
         // email: req.body.buyerEmail,
-        // email: "reyfernandomario@gmail.com",
+        email: "reyfernandomario@gmail.com",
       },
       shipments: {
         mode: "not_specified",
@@ -65,8 +65,16 @@ export const webhook = async (req, res) => {
       accessToken:
         "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
     });
-    const payment = await client.payment.findById(paymentData.id);
+
+    const payment = await new Payment(client).get({ id: paymentData.id });
     console.log("payment: ", payment);
+
+    if (payment.status === "approved") {
+      console.log("Pago aprobado para: mi");
+      // lógica de activación o guardado
+    }
+
+    res.status(200).send("Notification received");
 
     // Guarda los datos en la base de datos
     // if (payment.status === "approved") {
@@ -83,7 +91,7 @@ export const webhook = async (req, res) => {
     // res.status(200).send("Notification received");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error papu");
+    res.status(500).send("Internal Server Error");
   }
 };
 

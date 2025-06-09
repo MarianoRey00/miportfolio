@@ -53,7 +53,7 @@ export const webhook = async (req, res) => {
   try {
     const paymentData = req.body;
 
-    console.log("paymentData", paymentData);
+    console.log("paymentData: ", paymentData);
 
     // Valida que venga información necesaria
     // if (!paymentData || !paymentData.id || !paymentData.type) {
@@ -61,11 +61,17 @@ export const webhook = async (req, res) => {
     // }
 
     // Verifica el estado del pago llamando al API de MercadoPago
-    const client = new MercadoPagoConfig({
-      accessToken:
-        "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
-    });
-    const payment = await client.payment.findById(paymentData.id);
+    // const client = new MercadoPagoConfig({
+    //   accessToken:
+    //     "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
+    // });
+    // const payment = await client.payment.findById(paymentData.id);
+    // console.log("payment: ", payment);
+
+    mercadopago.configurations.setAccessToken(
+      "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120"
+    );
+    const payment = await mercadopago.payment.findById(paymentData.id);
     console.log("payment: ", payment);
 
     // Guarda los datos en la base de datos
@@ -87,9 +93,6 @@ export const webhook = async (req, res) => {
   }
 };
 
-// mercadopago.configurations.setAccessToken(
-//   "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120"
-// );
 // switch (type) {
 //   case "payment":
 //     const payment = await mercadopago.payment.findById(data.id);

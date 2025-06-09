@@ -39,16 +39,3 @@ app.use("/api", appearanceRoutes);
 app.use("/api", paymentRoutes);
 
 export default app;
-
-// {
-//   "version": 2,
-//   "builds": [
-//     {
-//       "src": "index.js",
-//       "use": "@vercel/node"
-//     }
-//   ]
-// }
-// git add .
-// git commit -m "prueba"
-// git push origin main

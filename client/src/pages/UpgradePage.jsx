@@ -109,7 +109,7 @@ function UpgradePage() {
       </div> */}
       <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-900">
+          <h1 class="text-3xl font-bold text-orange-50">
             Complete Your Purchase
           </h1>
           <p class="text-gray-600 mt-2">
@@ -306,11 +306,11 @@ function UpgradePage() {
                       >
                         <path
                           d="M20.067 8.478C20.067 10.064 19.162 11.564 17.276 11.564H15.496C15.39 11.564 15.297 11.65 15.284 11.756L14.758 15.344C14.745 15.437 14.665 15.51 14.572 15.51H12.567C12.422 15.51 12.316 15.377 12.342 15.232L13.933 5.56C13.946 5.48 14.013 5.426 14.093 5.426H18.157C19.333 5.426 20.067 6.372 20.067 7.548V8.478Z"
-                          fill="white"
+                          fill="black"
                         />
                         <path
                           d="M7.05 15.51H5.045C4.9 15.51 4.794 15.377 4.82 15.232L6.411 5.56C6.424 5.48 6.491 5.426 6.571 5.426H10.635C11.811 5.426 12.545 6.372 12.545 7.548V8.478C12.545 10.064 11.64 11.564 9.754 11.564H7.974C7.868 11.564 7.775 11.65 7.762 11.756L7.236 15.344C7.223 15.437 7.143 15.51 7.05 15.51Z"
-                          fill="white"
+                          fill="black"
                         />
                       </svg>
                       Pay with PayPal

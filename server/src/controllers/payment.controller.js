@@ -1,5 +1,5 @@
 import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
-// import Purchase from "../models/purchase.model.js";
+import Purchase from "../models/purchase.model.js";
 
 export const createPreference = async (req, res) => {
   const client = new MercadoPagoConfig({
@@ -19,15 +19,7 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
-      // type: "online",
-      // processing_mode: "automatic",
-      payer: {
-        // email: req.body.buyerEmail,
-        email: "reyfernandomario@gmail.com",
-      },
-      shipments: {
-        mode: "not_specified",
-      },
+      external_reference: req.body.user_id,
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel",
         failure: "https://www.instagram.com",
@@ -39,8 +31,6 @@ export const createPreference = async (req, res) => {
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
-    // console.log(JSON.stringify(result, null, 2));
-
     res.json({
       id: result.id,
     });
@@ -59,8 +49,6 @@ export const webhook = async (req, res) => {
     // if (!paymentData || !paymentData.id || !paymentData.type) {
     //   return res.status(400).send("Invalid notification");
     // }
-    console.log("paymentdata.data.id: ", paymentData.data.id);
-    // Verifica el estado del pago llamando al API de MercadoPago
     const client = new MercadoPagoConfig({
       accessToken:
         "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
@@ -69,26 +57,25 @@ export const webhook = async (req, res) => {
     const payment = await new Payment(client).get({ id: paymentData.data.id });
     console.log("payment: ", payment);
 
-    if (payment.status === "approved") {
-      console.log("Pago aprobado para: mi");
-      // lógica de activación o guardado
-    }
-
-    res.status(200).send("Notification received");
-
-    // Guarda los datos en la base de datos
     // if (payment.status === "approved") {
-    //   const newPurchase = new Purchase({
-    //     title: payment.additional_info.items[0].title,
-    //     price: payment.transaction_amount,
-    //     status: payment.status,
-    //     buyer: payment.payer.email,
-    //     createdAt: new Date(),
-    //   });
-    //   await newPurchase.save();
+    //   console.log("Pago aprobado para: mi");
     // }
 
     // res.status(200).send("Notification received");
+
+    // Guarda los datos en la base de datos
+    if (payment.status === "approved") {
+      const newPurchase = new Purchase({
+        title: payment.additional_info.items[0].title,
+        price: payment.transaction_amount,
+        status: payment.status,
+        buyer: payment.external_reference,
+        createdAt: new Date(),
+      });
+      await newPurchase.save();
+    }
+
+    res.status(200).send("Notification received");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

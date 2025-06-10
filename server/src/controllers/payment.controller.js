@@ -19,7 +19,8 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
-      external_reference: req.body.user_id,
+      // external_reference: req.body.user_id,
+      external_reference: "684802b3b9e76b6bbc939d48",
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel",
         failure: "https://www.instagram.com",
@@ -31,6 +32,7 @@ export const createPreference = async (req, res) => {
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
+    console.log("Preferencia: ", result);
     res.json({
       id: result.id,
     });

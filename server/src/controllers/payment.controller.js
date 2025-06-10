@@ -66,7 +66,8 @@ export const webhook = async (req, res) => {
         "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
     });
 
-    const payment = await new Payment(client).get({ id: paymentData.data.id });
+    const payment = await client.payment.findById(paymentData.data.id);
+    // const payment = await new Payment(client).get({ id: paymentData.data.id });
     console.log("payment: ", payment);
 
     if (payment.status === "approved") {
@@ -97,7 +98,7 @@ export const webhook = async (req, res) => {
 
 // switch (type) {
 //   case "payment":
-//     const payment = await mercadopago.payment.findById(data.id);
+//     const payment = await client.payment.findById(data.id);
 //     console.log(payment);
 //     break;
 // }

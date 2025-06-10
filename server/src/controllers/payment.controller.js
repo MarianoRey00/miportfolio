@@ -66,7 +66,7 @@ export const webhook = async (req, res) => {
         "APP_USR-6940934011168077-120507-1818f37c83edd6361987165d794daa45-2137972120",
     });
 
-    const payment = await new Payment(client).get({ id: paymentData.id });
+    const payment = await new Payment(client).get({ id: paymentData.data.id });
     console.log("payment: ", payment);
 
     if (payment.status === "approved") {

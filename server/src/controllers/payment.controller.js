@@ -59,7 +59,7 @@ export const webhook = async (req, res) => {
     // if (!paymentData || !paymentData.id || !paymentData.type) {
     //   return res.status(400).send("Invalid notification");
     // }
-
+    console.log("paymentdata.data.id: ", paymentData.data.id);
     // Verifica el estado del pago llamando al API de MercadoPago
     const client = new MercadoPagoConfig({
       accessToken:

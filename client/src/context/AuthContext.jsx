@@ -111,7 +111,6 @@ export const AuthProvider = ({ children }) => {
     const checkLogin = async () => {
       try {
         const res = await verifyTokenRequest();
-        console.log("Respuesta del backend:", res.data);
         if (!res.data) {
           setIsAuthenticated(false);
           setAuthUser(null);

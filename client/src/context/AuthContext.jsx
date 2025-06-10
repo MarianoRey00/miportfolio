@@ -89,7 +89,6 @@ export const AuthProvider = ({ children }) => {
   //       return;
   //     }
   //     try {
-  //       console.log("estoy vivo butito");
   //       const res = await verifyTokenRequest();
   //       if (!res.data) {
   //         return setIsAuthenticated(false);

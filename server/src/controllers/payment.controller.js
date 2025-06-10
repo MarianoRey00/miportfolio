@@ -1,5 +1,6 @@
 import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
 import Purchase from "../models/purchase.model.js";
+import User from "../models/user.model.js";
 
 export const createPreference = async (req, res) => {
   const client = new MercadoPagoConfig({
@@ -59,22 +60,8 @@ export const webhook = async (req, res) => {
     const payment = await new Payment(client).get({ id: paymentData.data.id });
     console.log("payment: ", payment);
 
-    // if (payment.status === "approved") {
-    //   console.log("Pago aprobado para: mi");
-    // }
-
-    // res.status(200).send("Notification received");
-
-    // Guarda los datos en la base de datos
     if (payment.status === "approved") {
-      const newPurchase = new Purchase({
-        title: payment.additional_info.items[0].title,
-        price: payment.transaction_amount,
-        status: payment.status,
-        buyer: payment.external_reference,
-        createdAt: new Date(),
-      });
-      await newPurchase.save();
+      await createPurchase(payment);
     }
 
     res.status(200).send("Notification received");
@@ -84,9 +71,26 @@ export const webhook = async (req, res) => {
   }
 };
 
-// switch (type) {
-//   case "payment":
-//     const payment = await mercadopago.payment.findById(data.id);
-//     console.log(payment);
-//     break;
-// }
+const createPurchase = async (payment) => {
+  try {
+    const newPurchase = new Purchase({
+      title: payment.additional_info.items[0].title,
+      price: payment.transaction_amount,
+      status: payment.status,
+      buyer: payment.external_reference,
+      createdAt: new Date(),
+    });
+    await newPurchase.save();
+    await upgradePlan(payment.external_reference);
+  } catch (error) {
+    console.log("createPurchase: ", error);
+  }
+};
+
+const upgradePlan = async (user_id) => {
+  try {
+    await User.findByIdAndUpdate(user_id, { plan: "Premium" }, { new: true });
+  } catch (error) {
+    console.log("upgradePlan: ", error);
+  }
+};

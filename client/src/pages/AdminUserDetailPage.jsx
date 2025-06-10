@@ -56,7 +56,7 @@ function AdminUserDetailPage() {
               toast.dismiss(t.id);
               if (success) {
                 showNotification("¡Usuario eliminado con éxito!");
-                navigate("admin/usuarios");
+                navigate("/admin/usuarios");
               }
             }}
           >

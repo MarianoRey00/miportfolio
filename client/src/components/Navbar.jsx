@@ -48,6 +48,7 @@ function Navbar({ background, border }) {
                   isDropdownMenuOpen={isDropdownMenuOpen}
                   logout={logout}
                   isAdmin={isAdmin}
+                  authUser={authUser}
                 />
               </>
             ) : (

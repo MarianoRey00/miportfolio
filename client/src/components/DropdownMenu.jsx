@@ -7,6 +7,7 @@ function DropdownMenu({
   isDropdownMenuOpen,
   logout,
   isAdmin,
+  authUser,
 }) {
   return (
     <>
@@ -16,20 +17,14 @@ function DropdownMenu({
           className="flex items-center gap-2"
         >
           {/* <MdAccountBox className="w-12 h-12" /> */}
-          {publicUser?.picture.url ? (
+          {authUser?.picture.url ? (
             <img
-              src={publicUser?.picture.url}
-              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-cover"
-              style={{ borderRadius: publicAppearance.pictureShape }}
+              src={authUser?.picture.url}
+              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-cover rounded"
             />
           ) : (
-            <div
-              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-neutral-800 flex items-center justify-center"
-              style={{ borderRadius: publicAppearance.pictureShape }}
-            >
-              <p className="p-6  text-2xl uppercase">
-                {publicUser?.username[0]}
-              </p>
+            <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-neutral-800 flex items-center justify-center rounded">
+              <p className="p-6  text-2xl uppercase">{authUser?.username[0]}</p>
             </div>
           )}
         </div>

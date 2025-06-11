@@ -17,13 +17,13 @@ function DropdownMenu({
           className="flex items-center gap-2"
         >
           {/* <MdAccountBox className="w-12 h-12" /> */}
-          {authUser?.picture.url ? (
+          {authUser?.picture?.url ? (
             <img
-              src={authUser?.picture.url}
-              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-cover rounded"
+              src={authUser?.picture?.url}
+              className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-cover rounded border-2 border-orange-50"
             />
           ) : (
-            <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-neutral-800 flex items-center justify-center rounded">
+            <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-neutral-800 flex items-center justify-center rounded border-2 border-orange-50">
               <p className="p-6  text-2xl uppercase">{authUser?.username[0]}</p>
             </div>
           )}

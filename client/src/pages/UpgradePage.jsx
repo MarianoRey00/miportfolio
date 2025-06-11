@@ -149,7 +149,7 @@ function UpgradePage() {
                     <p class="text-gray-600 mt-1">
                       Annual subscription (billed monthly)
                     </p>
-                    <div class="mt-2 flex items-center text-sm text-gray-500">
+                    {/* <div class="mt-2 flex items-center text-sm text-gray-500">
                       <svg
                         class="w-4 h-4 mr-1 text-green-500"
                         fill="currentColor"
@@ -162,7 +162,7 @@ function UpgradePage() {
                         ></path>
                       </svg>
                       Renews automatically
-                    </div>
+                    </div> */}
                   </div>
                   <div class="ml-4 flex-shrink-0 text-right">
                     <span class="text-lg font-medium text-gray-900">
@@ -243,15 +243,7 @@ function UpgradePage() {
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-600">Subtotal</span>
-                    <span class="text-gray-900">$79.00</span>
-                  </div>
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-600">Tax (9%)</span>
-                    <span class="text-gray-900">$7.11</span>
-                  </div>
-                  <div class="flex justify-between font-medium text-lg mt-4 pt-4 border-t border-gray-200">
+                  <div class="flex justify-between font-medium text-lg mt-4 pt-4 border-gray-200">
                     <span class="text-gray-900">Total</span>
                     <span class="text-gray-900">$86.11</span>
                   </div>
@@ -315,6 +307,12 @@ function UpgradePage() {
                       </svg>
                       Pay with PayPal
                     </button> */}
+                    <button
+                      onClick={handleBuy}
+                      className="px-6 py-2 text-sm sm:text-base lg:px-6 lg:py-4 border rounded-lg hover:bg-white hover:text-zinc-800"
+                    >
+                      Comprar Plan premium
+                    </button>
                     {preferenceId && (
                       <div className="w-full overflow-hidden">
                         <Wallet
@@ -322,17 +320,6 @@ function UpgradePage() {
                         />
                       </div>
                     )}
-                  </div>
-
-                  <div class="relative">
-                    <div class="absolute inset-0 flex items-center">
-                      <div class="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                      <span class="px-2 bg-white text-gray-500">
-                        or pay with card
-                      </span>
-                    </div>
                   </div>
 
                   <div class="w-full">
@@ -398,20 +385,6 @@ function UpgradePage() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="mt-6 text-center text-sm text-gray-500">
-              <p>
-                By completing this purchase, you agree to our{" "}
-                <a href="#" class="text-primary-600 hover:text-primary-700">
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a href="#" class="text-primary-600 hover:text-primary-700">
-                  Privacy Policy
-                </a>
-                .
-              </p>
             </div>
           </div>
         </div>

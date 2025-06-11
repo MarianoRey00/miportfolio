@@ -35,7 +35,7 @@ function DashboardProfilePage() {
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
         <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:py-12 lg:px-10 lg:w-[59%] gap-4">
-          <ul className="text-sm xs:text-base flex gap-2 lg:gap-4">
+          {/* <ul className="text-sm xs:text-base flex gap-2 lg:gap-4">
             <li
               className={`rounded-lg w-20 lg:w-40 text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
                 view.profileData
@@ -66,6 +66,26 @@ function DashboardProfilePage() {
             >
               Apariencia
             </li>
+          </ul> */}
+          <ul className="flex justify-center gap-2 bg-zinc-900 p-2 rounded-lg shadow-inner text-sm">
+            {[
+              { label: "Perfil", key: "profileData" },
+              { label: "Personales", key: "personalData" },
+              { label: "Apariencia", key: "appearance" },
+            ].map(({ label, key }) => (
+              <li
+                key={key}
+                onClick={() => toggleView(key)}
+                className={`px-3 py-1.5 rounded-md cursor-pointer transition-colors duration-150
+        ${
+          view[key]
+            ? "bg-zinc-700 text-white"
+            : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+        }`}
+              >
+                {label}
+              </li>
+            ))}
           </ul>
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
           <div className="w-full flex justify-center">

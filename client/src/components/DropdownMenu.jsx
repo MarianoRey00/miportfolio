@@ -7,9 +7,8 @@ function DropdownMenu({
   isDropdownMenuOpen,
   logout,
   isAdmin,
-  authUser,
+  user,
 }) {
-  console.log(authUser);
   return (
     <>
       <div className="relative cursor-pointer">
@@ -17,15 +16,14 @@ function DropdownMenu({
           onClick={() => toggleDropdownMenu()}
           className="flex items-center gap-2"
         >
-          {/* <MdAccountBox className="w-12 h-12" /> */}
-          {authUser?.picture?.url ? (
+          {user?.picture?.url ? (
             <img
-              src={authUser?.picture?.url}
+              src={user?.picture?.url}
               className="w-12 h-12 object-cover rounded-lg border-2 border-orange-50"
             />
           ) : (
             <div className="w-12 h-12 bg-neutral-800 flex items-center justify-center rounded-lg border-2 border-orange-50">
-              <p className="p-6 text-lg uppercase">{authUser?.username[0]}</p>
+              <p className="p-6 text-lg uppercase">{user?.username[0]}</p>
             </div>
           )}
         </div>

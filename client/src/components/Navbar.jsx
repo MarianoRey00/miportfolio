@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useUsers } from "../context/UserContext";
 import Logo from "../components/Logo.jsx";
 import HomeMenu from "./HomeMenu.jsx";
 import DropdownMenu from "../components/DropdownMenu.jsx";
 
 function Navbar({ background, border }) {
   const { isAuthenticated, logout, isAdmin, authUser } = useAuth();
+  const { user } = useUsers();
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,7 +20,6 @@ function Navbar({ background, border }) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  console.log("Navbar: ", authUser);
   return (
     <>
       <header className="sticky top-0 z-10">
@@ -49,7 +50,7 @@ function Navbar({ background, border }) {
                   isDropdownMenuOpen={isDropdownMenuOpen}
                   logout={logout}
                   isAdmin={isAdmin}
-                  authUser={authUser}
+                  user={user}
                 />
               </>
             ) : (

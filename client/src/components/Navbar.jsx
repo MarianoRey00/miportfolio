@@ -18,6 +18,7 @@ function Navbar({ background, border }) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  console.log("Navbar: ", authUser);
   return (
     <>
       <header className="sticky top-0 z-10">

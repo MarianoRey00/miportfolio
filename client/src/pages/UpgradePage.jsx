@@ -243,7 +243,7 @@ function UpgradePage() {
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                  <div class="flex justify-between font-medium text-lg mt-4 pt-4 border-gray-200">
+                  <div class="flex justify-between font-medium text-lg pt-4">
                     <span class="text-gray-900">Total</span>
                     <span class="text-gray-900">$86.11</span>
                   </div>
@@ -251,7 +251,7 @@ function UpgradePage() {
               </div>
             </div>
 
-            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            {/* <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
               <div class="flex">
                 <div class="flex-shrink-0">
                   <svg
@@ -277,7 +277,7 @@ function UpgradePage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div class="md:col-span-2">
@@ -322,7 +322,7 @@ function UpgradePage() {
                     )}
                   </div>
 
-                  <div class="w-full">
+                  {/* <div class="w-full">
                     <button class="w-full flex items-center justify-center bg-gray-100 text-gray-500 py-3 px-4 rounded-lg font-medium cursor-not-allowed">
                       <svg
                         class="h-5 w-5 mr-2"
@@ -347,7 +347,7 @@ function UpgradePage() {
                       </svg>
                       Pay with Card
                     </button>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">

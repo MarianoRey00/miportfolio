@@ -67,10 +67,10 @@ function DashboardProfilePage() {
               Apariencia
             </li>
           </ul> */}
-          <ul className="flex justify-center gap-2 bg-zinc-900 p-2 rounded-lg shadow-inner text-sm">
+          <ul className="flex gap-2 bg-zinc-900 p-2 rounded-lg shadow-inner text-sm p-1 border-zinc-700">
             {[
-              { label: "Perfil", key: "profileData" },
-              { label: "Personales", key: "personalData" },
+              { label: "Datos del perfil", key: "profileData" },
+              { label: "Datos personales", key: "personalData" },
               { label: "Apariencia", key: "appearance" },
             ].map(({ label, key }) => (
               <li

@@ -297,7 +297,7 @@ function UpgradePage() {
               <div class="p-6">
                 <div class="space-y-4">
                   <div class="w-full">
-                    <button class="w-full flex items-center justify-center bg-paypal-blue hover:bg-paypal-lightblue text-white py-3 px-4 rounded-lg font-medium transition-colors">
+                    {/* <button class="w-full flex items-center justify-center bg-paypal-blue hover:bg-paypal-lightblue text-white py-3 px-4 rounded-lg font-medium transition-colors">
                       <svg
                         class="h-5 w-5 mr-2"
                         viewBox="0 0 24 24"
@@ -314,7 +314,14 @@ function UpgradePage() {
                         />
                       </svg>
                       Pay with PayPal
-                    </button>
+                    </button> */}
+                    {preferenceId && (
+                      <div className="w-full overflow-hidden">
+                        <Wallet
+                          initialization={{ preferenceId: preferenceId }}
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div class="relative">

@@ -25,7 +25,7 @@ function DropdownMenu({
             />
           ) : (
             <div className="w-12 h-12 bg-neutral-800 flex items-center justify-center rounded-lg border-2 border-orange-50">
-              <p className="p-6 text-2xl uppercase">{authUser?.username[0]}</p>
+              <p className="p-6 text-lg uppercase">{authUser?.username[0]}</p>
             </div>
           )}
         </div>

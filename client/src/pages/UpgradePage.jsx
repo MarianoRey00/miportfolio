@@ -2,7 +2,7 @@ import { useState } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { Icon } from "../assets/dark-icon.svg";
+import Icon from "../assets/dark-icon.svg";
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("APP_USR-46c99d09-a8af-425c-b1ec-d5e5c40616ee", {

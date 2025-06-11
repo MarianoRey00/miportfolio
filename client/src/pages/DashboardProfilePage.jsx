@@ -35,7 +35,7 @@ function DashboardProfilePage() {
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
         <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:pb-12 lg:pt-8 lg:px-10 lg:w-[59%] gap-4">
-          <ul className="text-sm xs:text-base flex gap-2 lg:gap-4 bg-zinc-700 p-1 md:p-2 rounded-lg">
+          <ul className="text-sm xs:text-base flex gap-2 lg:gap-4 bg-zinc-800 p-1 md:p-2 rounded-lg">
             <li
               className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
                 view.profileData

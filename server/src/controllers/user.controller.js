@@ -35,7 +35,10 @@ export const register = async (req, res) => {
     await createAppearance(newUser._id);
 
     const token = await createAccessToken({ id: newUser._id });
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      secure: true,
+      sameSite: "None",
+    });
     res.json(newUser);
   } catch (error) {
     res.status(500).json({ message: error.message });

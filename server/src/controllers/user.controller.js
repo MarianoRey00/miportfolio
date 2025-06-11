@@ -58,6 +58,7 @@ export const login = async (req, res) => {
     username: user.username,
     email: user.email,
     role: user.role,
+    picture: user.picture?.url,
   });
 };
 
@@ -84,6 +85,7 @@ export const verifyToken = async (req, res) => {
       username: userFound.username,
       email: userFound.email,
       role: userFound.role,
+      picture: user.picture?.url,
     });
   });
 };

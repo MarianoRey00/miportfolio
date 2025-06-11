@@ -22,7 +22,9 @@ export function Preview() {
   return (
     <>
       <div className="hidden lg:w-[41%] lg:flex lg:justify-center lg:h-screen lg:fixed lg:top-0 lg:py-4 lg:right-0">
-        <p className="text-sm text-orange-50 mt-20">Portfolio vista previa</p>
+        <p className="text-sm text-orange-50 mt-20">
+          Vista previa del portfolio
+        </p>
         <div className="hidden lg:w-[41%] lg:flex lg:justify-center lg:h-screen lg:fixed lg:top-0 lg:py-4 lg:border-l lg:border-zinc-800 lg:right-0 ">
           <div className="border border-orange-50 h-[454px] rounded-3xl mt-[110px]">
             {appearanceLoading ? (

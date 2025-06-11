@@ -34,58 +34,38 @@ function DashboardProfilePage() {
       <Toaster />
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
-        <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:py-12 lg:px-10 lg:w-[59%] gap-4 ">
-          {/* <ul className="text-sm xs:text-base flex justify-between lg:gap-6">
-						<li
-							className={`rounded-lg w-20 lg:w-40 text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
-								view.profileData
-									? "bg-orange-50 text-black"
-									: "hover:bg-orange-50 hover:text-black"
-							}`}
-							onClick={() => toggleView("profileData")}
-						>
-							Datos del perfil
-						</li>
-						<li
-							className={`rounded-lg text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
-								view.personalData
-									? "bg-orange-50 text-black"
-									: "hover:bg-orange-50 hover:text-black"
-							}`}
-							onClick={() => toggleView("personalData")}
-						>
-							Datos personales
-						</li>
-						<li
-							className={`rounded-lg text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
-								view.appearance
-									? "bg-orange-50 text-black"
-									: "hover:bg-orange-50 hover:text-black"
-							}`}
-							onClick={() => toggleView("appearance")}
-						>
-							Apariencia
-						</li>
-					</ul> */}
-          <ul className="text-sm xs:text-base flex justify-center gap-2 lg:gap-4 bg-white p-2 rounded-xl shadow-md">
-            {[
-              { label: "Datos del perfil", key: "profileData" },
-              { label: "Datos personales", key: "personalData" },
-              { label: "Apariencia", key: "appearance" },
-            ].map(({ label, key }) => (
-              <li
-                key={key}
-                onClick={() => toggleView(key)}
-                className={`transition-all duration-200 px-4 py-2 rounded-full cursor-pointer text-center font-medium
-        ${
-          view[key]
-            ? "bg-orange-500 text-white shadow-md"
-            : "bg-gray-100 text-gray-700 hover:bg-orange-100 hover:text-orange-600"
-        }`}
-              >
-                {label}
-              </li>
-            ))}
+        <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:py-12 lg:px-10 lg:w-[59%] gap-4">
+          <ul className="text-sm xs:text-base flex gap-2 lg:gap-4">
+            <li
+              className={`rounded-lg w-20 lg:w-40 text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
+                view.profileData
+                  ? "bg-orange-50 text-black"
+                  : "hover:bg-orange-50 hover:text-black"
+              }`}
+              onClick={() => toggleView("profileData")}
+            >
+              Datos del perfil
+            </li>
+            <li
+              className={`rounded-lg text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
+                view.personalData
+                  ? "bg-orange-50 text-black"
+                  : "hover:bg-orange-50 hover:text-black"
+              }`}
+              onClick={() => toggleView("personalData")}
+            >
+              Datos personales
+            </li>
+            <li
+              className={`rounded-lg text-center lg:px-4 lg:py-2 cursor-pointer p-1 ${
+                view.appearance
+                  ? "bg-orange-50 text-black"
+                  : "hover:bg-orange-50 hover:text-black"
+              }`}
+              onClick={() => toggleView("appearance")}
+            >
+              Apariencia
+            </li>
           </ul>
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
           <div className="w-full flex justify-center">

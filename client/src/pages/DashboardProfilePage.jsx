@@ -66,6 +66,16 @@ function DashboardProfilePage() {
             >
               Apariencia
             </li>
+            <li
+              className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
+                view.appearance
+                  ? "bg-orange-50 text-black"
+                  : "hover:bg-orange-50 hover:text-black"
+              }`}
+              //   onClick={() => toggleView("appearance")}
+            >
+              Plan
+            </li>
           </ul>
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
           <div className="w-full flex justify-center">

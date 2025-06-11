@@ -2,7 +2,7 @@ import { useState } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-
+import { Icon } from "../assets/dark-icon.svg";
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("APP_USR-46c99d09-a8af-425c-b1ec-d5e5c40616ee", {
@@ -129,7 +129,7 @@ function UpgradePage() {
               <div class="p-6">
                 <div class="flex items-start">
                   <div class="flex-shrink-0 w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center">
-                    <svg
+                    {/* <svg
                       class="w-6 h-6 text-primary-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -140,7 +140,8 @@ function UpgradePage() {
                         clip-rule="evenodd"
                       ></path>
                       <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
-                    </svg>
+                    </svg> */}
+                    <img src={Icon} alt="" />
                   </div>
                   <div class="ml-4 flex-1">
                     <h3 class="text-lg font-medium text-gray-900">
@@ -243,7 +244,7 @@ function UpgradePage() {
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                  <div class="flex justify-between font-medium text-lg pt-4">
+                  <div class="flex justify-between font-medium text-lg pt-2">
                     <span class="text-gray-900">Total</span>
                     <span class="text-gray-900">$86.11</span>
                   </div>

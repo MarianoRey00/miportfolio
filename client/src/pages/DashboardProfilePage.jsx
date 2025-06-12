@@ -16,6 +16,7 @@ function DashboardProfilePage() {
     personalData: false,
     appearance: false,
   });
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
   function toggleView(selectedView) {
     setView({
@@ -29,13 +30,17 @@ function DashboardProfilePage() {
     setIsPreviewModalOpen(true);
   };
 
+  const toggleDropdownMenu = () => {
+    setIsDropdownMenuOpen(!isDropdownMenuOpen);
+  };
+
   return (
     <>
       <Toaster />
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
         <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:pb-12 lg:pt-8 lg:px-10 lg:w-[59%] gap-4">
-          <ul className="hidden lg:flex w-max text-sm xs:text-base flex gap-2 lg:gap-4 bg-zinc-800 p-1 md:p-2 rounded-lg">
+          <ul className="hidden md:flex w-max text-sm xs:text-base flex gap-2 lg:gap-4 bg-zinc-800 p-1 md:p-2 rounded-lg">
             <li
               className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
                 view.profileData
@@ -77,6 +82,78 @@ function DashboardProfilePage() {
               Plan
             </li>
           </ul>
+
+          <div className="flex md:hidden relative cursor-pointer">
+            <div
+              onClick={() => toggleDropdownMenu()}
+              className="flex items-center gap-2"
+            >
+              <div className="w-12 h-12 bg-neutral-800 flex items-center justify-center rounded-lg border-2 border-orange-50">
+                <p className="p-6 text-lg uppercase">A</p>
+              </div>
+            </div>
+            {/* <div
+              className={`absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
+                isDropdownMenuOpen
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              }`}
+            >
+              <li
+                className="block px-4 py-2 text-sm hover:bg-slate-200 transition"
+                onClick={() => {
+                  toggleDropdownMenu();
+                }}
+              >
+                Perfil
+              </li>
+            </div> */}
+            <select
+              id="opciones"
+              name="opciones"
+              className={`absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
+                isDropdownMenuOpen
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              }`}
+            >
+              <option
+                value="opcion2"
+                selected
+                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
+                  view.profileData
+                    ? "bg-orange-50 text-black"
+                    : "hover:bg-orange-50 hover:text-black"
+                }`}
+                onClick={() => toggleView("profileData")}
+              >
+                Datos del perfil
+              </option>
+              <option
+                value="opcion3"
+                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
+                  view.personalData
+                    ? "bg-orange-50 text-black"
+                    : "hover:bg-orange-50 hover:text-black"
+                }`}
+                onClick={() => toggleView("personalData")}
+              >
+                Opción 3
+              </option>
+              <option
+                value="opcion1"
+                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
+                  view.appearance
+                    ? "bg-orange-50 text-black"
+                    : "hover:bg-orange-50 hover:text-black"
+                }`}
+                onClick={() => toggleView("appearance")}
+              >
+                Apariencia
+              </option>
+            </select>
+          </div>
+
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
           <div className="w-full flex justify-center">
             {view.profileData && (

@@ -50,14 +50,11 @@ function Plans() {
           </div>
 
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 bg-orange-50">
-              <h2 class="text-lg font-semibold text-gray-900">
-                Plan profesional
-              </h2>
-              {/* <p>El plan adecuado</p> */}
+            <div class="px-6 py-4 border-b border-gray-200 bg-customColor-blue">
+              <h2 class="text-lg font-semibold text-white">Plan profesional</h2>
             </div>
 
-            <div class="p-6">
+            <div class="px-6 py-3">
               <div class="flex items-start">
                 <div class="ml-4 flex-1">
                   <h3 class="text-lg font-medium text-gray-900">$1000</h3>

@@ -5,7 +5,8 @@ function Plans() {
     <>
       <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-          <h2 class="text-lg font-semibold text-gray-900">Order Summary</h2>
+          <h2 class="text-lg font-semibold text-gray-900">Plan profesional</h2>
+          {/* <p>El plan adecuado</p> */}
         </div>
 
         <div class="p-6">
@@ -13,14 +14,12 @@ function Plans() {
             {/* <div class="flex-shrink-0 w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center">
             </div> */}
             <div class="ml-4 flex-1">
-              <h3 class="text-lg font-medium text-gray-900">
-                Plan profesional
-              </h3>
+              <h3 class="text-lg font-medium text-gray-900">$1000.00</h3>
               <p class="text-gray-600 mt-1">Duracion ilimitada</p>
             </div>
-            <div class="ml-4 flex-shrink-0 text-right">
+            {/* <div class="ml-4 flex-shrink-0 text-right">
               <span class="text-lg font-medium text-gray-900">$1000.00</span>
-            </div>
+            </div> */}
           </div>
 
           <div class="mt-6 pt-6 border-t border-gray-200">

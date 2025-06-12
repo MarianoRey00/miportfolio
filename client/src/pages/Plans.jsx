@@ -6,13 +6,15 @@ function Plans() {
       <div className="min-h-screen">
         <div className="flex justify-center">
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[50%]">
-            <div class="p-6 border-b border-gray-200 bg-customColor-blue">
-              <h2 class="text-2xl font-semibold text-white">
+            <div class="p-8 border-b border-gray-200 bg-customColor-blue">
+              <p className="font-semibold">Recomendado</p>
+              <h2 class="text-3xl font-semibold text-white">
                 Plan profesional
               </h2>
+              <p className="text-lg">Perfecto para profesionales</p>
             </div>
 
-            <div class="p-6">
+            <div class="p-8">
               <div class="flex items-start">
                 <div class="ml-2 flex-1">
                   <h3 class="text-xl font-semibold text-gray-900">$1000</h3>

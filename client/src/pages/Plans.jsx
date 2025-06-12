@@ -122,13 +122,13 @@ function Plans() {
                     </span>
                   </li>
                 </ul>
-                <Link
-                  to="/cambiar-plan"
-                  className="py-4 text-center bg-customColor-blue rounded"
-                >
-                  Adquirir Plan Profesional
-                </Link>
               </div>
+              <Link
+                to="/cambiar-plan"
+                className="py-4 text-center bg-customColor-blue rounded-lg font-medium"
+              >
+                Adquirir Plan Profesional
+              </Link>
             </div>
           </div>
         </div>

@@ -10,7 +10,9 @@ function Plans() {
               <h2 class="text-3xl font-semibold text-white">
                 Plan profesional
               </h2>
-              <p className="text-lg">Perfecto para profesionales</p>
+              <p className="text-lg">
+                Herramientas perfectas para profesionales
+              </p>
             </div>
 
             <div class="p-8">
@@ -26,25 +28,33 @@ function Plans() {
                 <ul class="space-y-2">
                   <li class="flex items-start">
                     <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Up to 25 projects</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">100GB storage</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Priority support</span>
+                    <span class="text-gray-600">Proyectos ilimitados</span>
                   </li>
                   <li class="flex items-start">
                     <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
                     <span class="text-gray-600">
-                      Team collaboration (up to 10 members)
+                      Hasta 10 fotos por proyecto
                     </span>
                   </li>
                   <li class="flex items-start">
                     <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Advanced analytics</span>
+                    <span class="text-gray-600">Subir videos</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600">Subir PDFs</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600">
+                      Eliminar boton de miportfolio en el perfil
+                    </span>
+                  </li>
+                  <li class="flex items-start">
+                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600">
+                      Posibilidad de subir tu CV
+                    </span>
                   </li>
                 </ul>
               </div>

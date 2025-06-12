@@ -16,7 +16,6 @@ function DashboardProfilePage() {
     personalData: false,
     appearance: false,
   });
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
   function toggleView(selectedView) {
     setView({
@@ -28,10 +27,6 @@ function DashboardProfilePage() {
 
   const openPreviewModal = () => {
     setIsPreviewModalOpen(true);
-  };
-
-  const toggleDropdownMenu = () => {
-    setIsDropdownMenuOpen(!isDropdownMenuOpen);
   };
 
   return (
@@ -84,65 +79,22 @@ function DashboardProfilePage() {
           </ul>
 
           <div className="flex md:hidden relative cursor-pointer">
-            {/* <div
-              className={`absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
-                isDropdownMenuOpen
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible"
-              }`}
-            >
-              <li
-                className="block px-4 py-2 text-sm hover:bg-slate-200 transition"
-                onClick={() => {
-                  toggleDropdownMenu();
-                }}
-              >
-                Perfil
-              </li>
-            </div> */}
             <select
               id="opciones"
               name="opciones"
-              className={`absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
-                isDropdownMenuOpen
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible"
-              }`}
+              className="absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200"
+              value={
+                view.profileData
+                  ? "profileData"
+                  : view.personalData
+                  ? "personalData"
+                  : "appearance"
+              }
+              onChange={(e) => toggleView(e.target.value)}
             >
-              <option
-                value="opcion2"
-                selected
-                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
-                  view.profileData
-                    ? "bg-orange-50 text-black"
-                    : "hover:bg-orange-50 hover:text-black"
-                }`}
-                onClick={() => toggleView("profileData")}
-              >
-                Datos del perfil
-              </option>
-              <option
-                value="opcion3"
-                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
-                  view.personalData
-                    ? "bg-orange-50 text-black"
-                    : "hover:bg-orange-50 hover:text-black"
-                }`}
-                onClick={() => toggleView("personalData")}
-              >
-                Datos personales
-              </option>
-              <option
-                value="opcion1"
-                className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
-                  view.appearance
-                    ? "bg-orange-50 text-black"
-                    : "hover:bg-orange-50 hover:text-black"
-                }`}
-                onClick={() => toggleView("appearance")}
-              >
-                Apariencia
-              </option>
+              <option value="profileData">Datos del perfil</option>
+              <option value="personalData">Datos personales</option>
+              <option value="appearance">Apariencia</option>
             </select>
           </div>
 

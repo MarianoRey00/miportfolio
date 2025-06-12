@@ -7,7 +7,6 @@ function Plans() {
         <div className="flex justify-center">
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[50%]">
             <div class="p-8 border-b border-gray-200 bg-customColor-blue">
-              <p className="font-semibold">Recomendado</p>
               <h2 class="text-3xl font-semibold text-white">
                 Plan profesional
               </h2>
@@ -17,8 +16,8 @@ function Plans() {
             <div class="p-8">
               <div class="flex items-start">
                 <div class="ml-2 flex-1">
-                  <h3 class="text-xl font-semibold text-gray-900">$1000</h3>
-                  <p class="text-gray-600 mt-1 text-lg">Duracion ilimitada</p>
+                  <h3 class="text-2xl font-semibold text-gray-900">$1000</h3>
+                  <p class="text-gray-600 mt-1 text-xl">Duracion ilimitada</p>
                 </div>
               </div>
 

@@ -54,7 +54,7 @@ function Plans() {
               <h2 class="text-lg font-semibold text-white">Plan profesional</h2>
             </div>
 
-            <div class="px-6 py-3">
+            <div class="p-6">
               <div class="flex items-start">
                 <div class="ml-4 flex-1">
                   <h3 class="text-lg font-medium text-gray-900">$1000</h3>
@@ -62,7 +62,7 @@ function Plans() {
                 </div>
               </div>
 
-              <div class="mt-6 pt-6 border-t border-gray-200">
+              <div class="mt-3 pt-6 border-t border-gray-200">
                 <h4 class="text-sm font-medium text-gray-900 mb-3">Incluye:</h4>
                 <ul class="space-y-2">
                   <li class="flex items-start">

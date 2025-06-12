@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 function Plans() {
   return (
     <>
+      <Navbar background={"#18181b"} border={"1px solid #fff7ed "} />
       <div className="min-h-screen">
         <div className="py-10">
           <h1 className="text-4xl font-bold text-center">
@@ -84,6 +86,14 @@ function Plans() {
                   <h3 class="text-2xl font-semibold text-gray-900">$1000</h3>
                   <p class="text-gray-600 mt-1 text-xl">Duracion ilimitada</p>
                 </div>
+                <div>
+                  <Link
+                    to="/cambiar-plan"
+                    className="py-4 text-center bg-customColor-blue rounded-lg font-medium"
+                  >
+                    Adquirir Plan Profesional
+                  </Link>
+                </div>
               </div>
 
               <div class="mt-6 pt-6 border-t border-gray-200">
@@ -123,12 +133,6 @@ function Plans() {
                   </li>
                 </ul>
               </div>
-              <Link
-                to="/cambiar-plan"
-                className="py-4 text-center bg-customColor-blue rounded-lg font-medium"
-              >
-                Adquirir Plan Profesional
-              </Link>
             </div>
           </div>
         </div>

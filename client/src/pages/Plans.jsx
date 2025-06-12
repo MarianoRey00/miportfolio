@@ -86,9 +86,9 @@ function Plans() {
                   <h3 class="text-2xl font-semibold text-gray-900">$1000</h3>
                   <p class="text-gray-600 mt-1 text-xl">Duracion ilimitada</p>
                 </div>
-                <div>
+                <div className="bg-red-600">
                   <Link
-                    to="/cambiar-plan"
+                    to="/panel/cambiar-plan"
                     className="py-4 text-center bg-customColor-blue rounded-lg font-medium"
                   >
                     Adquirir Plan Profesional

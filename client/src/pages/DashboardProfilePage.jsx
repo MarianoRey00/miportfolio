@@ -91,11 +91,9 @@ function DashboardProfilePage() {
             }
             onChange={(e) => toggleView(e.target.value)}
           >
-            <div className="rounded-md">
-              <option value="profileData">Datos del perfil</option>
-              <option value="personalData">Datos personales</option>
-              <option value="appearance">Apariencia</option>
-            </div>
+            <option value="profileData">Datos del perfil</option>
+            <option value="personalData">Datos personales</option>
+            <option value="appearance">Apariencia</option>
           </select>
 
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>

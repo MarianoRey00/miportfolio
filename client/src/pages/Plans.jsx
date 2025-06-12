@@ -25,35 +25,35 @@ function Plans() {
 
               <div class="mt-6 pt-6 border-t border-gray-200">
                 <h4 class="text-sm font-medium text-gray-900 mb-3">Incluye:</h4>
-                <ul class="space-y-2">
+                <ul class="space-y-4">
                   <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Proyectos ilimitados</span>
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">
+                      Proyectos ilimitados
+                    </span>
                   </li>
                   <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">
                       Hasta 10 fotos por proyecto
                     </span>
                   </li>
                   <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Subir videos</span>
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">Subir videos</span>
                   </li>
                   <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">Subir PDFs</span>
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">Subir PDFs</span>
                   </li>
                   <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">Compartir tu CV</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span className="text-green-600 mr-2 mt-0.5">&#10003;</span>
+                    <span class="text-gray-600 text-lg">
                       Eliminar boton de miportfolio en el perfil
-                    </span>
-                  </li>
-                  <li class="flex items-start">
-                    <span className="text-green-400 mr-2 mt-0.5">&#10003;</span>
-                    <span class="text-gray-600">
-                      Posibilidad de subir tu CV
                     </span>
                   </li>
                 </ul>

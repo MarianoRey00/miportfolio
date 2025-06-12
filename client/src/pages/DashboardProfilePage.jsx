@@ -84,14 +84,6 @@ function DashboardProfilePage() {
           </ul>
 
           <div className="flex md:hidden relative cursor-pointer">
-            <div
-              onClick={() => toggleDropdownMenu()}
-              className="flex items-center gap-2"
-            >
-              <div className="w-12 h-12 bg-neutral-800 flex items-center justify-center rounded-lg border-2 border-orange-50">
-                <p className="p-6 text-lg uppercase">A</p>
-              </div>
-            </div>
             {/* <div
               className={`absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
                 isDropdownMenuOpen
@@ -138,7 +130,7 @@ function DashboardProfilePage() {
                 }`}
                 onClick={() => toggleView("personalData")}
               >
-                Opción 3
+                Datos personales
               </option>
               <option
                 value="opcion1"

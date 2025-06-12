@@ -1,11 +1,11 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Plans() {
   return (
     <>
       <div className="min-h-screen">
-        <div>
-          <h1 className="text-4xl font-bold my-10 text-center">
+        <div className="py-10">
+          <h1 className="text-4xl font-bold text-center">
             Elegí el plan que mas se adecue a vos
           </h1>
         </div>
@@ -27,7 +27,7 @@ function Plans() {
               </div>
 
               <div class="mt-6 pt-6 border-t border-gray-200">
-                <h4 class="text-sm font-medium text-gray-900 mb-3">Incluye:</h4>
+                <h4 class="font-medium text-gray-900 mb-3">Incluye:</h4>
                 <ul class="space-y-4">
                   <li class="flex items-start">
                     <span className="text-green-600 mr-2 mt-0.5 font-bold">
@@ -87,7 +87,7 @@ function Plans() {
               </div>
 
               <div class="mt-6 pt-6 border-t border-gray-200">
-                <h4 class="text-sm font-medium text-gray-900 mb-3">Incluye:</h4>
+                <h4 class="font-medium text-gray-900 mb-3">Incluye:</h4>
                 <ul class="space-y-4">
                   <li class="flex items-start">
                     <span className="text-green-600 mr-2 mt-0.5 font-bold">
@@ -122,6 +122,12 @@ function Plans() {
                     </span>
                   </li>
                 </ul>
+                <Link
+                  to="/cambiar-plan"
+                  className="py-4 text-center bg-customColor-blue rounded"
+                >
+                  Adquirir Plan Profesional
+                </Link>
               </div>
             </div>
           </div>

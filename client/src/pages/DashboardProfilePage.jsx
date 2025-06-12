@@ -78,25 +78,29 @@ function DashboardProfilePage() {
             </li>
           </ul>
 
-          <div className="flex md:hidden relative cursor-pointer">
-            <select
-              id="opciones"
-              name="opciones"
-              className="absolute right-0 mt-2 w-48 bg-orange-50 text-neutral-900 rounded-md shadow-lg overflow-hidden transition-all duration-200"
-              value={
-                view.profileData
-                  ? "profileData"
-                  : view.personalData
-                  ? "personalData"
-                  : "appearance"
-              }
-              onChange={(e) => toggleView(e.target.value)}
-            >
-              <option value="profileData">Datos del perfil</option>
-              <option value="personalData">Datos personales</option>
-              <option value="appearance">Apariencia</option>
-            </select>
-          </div>
+          <select
+            id="opciones"
+            name="opciones"
+            className="flex md:hidden right-0 mt-2 w-48 text-orange-50 bg-neutral-800 rounded-md shadow-lg overflow-hidden transition-all duration-200 p-2"
+            value={
+              view.profileData
+                ? "profileData"
+                : view.personalData
+                ? "personalData"
+                : "appearance"
+            }
+            onChange={(e) => toggleView(e.target.value)}
+          >
+            <option value="profileData" className="rounded-md">
+              Datos del perfil
+            </option>
+            <option value="personalData" className="rounded-md">
+              Datos personales
+            </option>
+            <option value="appearance" className="rounded-md">
+              Apariencia
+            </option>
+          </select>
 
           <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
           <div className="w-full flex justify-center">

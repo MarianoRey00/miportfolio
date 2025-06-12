@@ -4,15 +4,17 @@ function Plans() {
   return (
     <>
       <div className="min-h-screen">
-        <h1 className="text-4xl font-bold my-10">
-          Elegí el plan que mas se adecue a vos
-        </h1>
+        <div>
+          <h1 className="text-4xl font-bold my-10 text-center">
+            Elegí el plan que mas se adecue a vos
+          </h1>
+        </div>
         <div className="flex justify-center p-8 gap-8">
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[40%]">
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[45%]">
             <div class="p-8 border-b border-gray-200 bg-customColor-blue">
               <h2 class="text-3xl font-semibold text-white">Plan Gratuito</h2>
               <p className="text-lg">
-                Ideal para quienes quieren empezar a mostrar sus proyectos
+                Para quienes quieren empezar a mostrar sus proyectos
               </p>
             </div>
 
@@ -66,10 +68,10 @@ function Plans() {
             </div>
           </div>
 
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[50%]">
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[45%]">
             <div class="p-8 border-b border-gray-200 bg-customColor-blue">
               <h2 class="text-3xl font-semibold text-white">
-                Plan profesional
+                Plan Profesional
               </h2>
               <p className="text-lg">
                 Herramientas perfectas para profesionales

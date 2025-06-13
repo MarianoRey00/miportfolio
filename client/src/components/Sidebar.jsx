@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-import { IoMdExit } from "react-icons/io";
+import { IoExitOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
-
+import { LuUsers } from "react-icons/lu";
+import { MdAttachMoney } from "react-icons/md";
 function Sidebar() {
   const location = useLocation();
 
@@ -21,23 +22,32 @@ function Sidebar() {
             </h1>
           </div>
           <div className="flex flex-col justify-between h-full mt-4">
-            <ul>
-              <li>
-                <Link
-                  to="/admin/usuarios"
-                  className={`${
-                    location.pathname === "/admin/usuarios"
-                      ? " text-orange-50"
-                      : "text-zinc-400"
-                  }`}
-                >
-                  Usuarios
-                </Link>
-              </li>
-            </ul>
-            <Link to="/panel" className=" group text-zinc-400 flex gap-2">
-              <IoMdExit className="text-3xl group-hover:text-orange-50" />
-              <span className="mt-1 group-hover:text-orange-50">Salir</span>
+            <div className="flex flex-col text ">
+              <Link
+                to="/admin/usuarios"
+                className={`flex gap-2 items-center p-2 rounded-lg block hover:bg-neutral-700 transition-colors ${
+                  location.pathname === "/admin/usuarios" && "bg-neutral-700"
+                }`}
+              >
+                <LuUsers className="w-5 h-5" />
+                <span>Usuarios</span>
+              </Link>
+              <Link
+                to="/admin/ventas"
+                className={`flex gap-2 items-center p-2 rounded-lg block hover:bg-neutral-700 transition-colors ${
+                  location.pathname === "/admin/ventas" && "bg-neutral-700"
+                }`}
+              >
+                <MdAttachMoney className="w-5 h-5" />
+                <span>Ventas</span>
+              </Link>
+            </div>
+            <Link
+              to="/panel"
+              className="group flex gap-2 p-2 rounded-lg items-center hover:bg-neutral-700 transition-colors"
+            >
+              <IoExitOutline className="w-6 h-6 " />
+              <span className="mt-1">Usuarios</span>
             </Link>
           </div>
         </div>

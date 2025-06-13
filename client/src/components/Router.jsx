@@ -10,9 +10,11 @@ import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Error404 from "../pages/Error404";
 import ProtectedRoute from "../ProtectedRoute";
 import AdminProtectedRoute from "../AdminProtectedRoute";
+import UsersPage from "../pages/UsersPage";
 import AdminUserDetailPage from "../pages/AdminUserDetailPage";
 import UpgradePage from "../pages/UpgradePage";
 import Plans from "../pages/Plans";
+import Sales from "../pages/Sales";
 
 function Router() {
   return (
@@ -30,11 +32,11 @@ function Router() {
           </Route>
 
           <Route element={<AdminProtectedRoute />}>
-            <Route path="/admin/usuarios" element={<Admin />}></Route>
-            <Route
-              path="/admin/:username"
-              element={<AdminUserDetailPage />}
-            ></Route>
+            <Route path="/admin" element={<Admin />}>
+              <Route path="usuarios" element={<UsersPage />} />
+              <Route path="ventas" element={<Sales />} />
+              <Route path=":username" element={<AdminUserDetailPage />} />
+            </Route>
           </Route>
 
           <Route path="/:username" element={<PortfolioPage />}></Route>

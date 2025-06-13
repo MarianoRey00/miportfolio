@@ -13,7 +13,7 @@ function Plans() {
         </div>
         <div className="flex justify-center p-8 gap-8">
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[45%]">
-            <div class="p-8 border-b border-gray-200 bg-customColor-blue">
+            <div class="px-8 py-10 border-b border-gray-200 bg-customColor-blue">
               <h2 class="text-3xl font-semibold text-white">Plan Gratuito</h2>
               <p className="text-lg">
                 Para quienes quieren empezar a mostrar sus proyectos
@@ -71,7 +71,7 @@ function Plans() {
           </div>
 
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[45%]">
-            <div class="p-8 border-b border-gray-200 bg-customColor-blue">
+            <div class="px-8 py-10 border-b border-gray-200 bg-customColor-blue">
               <h2 class="text-3xl font-semibold text-white">
                 Plan Profesional
               </h2>
@@ -89,7 +89,7 @@ function Plans() {
                 <div className="flex items-center justify-center">
                   <Link
                     to="/panel/cambiar-plan"
-                    className="p-4 text-center bg-customColor-blue rounded-lg font-medium mt-1 font-semibold"
+                    className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1 font-medium"
                   >
                     Adquirir Plan
                   </Link>

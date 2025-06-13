@@ -89,9 +89,9 @@ function Plans() {
                 <div className="flex items-center justify-center">
                   <Link
                     to="/panel/cambiar-plan"
-                    className="py-4 px-2 text-center bg-customColor-blue rounded-lg font-medium mt-1"
+                    className="p-4 text-center bg-customColor-blue rounded-lg font-medium mt-1 font-semibold"
                   >
-                    Adquirir Plan Profesional
+                    Adquirir Plan
                   </Link>
                 </div>
               </div>

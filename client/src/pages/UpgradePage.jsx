@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
@@ -9,29 +9,53 @@ function UpgradePage() {
     locale: "es-AR",
   });
 
-  const createPreference = async () => {
-    try {
-      const response = await axios.post(
-        "https://miportfolio-api.onrender.com/api/create-preference",
-        {
-          title: "Miportfolio Premium",
-          quantity: 1,
-          price: 1,
-        }
-      );
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const createPreference = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "https://miportfolio-api.onrender.com/api/create-preference",
+  //       {
+  //         title: "Miportfolio Premium",
+  //         quantity: 1,
+  //         price: 1,
+  //       }
+  //     );
+  //     const { id } = response.data;
+  //     return id;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleBuy = async () => {
+  // const handleBuy = async () => {
+  //   const id = await createPreference();
+  //   if (id) {
+  //     setPreferenceId(id);
+  //   }
+  // };
+
+  useEffect(async () => {
+    const createPreference = async () => {
+      try {
+        const response = await axios.post(
+          "https://miportfolio-api.onrender.com/api/create-preference",
+          {
+            title: "Miportfolio Premium",
+            quantity: 1,
+            price: 1,
+          }
+        );
+        const { id } = response.data;
+        return id;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const id = await createPreference();
     if (id) {
       setPreferenceId(id);
     }
-  };
+  }, []);
 
   return (
     <>
@@ -107,13 +131,13 @@ function UpgradePage() {
       {/* </div>
         </div>
       </div> */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-orange-50">
             Completa tu compra
           </h1>
           <p className="text-orange-50 mt-2">
-            Estas a un paso de mejorar tu plan
+            Estas a un solo paso de mejorar tu plan
           </p>
         </div>
 
@@ -245,37 +269,15 @@ function UpgradePage() {
               <div class="p-6">
                 <div class="space-y-4">
                   <div class="w-full">
-                    {/* <button class="w-full flex items-center justify-center bg-paypal-blue hover:bg-paypal-lightblue text-white py-3 px-4 rounded-lg font-medium transition-colors">
-                      <svg
-                        class="h-5 w-5 mr-2"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20.067 8.478C20.067 10.064 19.162 11.564 17.276 11.564H15.496C15.39 11.564 15.297 11.65 15.284 11.756L14.758 15.344C14.745 15.437 14.665 15.51 14.572 15.51H12.567C12.422 15.51 12.316 15.377 12.342 15.232L13.933 5.56C13.946 5.48 14.013 5.426 14.093 5.426H18.157C19.333 5.426 20.067 6.372 20.067 7.548V8.478Z"
-                          fill="black"
-                        />
-                        <path
-                          d="M7.05 15.51H5.045C4.9 15.51 4.794 15.377 4.82 15.232L6.411 5.56C6.424 5.48 6.491 5.426 6.571 5.426H10.635C11.811 5.426 12.545 6.372 12.545 7.548V8.478C12.545 10.064 11.64 11.564 9.754 11.564H7.974C7.868 11.564 7.775 11.65 7.762 11.756L7.236 15.344C7.223 15.437 7.143 15.51 7.05 15.51Z"
-                          fill="black"
-                        />
-                      </svg>
-                      Pay with PayPal
-                    </button> */}
-                    <button
+                    {/* <button
                       onClick={handleBuy}
-                      className="px-6 py-2 text-sm sm:text-base lg:px-6 lg:py-4 border rounded-lg hover:bg-white hover:text-zinc-800"
+                      className="px-6 py-2 text-sm sm:text-base lg:px-6 lg:py-4 border rounded-lg hover:bg-white hover:text-zinc-800 w-max"
                     >
                       Comprar Plan premium
-                    </button>
-                    {preferenceId && (
-                      <div className="w-full overflow-hidden">
-                        <Wallet
-                          initialization={{ preferenceId: preferenceId }}
-                        />
-                      </div>
-                    )}
+                    </button> */}
+                    <div className="w-full overflow-hidden">
+                      <Wallet initialization={{ preferenceId: preferenceId }} />
+                    </div>
                   </div>
                 </div>
 

@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useUsers } from "../context/UserContext.jsx";
 
 const usersPerPage = 9;
 
 function UsersPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const { getUsers, users } = useUsers();
   const startIndex = (currentPage - 1) * usersPerPage;
   const endIndex = startIndex + usersPerPage;
   const totalPages = Math.ceil(users.length / usersPerPage);
   const currentData = users.slice(startIndex, endIndex);
-  const { getUsers, users } = useUsers();
 
   useEffect(() => {
     getUsers();
@@ -17,7 +18,7 @@ function UsersPage() {
 
   return (
     <>
-      <h1 className=" text-sm uppercase font-bold my-6 text-neutral-400">
+      <h1 className="text-sm uppercase font-semibold mb-6 text-orange-50">
         Lista de usuarios
       </h1>
       {currentData.map((user, id) => (

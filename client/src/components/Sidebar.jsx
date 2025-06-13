@@ -46,8 +46,8 @@ function Sidebar() {
               to="/panel"
               className="group flex gap-2 p-2 rounded-lg items-center hover:bg-neutral-700 transition-colors"
             >
-              <IoExitOutline className="w-6 h-6 " />
-              <span className="mt-1">Usuarios</span>
+              <IoExitOutline className="w-6 h-6" />
+              <span className="mt-0.5">Salir</span>
             </Link>
           </div>
         </div>

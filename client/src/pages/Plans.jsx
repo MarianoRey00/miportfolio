@@ -24,7 +24,7 @@ function Plans() {
               <div class="flex items-start">
                 <div class="ml-2 flex-1">
                   <h3 class="text-2xl font-semibold text-gray-900">$0</h3>
-                  <p class="text-gray-600 mt-1 text-xl">Duracion ilimitada</p>
+                  <p class="text-gray-600 mt-1 text-xl">Duración ilimitada</p>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@ function Plans() {
               <div class="flex items-start">
                 <div class="ml-2 flex-1">
                   <h3 class="text-2xl font-semibold text-gray-900">$1000</h3>
-                  <p class="text-gray-600 mt-1 text-xl">Duracion ilimitada</p>
+                  <p class="text-gray-600 mt-1 text-xl">Duración ilimitada</p>
                 </div>
                 <div className="flex items-center justify-center">
                   <Link

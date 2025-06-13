@@ -16,7 +16,7 @@ function Plans() {
             <div class="px-8 py-10 border-b border-gray-200 bg-customColor-blue">
               <h2 class="text-3xl font-semibold text-white">Plan Gratuito</h2>
               <p className="text-lg">
-                Ideal para empezar mostrar tus proyectos
+                Ideal para empezar a mostrar tus proyectos
               </p>
             </div>
 

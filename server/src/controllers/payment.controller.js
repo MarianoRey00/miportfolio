@@ -89,7 +89,11 @@ const createSale = async (payment) => {
 
 const upgradePlan = async (user_id) => {
   try {
-    await User.findByIdAndUpdate(user_id, { plan: "Premium" }, { new: true });
+    await User.findByIdAndUpdate(
+      user_id,
+      { plan: "Profesional" },
+      { new: true }
+    );
   } catch (error) {
     console.log("upgradePlan: ", error);
   }

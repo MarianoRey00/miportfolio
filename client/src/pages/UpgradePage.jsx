@@ -9,28 +9,30 @@ function UpgradePage() {
     locale: "es-AR",
   });
 
-  useEffect(async () => {
-    const createPreference = async () => {
-      try {
-        const response = await axios.post(
-          "https://miportfolio-api.onrender.com/api/create-preference",
-          {
-            title: "Miportfolio Premium",
-            quantity: 1,
-            price: 1,
-          }
-        );
-        const { id } = response.data;
-        return id;
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  useEffect(() => {
+    (async () => {
+      const createPreference = async () => {
+        try {
+          const response = await axios.post(
+            "https://miportfolio-api.onrender.com/api/create-preference",
+            {
+              title: "Miportfolio Premium",
+              quantity: 1,
+              price: 1,
+            }
+          );
+          const { id } = response.data;
+          return id;
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
+      const id = await createPreference();
+      if (id) {
+        setPreferenceId(id);
+      }
+    })();
   }, []);
 
   return (

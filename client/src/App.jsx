@@ -4,6 +4,7 @@ import { ProjectProvider } from "./context/ProjectContext";
 import { UserProvider } from "./context/UserContext";
 import { AppearanceProvider } from "./context/AppearanceContext";
 import { NotificationProvider } from "./context/NotificationContext";
+import { SaleProvider } from "./context/SaleContext";
 import { Toaster } from "react-hot-toast";
 import Router from "./components/Router";
 
@@ -16,9 +17,11 @@ function App() {
           <UserProvider>
             <AppearanceProvider>
               <NotificationProvider>
-                <BrowserRouter>
-                  <Router />
-                </BrowserRouter>
+                <SaleProvider>
+                  <BrowserRouter>
+                    <Router />
+                  </BrowserRouter>
+                </SaleProvider>
               </NotificationProvider>
             </AppearanceProvider>
           </UserProvider>

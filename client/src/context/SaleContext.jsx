@@ -1,18 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getSalesRequest } from "../api/sale.js";
 
 const SaleContext = createContext();
 
-export const useNotification = () => {
-  const context = useContext(NotificationContext);
+export const useSales = () => {
+  const context = useContext(SaleContext);
   return context;
 };
 
 export function SaleProvider({ children }) {
-  const [sales, setSales] = useState(null);
-
   const getSales = async () => {
-    const sales = await getSalesRequest();
-    setSales(sales);
+    const res = await getSalesRequest();
+    return res.data;
   };
 
   return (

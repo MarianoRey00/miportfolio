@@ -33,7 +33,7 @@ router.post("/logout", logout);
 router.get("/verify", verifyToken);
 router.get("/user/profile/:username", getPublicUserByUsername);
 router.get("/user/:username", authRequired, getUserByUsername);
-router.get("/user/:id", getUserById);
+router.get("/user/id/:id", getUserById);
 router.get("/users", authRequired, adminAuthRequired, getUsers);
 router.put("/user/:id/edit", authRequired, validateEditUser, editProfile);
 router.put(

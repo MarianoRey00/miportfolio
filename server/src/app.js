@@ -28,8 +28,8 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: "https://miportfolio18.vercel.app",
-    // origin: "http://localhost:5173",
+    // origin: "https://miportfolio18.vercel.app",
+    origin: "http://localhost:5173",
     // origin: "https://web.postman.co",
     credentials: true,
   })

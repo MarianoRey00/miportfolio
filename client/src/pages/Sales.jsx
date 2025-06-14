@@ -31,6 +31,9 @@ function Sales() {
           Ventas totales
         </div>
       </div>
+      <h2 className="text-sm uppercase font-semibold mb-6 text-orange-50">
+        Ultimas ventas
+      </h2>
     </>
   );
 }

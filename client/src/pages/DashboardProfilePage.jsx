@@ -74,7 +74,7 @@ function DashboardProfilePage() {
               }`}
               //   onClick={() => toggleView("appearance")}
             >
-              Plan
+              Compras
             </li>
           </ul>
 

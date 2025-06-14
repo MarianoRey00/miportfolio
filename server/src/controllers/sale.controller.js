@@ -1,6 +1,6 @@
 import Sale from "../models/sale.model.js";
 
-export const getSales = async () => {
+export const getSales = async (req, res) => {
   try {
     const sales = await Sale.find();
     res.status(200).json(sales);

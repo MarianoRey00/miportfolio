@@ -109,10 +109,8 @@ export const getUserByUsername = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  const objectId = new mongoose.Types.ObjectId(id);
   try {
-    const user = await User.findOne({ objectId });
+    const user = await User.findById(id);
     console.log("user", user);
     res.json(user);
   } catch (error) {}

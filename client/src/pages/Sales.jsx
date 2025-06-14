@@ -79,7 +79,7 @@ function Sales() {
                 <tr className="hover:bg-neutral-700">
                   <td className="p-3">{sale._id}</td>
                   <td className="p-3">{sale.title}</td>
-                  {/* <td className="p-3">{user.username}</td> */}
+                  <td className="p-3">{user.username}</td>
                   <td className="p-3">${sale.price}</td>
                   <td className="p-3 capitalize">{sale.status}</td>
                   <td className="p-3">

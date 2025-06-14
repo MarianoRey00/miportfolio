@@ -62,7 +62,7 @@ function UsersPage() {
               <p>
                 Fecha de creación:{" "}
                 <span className="font-sans font-semibold text-white">
-                  {user.createdAt}
+                  {new Date(user.createdAt).toLocaleDateString()}
                 </span>
               </p>
             </div>

@@ -99,13 +99,13 @@ export const getPublicUserByUsername = async (req, res) => {
   } catch (error) {}
 };
 
-export const getUserByUsername = async (req, res) => {
-  const { username } = req.params;
-  try {
-    const user = await User.findOne({ username });
-    res.json(user);
-  } catch (error) {}
-};
+// export const getUserByUsername = async (req, res) => {
+//   const { username } = req.params;
+//   try {
+//     const user = await User.findOne({ username });
+//     res.json(user);
+//   } catch (error) {}
+// };
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;

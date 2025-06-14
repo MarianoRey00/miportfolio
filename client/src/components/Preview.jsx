@@ -18,6 +18,8 @@ export function Preview() {
   const { user } = useUsers();
   const { appearance, appearanceLoading } = useAppearance();
   const { projects } = useProjects();
+  const modifiedPictureShape =
+    appearance.pictureShape === "18px" ? "12px" : appearance.pictureShape;
 
   return (
     <>
@@ -47,13 +49,13 @@ export function Preview() {
                             <img
                               src={user.picture?.url}
                               className="w-16 h-16 object-cover"
-                              style={{ borderRadius: appearance.pictureShape }}
+                              style={{ borderRadius: modifiedPictureShape }}
                             />
                           </div>
                         ) : (
                           <div
                             className="w-16 h-16 bg-neutral-800 flex items-center justify-center"
-                            style={{ borderRadius: appearance.pictureShape }}
+                            style={{ borderRadius: modifiedPictureShape }}
                           >
                             <p className="uppercase">{user?.username[0]}</p>
                           </div>

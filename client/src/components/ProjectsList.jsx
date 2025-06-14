@@ -1,10 +1,13 @@
 export function ProjectList({ appearance, projects }) {
   const publicProjects = projects.filter((project) => project.public);
+
   const modifiedProjectShape =
     appearance.projectShape === "18px" ? "12px" : appearance.projectShape;
 
   const modifiedProjectPictureShape =
-    appearance.projectPictureShape === "12px" ? "8px" : appearance.projectShape;
+    appearance.projectPictureShape === "12px"
+      ? "8px"
+      : appearance.projectPictureShape;
 
   console.log(modifiedProjectPictureShape);
 

@@ -62,9 +62,9 @@ function ProfileAppearance() {
             <div className="flex gap-4">
               <button
                 className="border-2 border-white bg-neutral-900 w-20 h-20 sm:w-24 sm:h-24 rounded-lg"
-                onClick={() => handlePictureShapeChange("10px")}
+                onClick={() => handlePictureShapeChange("18px")}
               >
-                {appearance.pictureShape === "10px" && "Selec."}
+                {appearance.pictureShape === "18px" && "Selec."}
               </button>
               <button
                 className="border-2 border-white bg-neutral-900 w-20 h-20 sm:w-24 sm:h-24 "

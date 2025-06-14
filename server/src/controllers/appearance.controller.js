@@ -3,7 +3,7 @@ import Appearance from "../models/appearance.model.js";
 export const createAppearance = async (id) => {
   try {
     const newAppearance = new Appearance({
-      pictureShape: "9999px",
+      pictureShape: "18px",
       backgroundColor: "#fff7ed",
       textColor: "#18181b",
       projectBackgroundColor: "#27272a",

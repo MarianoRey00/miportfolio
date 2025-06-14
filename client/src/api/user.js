@@ -2,7 +2,7 @@ import axios from "./axios.js";
 
 export const getUserRequest = (username) => axios.get(`/user/${username}`);
 
-export const getUserByIdRequest = (id) => axios.get(`/user/${id}`);
+export const getUserByIdRequest = (id) => axios.get(`/user/id/${id}`);
 
 export const getPublicUserRequest = (username) =>
   axios.get(`/user/profile/${username}`);

@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useUsers } from "../context/UserContext";
 import { useProjects } from "../context/ProjectContext";
 import { useSales } from "../context/SaleContext";
-import Sidebar from "../components/Sidebar";
 import { FaInstagram } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
@@ -259,7 +258,7 @@ function AdminUserDetailPage() {
         Compras:
       </h2>
       {sales.map((sale) => (
-        <>
+        <div className="bg-neutral-700 p-4 rounded-lg">
           <p>{sale._id}</p>
           <p>{sale.title}</p>
           <p>${sale.price}</p>
@@ -269,7 +268,7 @@ function AdminUserDetailPage() {
               timeStyle: "short",
             })}
           </p>
-        </>
+        </div>
       ))}
     </>
   );

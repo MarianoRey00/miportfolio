@@ -16,6 +16,7 @@ export function SaleProvider({ children }) {
 
   const getUserSales = async (id) => {
     const res = await getUserSalesRequest(id);
+    console.log(res);
     return res.data;
   };
 

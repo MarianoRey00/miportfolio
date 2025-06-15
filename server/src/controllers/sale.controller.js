@@ -9,7 +9,7 @@ export const getSales = async (req, res) => {
   }
 };
 
-export const getUserSales = async (req, res) => {
+export const getUserPurchases = async (req, res) => {
   const sales = await Sale.find({ buyer: req.params.id });
   res.status(200).json(sales);
 };

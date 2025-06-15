@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getSales, getUserSales } from "../controllers/sale.controller.js";
+import { getSales, getUserPurchases } from "../controllers/sale.controller.js";
 import {
   adminAuthRequired,
   authRequired,
@@ -8,6 +8,6 @@ import {
 const router = Router();
 
 router.get("/sales", authRequired, adminAuthRequired, getSales);
-router.get("/sales/user/:id", authRequired, getUserSales);
+router.get("/sales/user/:id", authRequired, getUserPurchases);
 
 export default router;

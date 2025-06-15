@@ -37,8 +37,8 @@ function DashboardProfilePage() {
       <Toaster />
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
-        <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:pb-12 lg:pt-8 lg:px-10 lg:w-[59%] gap-4">
-          <ul className="hidden md:flex w-max text-sm xs:text-base gap-2 lg:gap-4 bg-zinc-800 p-1 md:p-2 rounded-lg">
+        <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:pb-12 lg:pt-8 lg:px-10 lg:w-[59%] gap-4 ">
+          <ul className="hidden md:flex w-max text-sm xs:text-base gap-2 lg:gap-4 border border-white p-1 md:p-2 rounded-lg bg-red-600">
             <li
               className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
                 view.profileData
@@ -99,7 +99,7 @@ function DashboardProfilePage() {
             <option value="appearance">Apariencia</option>
           </select>
 
-          <h1 className="lg:text-lg">Administrar detalles del perfil.</h1>
+          {/* <h1 className="lg:text-lg">Administrar detalles del perfil.</h1> */}
           <div className="w-full flex justify-center">
             {view.profileData && (
               <ProfileData user={user} loading={userLoading} />
@@ -111,7 +111,7 @@ function DashboardProfilePage() {
           <div className="p-2 md:p-0">
             {view.appearance && <ProfileAppearance />}
           </div>
-          <div className="p-2 md:p-0">
+          <div className="">
             {view.purchases && <ProfilePurchases user={user} />}
           </div>
           <button

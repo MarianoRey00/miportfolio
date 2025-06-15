@@ -47,7 +47,7 @@ function ProjectCardMobile({
             alt=""
           />
           <div className="flex items-center w-[65%]">
-            <p className="text-xs truncate">{project.title}</p>
+            <p className="text-xs truncate font-medium">{project.title}</p>
           </div>
         </div>
       )}
@@ -71,7 +71,7 @@ function ProjectCardMobile({
           <div className="flex flex-col px-1 gap-6">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <p className="text-sm font-normal break-all truncate mt-[6px]">
+                <p className="text-sm font-medium break-all truncate mt-[6px]">
                   {project.title}
                 </p>
                 <button

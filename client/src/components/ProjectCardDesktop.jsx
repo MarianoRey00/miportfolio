@@ -58,7 +58,7 @@ function ProjectCardDesktop({
         <div className="px-2 flex flex-col gap-4 ">
           <div className="flex flex-col gap-4">
             <div className="flex gap-2 lg:h-8 ">
-              <p className="xs:text-sm md:text-lg font-normal break-all truncate">
+              <p className="xs:text-sm md:text-lg lg:text-xl font-medium break-all truncate">
                 {project.title}
               </p>
               <button

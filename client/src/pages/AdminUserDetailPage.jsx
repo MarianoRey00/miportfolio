@@ -35,7 +35,7 @@ function AdminUserDetailPage() {
       setUser(userFound);
       const projects = await getAdminProjects(userFound._id);
       setProjects(projects);
-      const sales = getUserSales(userFound._id);
+      const sales = await getUserSales(userFound._id);
       setSales(sales);
     })();
   }, []);
@@ -257,19 +257,33 @@ function AdminUserDetailPage() {
       <h2 className="text-sm uppercase font-bold my-6 text-neutral-400">
         Compras:
       </h2>
-      {sales.map((sale) => (
-        <div className="bg-neutral-700 p-4 rounded-lg">
-          <p>{sale._id}</p>
-          <p>{sale.title}</p>
-          <p>${sale.price}</p>
-          <p>
-            {new Date(sale.createdAt).toLocaleString("es-AR", {
-              dateStyle: "short",
-              timeStyle: "short",
-            })}
-          </p>
-        </div>
-      ))}
+      <div className="flex flex-col gap-4">
+        {sales.map((sale) => (
+          <div className="bg-neutral-700 p-4 rounded-lg flex justify-between">
+            <div className="flex flex-col gap-1">
+              <p>Compra ID: </p>
+              <span>{sale._id}</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p>Plan: </p>
+              <span>{sale.title}</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p>Precio: $ </p>
+              <span>{sale.price}</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p>Fecha: </p>
+              <span>
+                {new Date(sale.createdAt).toLocaleString("es-AR", {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

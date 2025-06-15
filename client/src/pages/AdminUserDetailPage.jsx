@@ -244,7 +244,7 @@ function AdminUserDetailPage() {
           </div>
         </div>
       </div>
-      <h2 className="text-sm uppercase font-bold my-6 text-neutral-400">
+      <h2 className="text-sm uppercase font-semibold my-6 text-neutral-400">
         Proyectos:
       </h2>
       {projects.map((project) => (
@@ -254,14 +254,14 @@ function AdminUserDetailPage() {
           backgroundColor="#171717"
         />
       ))}
-      <h2 className="text-sm uppercase font-bold my-6 text-neutral-400">
+      <h2 className="text-sm uppercase font-semibold my-6 text-neutral-400">
         Compras:
       </h2>
       <div className="flex flex-col gap-4">
         {sales.map((sale) => (
           <div className="bg-neutral-700 p-4 rounded-lg flex justify-between">
             <div className="flex flex-col gap-1">
-              <p>Compra ID: </p>
+              <p className="font-Geist">Compra ID: </p>
               <span>{sale._id}</span>
             </div>
             <div className="flex flex-col gap-1">

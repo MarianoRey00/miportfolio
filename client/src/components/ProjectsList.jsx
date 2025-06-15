@@ -9,8 +9,6 @@ export function ProjectList({ appearance, projects }) {
       ? "8px"
       : appearance.projectPictureShape;
 
-  console.log(modifiedProjectPictureShape);
-
   return (
     <>
       {publicProjects.map((project) => (

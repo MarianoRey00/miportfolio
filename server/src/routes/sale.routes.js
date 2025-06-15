@@ -8,6 +8,6 @@ import {
 const router = Router();
 
 router.get("/sales", authRequired, adminAuthRequired, getSales);
-router.get("/sales/user/:id", authRequired, adminAuthRequired, getUserSales);
+router.get("/sales/user/:id", authRequired, getUserSales);
 
 export default router;

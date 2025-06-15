@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useUsers } from "../context/UserContext";
 import { useProjects } from "../context/ProjectContext";
+import { useSales } from "../context/SaleContext";
 import Sidebar from "../components/Sidebar";
 import { FaInstagram } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
@@ -22,10 +23,12 @@ function AdminUserDetailPage() {
   const { username } = useParams();
   const { getPublicUser, deleteUser, userSaveLoading } = useUsers();
   const { getAdminProjects } = useProjects();
+  const { getUserSales } = useSales();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
   const [projects, setProjects] = useState([]);
   const [user, setUser] = useState({});
+  const [sales, setSales] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +36,8 @@ function AdminUserDetailPage() {
       setUser(userFound);
       const projects = await getAdminProjects(userFound._id);
       setProjects(projects);
+      const sales = getUserSales(userFound._id);
+      setSales(sales);
     })();
   }, []);
 
@@ -249,6 +254,22 @@ function AdminUserDetailPage() {
           key={project._id}
           backgroundColor="#171717"
         />
+      ))}
+      <h2 className="text-sm uppercase font-bold my-6 text-neutral-400">
+        Compras:
+      </h2>
+      {sales.map((sale) => (
+        <>
+          <p>{sale._id}</p>
+          <p>{sale.title}</p>
+          <p>${sale.price}</p>
+          <p>
+            {new Date(sale.createdAt).toLocaleString("es-AR", {
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
+          </p>
+        </>
       ))}
     </>
   );

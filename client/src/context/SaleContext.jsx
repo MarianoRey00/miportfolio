@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getSalesRequest } from "../api/sale.js";
+import { getSalesRequest, getUserSalesRequest } from "../api/sale.js";
 
 const SaleContext = createContext();
 
@@ -14,7 +14,14 @@ export function SaleProvider({ children }) {
     return res.data;
   };
 
+  const getUserSales = async (id) => {
+    const res = await getUserSalesRequest(id);
+    return res.data;
+  };
+
   return (
-    <SaleContext.Provider value={{ getSales }}>{children}</SaleContext.Provider>
+    <SaleContext.Provider value={{ getSales, getUserSales }}>
+      {children}
+    </SaleContext.Provider>
   );
 }

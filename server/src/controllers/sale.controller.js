@@ -8,3 +8,8 @@ export const getSales = async (req, res) => {
     res.status(500).json({ message: "Error al obtener ventas", error });
   }
 };
+
+export const getUserSales = async (req, res) => {
+  const sales = await Sale.find({ buyer: req.user.id });
+  res.status(200).json(sales);
+};

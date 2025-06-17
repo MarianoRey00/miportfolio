@@ -15,43 +15,43 @@ function ProfilePersonalData({ user, loading }) {
   };
   return (
     <>
-      <div className="w-full bg-orange-500">
+      <div className="space-y-6">
         {loading ? (
           <div className="flex justify-center">
             <PulseLoader color="#ffffff" size={10} />
           </div>
         ) : (
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-4">
-              <p className="text-sm sm:text-base lg:text-lg font-medium">
-                Email
-              </p>
-              <div className="flex justify-between">
-                <p className="text-sm lg:text-base mt-2">{user.email}</p>
-                <div
-                  className="w-[14%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
+          <>
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium">Email</p>
+                  <p className="">{user.email}</p>
+                </div>
+                <button
                   onClick={() => openModal("email", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
                 >
                   <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                </div>
+                </button>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <p className="text-sm sm:text-base lg:text-lg font-medium">
-                Contraseña
-              </p>
-              <div className="flex justify-between">
-                <p className="text-sm lg:text-base mt-2">******</p>
-                <div
-                  className="w-[14%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-sm font-medium">Contraseña</p>
+                  <p className="">******</p>
+                </div>
+                <button
                   onClick={() => openModal("contraseña", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
                 >
                   <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                </div>
+                </button>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
       <EditProfileModal

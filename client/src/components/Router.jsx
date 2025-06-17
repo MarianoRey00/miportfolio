@@ -15,6 +15,9 @@ import AdminUserDetailPage from "../pages/AdminUserDetailPage";
 import UpgradePage from "../pages/UpgradePage";
 import Plans from "../pages/Plans";
 import Sales from "../pages/Sales";
+import Success from "../pages/Success";
+import Error from "../pages/Error";
+import Pending from "../pages/Pending";
 
 function Router() {
   return (
@@ -29,6 +32,9 @@ function Router() {
             ></Route>
             <Route path="/panel/cambiar-plan" element={<UpgradePage />}></Route>
             <Route path="/panel/planes" element={<Plans />}></Route>
+            <Route path="/panel/compra-exitosa" element={<Success />}></Route>
+            <Route path="/panel/compra-fallida" element={<Error />}></Route>
+            <Route path="/panel/compra-pendiente" element={<Pending />}></Route>
           </Route>
 
           <Route element={<AdminProtectedRoute />}>

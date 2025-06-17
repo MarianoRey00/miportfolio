@@ -23,9 +23,9 @@ export const createPreference = async (req, res) => {
       // external_reference: req.body.user_id,
       external_reference: "684cdd5d1617bf3cbdc55626",
       back_urls: {
-        success: "https://miportfolio18.vercel.app/panel",
-        failure: "https://www.instagram.com",
-        pending: "https://miportfolio18.vercel.app/panel/cambiar-plan",
+        success: "https://miportfolio18.vercel.app/panel/compra-exitosa",
+        failure: "https://miportfolio18.vercel.app/panel/compra-fallida",
+        pending: "https://miportfolio18.vercel.app/panel/compra-pendiente",
       },
       auto_return: "approved",
       notification_url: "https://miportfolio-api.onrender.com/api/webhook",

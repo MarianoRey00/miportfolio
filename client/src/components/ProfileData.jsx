@@ -25,125 +25,121 @@ function ProfileData({ user, loading }) {
 
   return (
     <>
-      <div className="w-full lg:w-full h-full lg:p-0 bg-green-500">
+      <div className="w-full">
         {loading ? (
           <div className="flex justify-center">
             <PulseLoader color="#ffffff" size={10} />
           </div>
         ) : (
-          <>
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col justify-center gap-4">
-                <p className=" text-sm sm:text-base lg:text-lg font-medium">
-                  Foto de perfil
-                </p>
-                <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-6">
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
                   {user.picture?.url ? (
                     <img
-                      src={user.picture?.url}
-                      alt=""
-                      className="h-20 w-20 md:w-24 md:h-24 rounded-lg object-cover"
+                      src={user.picture.url}
+                      alt="Foto de perfil"
+                      className="h-20 w-20 md:h-24 md:w-24 rounded-lg object-cover"
                     />
                   ) : (
-                    <div className="h-20 w-20 rounded-full bg-neutral-800 flex items-center justify-center uppercase">
+                    <div className="h-20 w-20 rounded-full bg-neutral-800 flex items-center justify-center text-xl uppercase">
                       {user.username[0]}
                     </div>
                   )}
-                  <div
-                    className="w-[14%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
-                    onClick={() => openModal("foto de perfil", user.id)}
-                  >
-                    <EditButton width={16} height={16} stroke={"#FFF7ED"} />
+                  <div>
+                    <p className="text-sm font-medium">Foto de perfil</p>
                   </div>
                 </div>
+                <button
+                  onClick={() => openModal("foto de perfil", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
+                >
+                  <EditButton width={16} height={16} stroke="#FFF7ED" />
+                </button>
               </div>
+            </div>
 
-              <div className="flex flex-col gap-4">
-                <p className="text-sm sm:text-base lg:text-lg font-medium">
-                  Nombre de usuario
-                </p>
-                <div className="flex justify-between">
-                  <p className="text-sm lg:text-base mt-2">{user.username}</p>
-                  <div
-                    className="w-[14%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
-                    onClick={() => openModal("nombre de usuario", user.id)}
-                  >
-                    <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                  </div>
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium">Nombre de usuario</p>
+                  <p>{user.username}</p>
                 </div>
+                <button
+                  onClick={() => openModal("nombre de usuario", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
+                >
+                  <EditButton width={16} height={16} stroke="#FFF7ED" />
+                </button>
               </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm sm:text-base lg:text-lg font-medium">
-                  Biografía
-                </p>
-                <div className="flex justify-between">
-                  {user.biography ? (
-                    <p className="break-all text-sm lg:text-base w-[80%]">
-                      {user.biography}
-                    </p>
-                  ) : (
-                    <p>Sin biografia</p>
-                  )}
-                  <div
-                    className="w-[14%] h-[10%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
-                    onClick={() => openModal("biografia", user.id)}
-                  >
-                    <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                  </div>
+            </div>
+
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex items-center justify-between">
+                <div className="max-w-[85%]">
+                  <p className="text-sm font-medium">Biografía</p>
+                  <p className="break-words">
+                    {user.biography || "Sin biografía"}
+                  </p>
                 </div>
+                <button
+                  onClick={() => openModal("biografia", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
+                >
+                  <EditButton width={16} height={16} stroke="#FFF7ED" />
+                </button>
               </div>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm sm:text-base lg:text-lg font-medium">
-                  Redes sociales
-                </p>
-                <div className="flex justify-between">
-                  <div className="flex mt-2 gap-1">
-                    {Object.values(user.networks).every(
-                      (value) => value === ""
-                    ) ? (
-                      <p>Sin redes sociales</p>
+            </div>
+
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-2">
+                  <p className="text-sm font-medium">Redes sociales</p>
+                  <div className="flex flex-wrap gap-2 mt-1 text-white">
+                    {Object.values(user.networks).every((v) => v === "") ? (
+                      <p className="text-sm">Sin redes sociales</p>
                     ) : (
                       <>
                         {user.networks?.instagram && (
-                          <FaInstagram className="w-6 h-6" />
+                          <FaInstagram className="h-5 w-5" />
                         )}
                         {user.networks?.tiktok && (
-                          <FaTiktok className="w-6 h-6" />
+                          <FaTiktok className="h-5 w-5" />
                         )}
                         {user.networks?.facebook && (
-                          <IoLogoFacebook className="w-6 h-6" />
+                          <IoLogoFacebook className="h-5 w-5" />
                         )}
                         {user.networks?.x && (
-                          <FaSquareXTwitter className="w-6 h-6" />
+                          <FaSquareXTwitter className="h-5 w-5" />
                         )}
                         {user.networks?.youtube && (
-                          <FaYoutube className="w-6 h-6" />
+                          <FaYoutube className="h-5 w-5" />
                         )}
                         {user.networks?.linkedin && (
-                          <FaLinkedin className="w-6 h-6" />
+                          <FaLinkedin className="h-5 w-5" />
                         )}
                         {user.networks?.spotify && (
-                          <BsSpotify className="w-6 h-6" />
+                          <BsSpotify className="h-5 w-5" />
                         )}
                         {user.networks?.pinterest && (
-                          <FaPinterest className="w-6 h-6" />
+                          <FaPinterest className="h-5 w-5" />
                         )}
                         {user.networks?.github && (
-                          <IoLogoGithub className="w-6 h-6" />
+                          <IoLogoGithub className="h-5 w-5" />
                         )}
                       </>
                     )}
                   </div>
-                  <div
-                    className="w-[14%] md:w-[10%] flex justify-center items-center py-3 bg-neutral-800 rounded-lg cursor-pointer relative group"
-                    onClick={() => openModal("redes sociales", user.id)}
-                  >
-                    <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                  </div>
                 </div>
+                <button
+                  onClick={() => openModal("redes sociales", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
+                >
+                  <EditButton width={16} height={16} stroke="#FFF7ED" />
+                </button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
       <EditProfileModal

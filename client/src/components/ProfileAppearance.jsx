@@ -50,7 +50,7 @@ function ProfileAppearance() {
   };
 
   return (
-    <div className="flex flex-col gap-16 bg-red-600">
+    <div className="flex flex-col gap-16">
       {appearanceLoading ? (
         <div className="flex justify-center">
           <PulseLoader color="#ffffff" size={10} />

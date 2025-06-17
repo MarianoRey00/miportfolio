@@ -17,7 +17,7 @@ function ProfilePurchases({ user }) {
           Plan actual: <span className="font-medium">{user.plan}</span>
         </p>
       </div> */}
-      <div className="flex flex-col gap-3 bg-blue-600">
+      <div className="flex flex-col gap-3 ">
         {sales.map((sale) => (
           <div className="flex flex-col  py-6 px-6 rounded-lg gap-6 border border-white shadow-md shadow-neutral-700">
             <div className="flex justify-between">

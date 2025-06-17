@@ -38,7 +38,7 @@ function DashboardProfilePage() {
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <div className="flex xs:p-4 md:p-8 lg:p-0">
         <div className="flex flex-col w-full min-h-screen px-1 py-4 lg:pb-12 lg:pt-8 lg:px-10 lg:w-[59%] gap-4 ">
-          <ul className="hidden md:flex w-max text-sm xs:text-base gap-2 lg:gap-4 border border-white p-1 md:p-2 rounded-lg bg-red-600">
+          <ul className="hidden md:flex w-max text-sm xs:text-base gap-2 lg:gap-4 border border-white p-1 md:p-2 rounded-lg shadow-md shadow-neutral-700">
             <li
               className={`rounded text-center text-sm md:text-base cursor-pointer p-2 transition-colors duration-150 ${
                 view.profileData
@@ -100,20 +100,14 @@ function DashboardProfilePage() {
           </select>
 
           {/* <h1 className="lg:text-lg">Administrar detalles del perfil.</h1> */}
-          <div className="w-full flex justify-center">
-            {view.profileData && (
-              <ProfileData user={user} loading={userLoading} />
-            )}
-          </div>
+          {view.profileData && (
+            <ProfileData user={user} loading={userLoading} />
+          )}
           {view.personalData && (
             <ProfilePersonalData user={user} loading={userLoading} />
           )}
-          <div className="p-2 md:p-0">
-            {view.appearance && <ProfileAppearance />}
-          </div>
-          <div className="">
-            {view.purchases && <ProfilePurchases user={user} />}
-          </div>
+          {view.appearance && <ProfileAppearance />}
+          {view.purchases && <ProfilePurchases user={user} />}
           <button
             className="border border-orange-50 bg-neutral-900 text-orange-50  lg:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 md:px-6 md:py-3 rounded-xl shadow-lg text-sm"
             onClick={() => {

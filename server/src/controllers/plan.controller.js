@@ -1,7 +1,7 @@
 import Plan from "../models/plan.model.js";
 
 export const getPlans = async (req, res) => {
-  const plans = await Plan.Find();
+  const plans = await Plan.find();
   res.status(200).json(plans);
 };
 

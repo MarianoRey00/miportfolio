@@ -16,6 +16,10 @@ const planSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   features: [String],
 });
 

@@ -8,6 +8,7 @@ import projectRoutes from "./routes/project.routes.js";
 import appearanceRoutes from "./routes/appearance.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import saleRoutes from "./routes/sale.routes.js";
+import planRoutes from "./routes/plan.routes.js";
 
 const app = express();
 
@@ -20,11 +21,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-
-const allowedOrigins = [
-  "https://miportfolio18.vercel.app",
-  "http://localhost:5173",
-];
 
 app.use(
   cors({
@@ -40,5 +36,6 @@ app.use("/api", projectRoutes);
 app.use("/api", appearanceRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", saleRoutes);
+app.use("/api", planRoutes);
 
 export default app;

@@ -1,8 +1,12 @@
 import Plan from "../models/plan.model.js";
 
 export const getPlans = async (req, res) => {
-  const plans = await Plan.find();
-  res.status(200).json(plans);
+  try {
+    const plans = await Plan.find();
+    res.status(200).json(plans);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const createPlan = async (req, res) => {

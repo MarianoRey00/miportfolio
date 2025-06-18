@@ -32,7 +32,7 @@ export const deletePlan = async (req, res) => {
 
 export const editPlan = async (req, res) => {
   try {
-    const updatedPlan = Plan.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedPlan = await Plan.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.status(200).json(updatedPlan);

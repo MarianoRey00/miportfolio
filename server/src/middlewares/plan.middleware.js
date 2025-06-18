@@ -80,10 +80,10 @@ export const validateEditPlan = async (req, res, next) => {
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
-  req.title = title;
-  req.description = description;
-  req.price = price;
-  req.duration = duration;
-  req.features = features;
+  //   req.title = title;
+  //   req.description = description;
+  //   req.price = price;
+  //   req.duration = duration;
+  //   req.features = features;
   next();
 };

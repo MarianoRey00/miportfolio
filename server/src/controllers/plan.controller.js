@@ -18,11 +18,6 @@ export const createPlan = async (req, res) => {
     duration: duration,
     features: features,
   });
-  // title: req.title,
-  // description: req.description,
-  // price: req.price,
-  // duration: req.duration,
-  // features: req.features,
   res.json(await newPlan.save());
 };
 

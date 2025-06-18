@@ -24,7 +24,7 @@ export const createPlan = async (req, res) => {
 export const deletePlan = async (req, res) => {
   try {
     await Plan.findByIdAndDelete(req.params.id);
-    res.status(200);
+    return res.sendStatus(204);
   } catch (error) {
     console.log(error);
   }

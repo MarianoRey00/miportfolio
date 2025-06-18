@@ -20,3 +20,8 @@ export const createPlan = async (req, res) => {
   });
   res.json(await newPlan.save());
 };
+
+export const deletePlan = async (req, res) => {
+  await Plan.findByIdAndDelete(req.params.id);
+  res.status(200);
+};

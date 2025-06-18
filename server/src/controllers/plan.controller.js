@@ -29,3 +29,14 @@ export const deletePlan = async (req, res) => {
     console.log(error);
   }
 };
+
+export const editPlan = async (req, res) => {
+  try {
+    const updatedPlan = Plan.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json(updatedPlan);
+  } catch (error) {
+    console.log(error);
+  }
+};

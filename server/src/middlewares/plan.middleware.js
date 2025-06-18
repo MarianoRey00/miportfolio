@@ -1,4 +1,4 @@
-export const validateCreatePlan = async (req, res) => {
+export const validateCreatePlan = async (req, res, next) => {
   const { title, description, duration, price, features } = req.body;
   const errors = [];
 

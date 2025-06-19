@@ -71,7 +71,7 @@ export const validateEditPlan = async (req, res, next) => {
       message: "El precio no puede estar vacio",
     });
   }
-  if (!features) {
+  if (features.length === 0) {
     errors.push({
       field: "features",
       message: "Las caracteristicas no pueden estar vacias.",
@@ -80,10 +80,5 @@ export const validateEditPlan = async (req, res, next) => {
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
-  //   req.title = title;
-  //   req.description = description;
-  //   req.price = price;
-  //   req.duration = duration;
-  //   req.features = features;
   next();
 };

@@ -1,53 +1,6 @@
-import { useState } from "react";
-import Input from "../components/Input";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { VscArrowLeft } from "react-icons/vsc";
-import { usePlans } from "../context/PlanContext";
-import { Toaster } from "react-hot-toast";
-import { useNotification } from "../context/NotificationContext";
+import React from "react";
 
-function CreatePlan() {
-  const [features, setFeatures] = useState([]);
-  const [newFeature, setNewFeature] = useState("");
-  const { createPlan } = usePlans();
-  const [plan, setPlan] = useState({
-    title: "",
-    description: "",
-    duration: "",
-    price: 0,
-    features: [],
-  });
-  const navigate = useNavigate();
-  const { showNotification } = useNotification();
-
-  const handleAddFeature = () => {
-    if (newFeature.trim() !== "") {
-      setFeatures([...features, newFeature.trim()]);
-      setPlan({ ...plan, features: [...features, newFeature.trim()] });
-      setNewFeature("");
-    }
-  };
-
-  const handleRemoveFeature = (indexToRemove) => {
-    const newFeatures = features.filter((_, index) => index !== indexToRemove);
-    setFeatures(newFeatures);
-    setPlan({ ...plan, features: newFeatures });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPlan({ ...plan, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const success = createPlan(plan);
-    if (success) {
-      showNotification("¡Plan creado con exito!");
-      navigate("/admin/planes");
-    }
-  };
-
+function EditPlan() {
   return (
     <>
       <Toaster
@@ -150,4 +103,4 @@ function CreatePlan() {
   );
 }
 
-export default CreatePlan;
+export default EditPlan;

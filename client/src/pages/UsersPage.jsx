@@ -23,10 +23,7 @@ function UsersPage() {
       </h1>
       {currentData.map((user, id) => (
         <Link to={`/admin/${user.username}`}>
-          <div
-            className=" flex justify-between bg-zinc-900 text-zinc-400 mt-4 p-4 rounded-2xl text-sm hover:bg-zinc-700 cursor-pointer"
-            key={id}
-          >
+          <div className=" flex justify-between border border-white shadow-md shadow-neutral-700 text-zinc-400 mt-4 p-4 rounded-2xl text-sm hover:bg-neutral-700 cursor-pointer">
             {user.picture.url ? (
               <img
                 src={user.picture?.url}

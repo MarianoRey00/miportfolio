@@ -44,17 +44,17 @@ function Sales() {
         Estadisticas
       </h1>
       <div className="flex justify-between">
-        <div className="bg-neutral-700 px-8 py-12 w-[30%] rounded-lg">
+        <div className="border border-white shadow-md shadow-neutral-700 px-8 py-12 w-[30%] rounded-lg">
           <span className="text-5xl font-semibold">{monthSales.length}</span>
           <br />
           <span>Ventas de este mes</span>
         </div>
-        <div className="bg-neutral-700 px-8 py-12 w-[30%] rounded-lg">
+        <div className="border border-white shadow-md shadow-neutral-700 px-8 py-12 w-[30%] rounded-lg">
           <span className="text-5xl font-semibold">${monthTotal}</span>
           <br />
           Ingresos de este mes
         </div>
-        <div className="bg-neutral-700 px-8 py-12 w-[30%] rounded-lg">
+        <div className="border border-white shadow-md shadow-neutral-700 px-8 py-12 w-[30%] rounded-lg">
           <span className="text-5xl font-semibold">{sales.length}</span>
           <br />
           Ventas totales

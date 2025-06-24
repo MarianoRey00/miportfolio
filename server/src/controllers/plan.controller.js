@@ -9,6 +9,11 @@ export const getPlans = async (req, res) => {
   }
 };
 
+export const getPlan = async (req, res) => {
+  const plan = await Plan.findById(req.params.id);
+  res.status(200).json(plan);
+};
+
 export const createPlan = async (req, res) => {
   const { title, description, price, duration, features } = req;
   const newPlan = await new Plan({

@@ -28,18 +28,21 @@ function AdminPlans() {
         <HiPlus className="w-5 h-5" />
         Crear plan
       </Link>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 mt-6">
         {plans.map((plan) => (
-          <div className="bg-neutral-700 rounded-lg p-6 flex justify-between">
+          <div className="border border-white shadow-md shadow-neutral-700 rounded-lg p-6 flex justify-between">
             <div>
-              <h2 className="font-medium">{plan.title}</h2>
+              <h2 className="font-medium text-lg">{plan.title}</h2>
               <p>{plan.description}</p>
             </div>
             <div className="flex flex-col gap-1">
-              <button className="p-1 rounded hover:bg-neutral-800 flex justify-center">
+              <Link
+                to={`/admin/planes/editar-plan/${plan._id}`}
+                className="p-1 rounded hover:bg-neutral-700 flex justify-center"
+              >
                 <EditButton width={16} height={18} stroke={"#FFF7ED"} />
-              </button>
-              <button className="p-1 rounded hover:bg-neutral-800">
+              </Link>
+              <button className="p-1 rounded hover:bg-neutral-700">
                 <AiOutlineDelete className="w-5 h-5" />
               </button>
             </div>

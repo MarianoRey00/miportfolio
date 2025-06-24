@@ -2,13 +2,14 @@ import { useState } from "react";
 import Input from "../components/Input";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { VscArrowLeft } from "react-icons/vsc";
-import { createPlanRequest } from "../api/plan.js";
+import { usePlans } from "../context/PlanContext";
 import { Toaster } from "react-hot-toast";
 import { useNotification } from "../context/NotificationContext";
 
 function CreatePlan() {
   const [features, setFeatures] = useState([]);
   const [newFeature, setNewFeature] = useState("");
+  const { createPlan } = usePlans();
   const [plan, setPlan] = useState({
     title: "",
     description: "",
@@ -40,7 +41,8 @@ function CreatePlan() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const success = createPlanRequest(plan);
+    // const success = createPlanRequest(plan);
+    const success = createPlan(plan);
     if (success) {
       showNotification("¡Plan creado con exito!");
       navigate("/admin/planes");

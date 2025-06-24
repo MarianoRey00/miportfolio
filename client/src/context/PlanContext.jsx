@@ -4,7 +4,7 @@ import {
   createPlanRequest,
   deletePlanRequest,
   editPlanRequest,
-} from "../api/sale.js";
+} from "../api/plan.js";
 
 const PlanContext = createContext();
 
@@ -17,8 +17,8 @@ export function PlanProvider({ children }) {
   const [plans, setPlans] = useState([]);
 
   const getPlans = async () => {
-    const plans = await getPlansRequest();
-    setPlans(plans);
+    const res = await getPlansRequest();
+    return res.data;
   };
 
   const createPlan = async (project) => {

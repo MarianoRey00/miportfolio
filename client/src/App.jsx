@@ -5,6 +5,7 @@ import { UserProvider } from "./context/UserContext";
 import { AppearanceProvider } from "./context/AppearanceContext";
 import { NotificationProvider } from "./context/NotificationContext";
 import { SaleProvider } from "./context/SaleContext";
+import { PlanProvider } from "./context/PlanContext";
 import { Toaster } from "react-hot-toast";
 import Router from "./components/Router";
 
@@ -18,9 +19,11 @@ function App() {
             <AppearanceProvider>
               <NotificationProvider>
                 <SaleProvider>
-                  <BrowserRouter>
-                    <Router />
-                  </BrowserRouter>
+                  <PlanProvider>
+                    <BrowserRouter>
+                      <Router />
+                    </BrowserRouter>
+                  </PlanProvider>
                 </SaleProvider>
               </NotificationProvider>
             </AppearanceProvider>

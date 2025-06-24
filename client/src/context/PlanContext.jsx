@@ -19,11 +19,11 @@ export function PlanProvider({ children }) {
 
   const getPlans = async () => {
     const res = await getPlansRequest();
-    return res.data;
+    setPlans(res.data);
   };
 
-  const getPlan = async () => {
-    const res = await getPlanRequest();
+  const getPlan = async (id) => {
+    const res = await getPlanRequest(id);
     return res.data;
   };
 
@@ -36,6 +36,7 @@ export function PlanProvider({ children }) {
     const res = await deletePlanRequest(id);
     if (res.status === 204) {
       setPlans(plans.filter((plan) => plan._id !== id));
+      return true;
     }
   };
 
@@ -47,6 +48,7 @@ export function PlanProvider({ children }) {
   return (
     <PlanContext.Provider
       value={{
+        plans,
         getPlans,
         getPlan,
         createPlan,

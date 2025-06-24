@@ -4,17 +4,42 @@ import { Link } from "react-router-dom";
 import { usePlans } from "../context/PlanContext";
 import { AiOutlineDelete } from "react-icons/ai";
 import EditButton from "../components/EditButton";
+import toast from "react-hot-toast";
 
 function AdminPlans() {
-  const { getPlans } = usePlans();
-  const [plans, setPlans] = useState([]);
+  const { getPlans, deletePlan, plans } = usePlans();
 
   useEffect(() => {
-    (async () => {
-      const plans = await getPlans();
-      setPlans(plans);
-    })();
+    getPlans();
   }, []);
+
+  const handleDelete = async (id, title) => {
+    toast((t) => (
+      <div className="flex flex-col gap-4">
+        <p className="break-words text-center">¿Desea eliminar {title}?</p>
+        <div className="flex justify-end gap-2">
+          <button
+            className="bg-customColor-blue hover:bg-slate-800 px-3 py-2 text-white text-sm rounded-lg"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancelar
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-lg"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const success = await deletePlan(id);
+              if (success) {
+                toast.success("¡Plan eliminado con éxito!");
+              }
+            }}
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <>
@@ -42,7 +67,12 @@ function AdminPlans() {
               >
                 <EditButton width={16} height={18} stroke={"#FFF7ED"} />
               </Link>
-              <button className="p-1 rounded hover:bg-neutral-700">
+              <button
+                className="p-1 rounded hover:bg-neutral-700"
+                onClick={() => {
+                  handleDelete(plan._id, plan.title);
+                }}
+              >
                 <AiOutlineDelete className="w-5 h-5" />
               </button>
             </div>

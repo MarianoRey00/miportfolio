@@ -21,7 +21,6 @@ function EditPlan() {
   useEffect(() => {
     (async () => {
       const plan = await getPlan(id);
-      console.log(plan);
       setPlan(plan);
     })();
   }, []);
@@ -31,14 +30,16 @@ function EditPlan() {
 
   const handleAddFeature = () => {
     if (newFeature.trim() !== "") {
-      setFeatures([...features, newFeature.trim()]);
-      setPlan({ ...plan, features: [...features, newFeature.trim()] });
+      setFeatures([...plan.features, newFeature.trim()]);
+      setPlan({ ...plan, features: [...plan.features, newFeature.trim()] });
       setNewFeature("");
     }
   };
 
   const handleRemoveFeature = (indexToRemove) => {
-    const newFeatures = features.filter((_, index) => index !== indexToRemove);
+    const newFeatures = plan.features.filter(
+      (_, index) => index !== indexToRemove
+    );
     setFeatures(newFeatures);
     setPlan({ ...plan, features: newFeatures });
   };
@@ -50,7 +51,7 @@ function EditPlan() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const success = editPlan(plan);
+    const success = editPlan(id, plan);
     if (success) {
       showNotification("¡Plan editado con exito!");
       navigate("/admin/planes");
@@ -77,7 +78,13 @@ function EditPlan() {
           <label htmlFor="titulo" className="text-lg">
             Título
           </label>
-          <Input type="text" id="titulo" name="title" onChange={handleChange} />
+          <Input
+            type="text"
+            value={plan.title}
+            id="titulo"
+            name="title"
+            onChange={handleChange}
+          />
         </div>
         <div className="flex flex-col gap-1 ">
           <label htmlFor="descripcion" className="text-lg">
@@ -85,6 +92,7 @@ function EditPlan() {
           </label>
           <Input
             type="text"
+            value={plan.description}
             id="descripcion"
             name="description"
             onChange={handleChange}
@@ -96,6 +104,7 @@ function EditPlan() {
           </label>
           <Input
             type="text"
+            value={plan.duration}
             id="duracion"
             name="duration"
             onChange={handleChange}
@@ -107,6 +116,7 @@ function EditPlan() {
           </label>
           <Input
             type="number"
+            value={plan.price}
             id="precio"
             name="price"
             onChange={handleChange}
@@ -134,11 +144,8 @@ function EditPlan() {
           </div>
 
           <div className="flex flex-col gap-2 mt-2">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center bg-orange-50 px-3 py-1 rounded"
-              >
+            {plan.features.map((feature, index) => (
+              <div className="flex justify-between items-center bg-orange-50 px-3 py-1 rounded">
                 <span className="text-black">{feature}</span>
                 <button
                   type="button"
@@ -152,7 +159,7 @@ function EditPlan() {
           </div>
         </div>
         <button type="submit" className="bg-blue-600 rounded-lg py-4 w-[25%]">
-          Crear
+          Editar
         </button>
       </form>
     </>

@@ -1,6 +1,62 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
+import { usePlans } from "../context/PlanContext";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import Input from "../components/Input";
+import { VscArrowLeft } from "react-icons/vsc";
+import { Toaster } from "react-hot-toast";
+import { useNotification } from "../context/NotificationContext";
 
 function EditPlan() {
+  const { getPlan, editPlan } = usePlans();
+  const [plan, setPlan] = useState({
+    title: "",
+    description: "",
+    duration: "",
+    price: 0,
+    features: [],
+  });
+  const [features, setFeatures] = useState([]);
+  const [newFeature, setNewFeature] = useState("");
+  const { id } = useParams();
+  useEffect(() => {
+    (async () => {
+      const plan = await getPlan(id);
+      console.log(plan);
+      setPlan(plan);
+    })();
+  }, []);
+
+  const navigate = useNavigate();
+  const { showNotification } = useNotification();
+
+  const handleAddFeature = () => {
+    if (newFeature.trim() !== "") {
+      setFeatures([...features, newFeature.trim()]);
+      setPlan({ ...plan, features: [...features, newFeature.trim()] });
+      setNewFeature("");
+    }
+  };
+
+  const handleRemoveFeature = (indexToRemove) => {
+    const newFeatures = features.filter((_, index) => index !== indexToRemove);
+    setFeatures(newFeatures);
+    setPlan({ ...plan, features: newFeatures });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPlan({ ...plan, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const success = editPlan(plan);
+    if (success) {
+      showNotification("¡Plan editado con exito!");
+      navigate("/admin/planes");
+    }
+  };
+
   return (
     <>
       <Toaster

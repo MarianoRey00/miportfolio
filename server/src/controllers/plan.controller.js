@@ -11,7 +11,7 @@ export const getPlans = async (req, res) => {
 
 export const getPlan = async (req, res) => {
   const plan = await Plan.findById(req.params.id);
-  res.status(200).json(plan);
+  res.json(plan);
 };
 
 export const createPlan = async (req, res) => {

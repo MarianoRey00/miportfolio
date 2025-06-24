@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   getPlansRequest,
+  getPlanRequest,
   createPlanRequest,
   deletePlanRequest,
   editPlanRequest,
@@ -18,6 +19,11 @@ export function PlanProvider({ children }) {
 
   const getPlans = async () => {
     const res = await getPlansRequest();
+    return res.data;
+  };
+
+  const getPlan = async () => {
+    const res = await getPlanRequest();
     return res.data;
   };
 
@@ -42,6 +48,7 @@ export function PlanProvider({ children }) {
     <PlanContext.Provider
       value={{
         getPlans,
+        getPlan,
         createPlan,
         deletePlan,
         editPlan,

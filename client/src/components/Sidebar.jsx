@@ -5,6 +5,7 @@ import { IoExitOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import { LuUsers } from "react-icons/lu";
 import { MdAttachMoney } from "react-icons/md";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 function Sidebar() {
   const location = useLocation();
 
@@ -25,7 +26,7 @@ function Sidebar() {
             <div className="flex flex-col text ">
               <Link
                 to="/admin/usuarios"
-                className={`flex gap-2 items-center p-2 rounded-lg block hover:bg-neutral-700 transition-colors ${
+                className={`flex gap-2 items-center p-2 rounded-lg hover:bg-neutral-700 transition-colors ${
                   location.pathname === "/admin/usuarios" && "bg-neutral-700"
                 }`}
               >
@@ -34,12 +35,21 @@ function Sidebar() {
               </Link>
               <Link
                 to="/admin/ventas"
-                className={`flex gap-2 items-center p-2 rounded-lg block hover:bg-neutral-700 transition-colors ${
+                className={`flex gap-2 items-center p-2 rounded-lg hover:bg-neutral-700 transition-colors ${
                   location.pathname === "/admin/ventas" && "bg-neutral-700"
                 }`}
               >
                 <MdAttachMoney className="w-5 h-5" />
                 <span>Ventas</span>
+              </Link>
+              <Link
+                to="/admin/planes"
+                className={`flex gap-2 items-center p-2 rounded-lg hover:bg-neutral-700 transition-colors ${
+                  location.pathname === "/admin/planes" && "bg-neutral-700"
+                }`}
+              >
+                <HiOutlineDocumentText className="w-5 h-5" />
+                <span>Planes</span>
               </Link>
             </div>
             <Link

@@ -41,7 +41,7 @@ function Sales() {
   return (
     <>
       <h1 className="text-sm uppercase font-semibold mb-6 text-orange-50">
-        Ventas
+        Estadisticas
       </h1>
       <div className="flex justify-between">
         <div className="bg-neutral-700 px-8 py-12 w-[30%] rounded-lg">

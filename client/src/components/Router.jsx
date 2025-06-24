@@ -15,6 +15,8 @@ import AdminUserDetailPage from "../pages/AdminUserDetailPage";
 import UpgradePage from "../pages/UpgradePage";
 import Plans from "../pages/Plans";
 import Sales from "../pages/Sales";
+import AdminPlans from "../pages/AdminPlans";
+import CreatePlan from "../pages/CreatePlan";
 import Success from "../pages/Success";
 import Error from "../pages/Error";
 import Pending from "../pages/Pending";
@@ -41,6 +43,8 @@ function Router() {
             <Route path="/admin" element={<Admin />}>
               <Route path="usuarios" element={<UsersPage />} />
               <Route path="ventas" element={<Sales />} />
+              <Route path="planes" element={<AdminPlans />} />
+              <Route path="planes/crear-plan" element={<CreatePlan />} />
               <Route path=":username" element={<AdminUserDetailPage />} />
             </Route>
           </Route>

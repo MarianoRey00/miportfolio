@@ -92,7 +92,7 @@ function AdminUserDetailPage() {
         <VscArrowLeft className="w-8 h-8 cursor-pointer hover:bg-neutral-600 p-1 rounded backdrop-blur-md" />
       </Link>
       <div className="flex gap-10 bg-zinc-900 rounded-xl p-6">
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[40%]">
           {user.picture?.url ? (
             <img
               src={user.picture?.url}
@@ -120,7 +120,7 @@ function AdminUserDetailPage() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-[60%]">
           <div>
             <p className="text-xs text-neutral-500">Nombre de usuario:</p>
             <h1 className=" break-words">{user.username}</h1>
@@ -129,10 +129,10 @@ function AdminUserDetailPage() {
             <p className="text-xs text-neutral-500">Email:</p>
             <p className="break-words ">{user.email}</p>
           </div>
-          <div>
+          <div className="">
             <p className="text-xs text-neutral-500">Biografia:</p>
             {user.biography ? (
-              <p className="break-words text-sm">{user.biography}</p>
+              <p className=" break-all text-sm">{user.biography}</p>
             ) : (
               <p>-</p>
             )}
@@ -269,8 +269,8 @@ function AdminUserDetailPage() {
               <span>{sale.title}</span>
             </div>
             <div className="flex flex-col gap-1">
-              <p>Precio: $ </p>
-              <span>{sale.price}</span>
+              <p>Precio: </p>
+              <span>${sale.price}</span>
             </div>
             <div className="flex flex-col gap-1">
               <p>Fecha: </p>

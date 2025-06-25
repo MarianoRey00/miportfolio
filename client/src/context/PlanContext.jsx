@@ -16,6 +16,7 @@ export const usePlans = () => {
 
 export function PlanProvider({ children }) {
   const [plans, setPlans] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const getPlans = async () => {
     const res = await getPlansRequest();
@@ -28,8 +29,12 @@ export function PlanProvider({ children }) {
   };
 
   const createPlan = async (project) => {
-    const res = await createPlanRequest(project);
-    setPlans([...plans, res.data]);
+    try {
+      const res = await createPlanRequest(project);
+      setPlans([...plans, res.data]);
+    } catch (error) {
+      setErrors(error.response.data.errors);
+    }
   };
 
   const deletePlan = async (id) => {
@@ -54,6 +59,8 @@ export function PlanProvider({ children }) {
         createPlan,
         deletePlan,
         editPlan,
+        errors,
+        setErrors,
       }}
     >
       {children}

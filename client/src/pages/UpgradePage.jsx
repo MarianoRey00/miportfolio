@@ -3,21 +3,22 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { usePlans } from "../context/PlanContext";
+import { useParams } from "react-router-dom";
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("APP_USR-46c99d09-a8af-425c-b1ec-d5e5c40616ee", {
     locale: "es-AR",
   });
 
-  // const { getPlan } = usePlans();
-  // const [plan, setPlan] = useState({});
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const plan = getPlan();
-  //     setPlan(plan);
-  //   })();
-  // }, []);
+  const { getPlan } = usePlans();
+  const [plan, setPlan] = useState({});
+  const { id } = useParams();
+  useEffect(() => {
+    (async () => {
+      const plan = await getPlan(id);
+      setPlan(plan);
+    })();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -26,11 +27,9 @@ function UpgradePage() {
           const res = await axios.post(
             "https://miportfolio-api.onrender.com/api/create-preference",
             {
-              title: "profesional",
-              price: 1,
-              // title: plan.title,
-              // quantity: 1,
-              // price: plan.price,
+              title: plan.title,
+              price: plan.price,
+              quantity: 1,
             }
           );
           const { id } = res.data;
@@ -45,7 +44,7 @@ function UpgradePage() {
         setPreferenceId(id);
       }
     })();
-  }, []);
+  }, [plan]);
 
   return (
     <>
@@ -104,9 +103,11 @@ function UpgradePage() {
                   </div>
                   <div className="ml-4 flex-1">
                     <h3 className="text-lg font-medium text-gray-900">
-                      {plan.title}
+                      Plan {plan.title}
                     </h3>
-                    <p className="text-gray-600 mt-1">Duración ilimitada</p>
+                    <p className="text-gray-600 mt-1">
+                      Duración: {plan.duration}
+                    </p>
                   </div>
                   <div>
                     <span className="text-lg font-medium text-gray-900">
@@ -120,59 +121,21 @@ function UpgradePage() {
                     Incluye:
                   </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">
-                        Proyectos ilimitados
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">
-                        Hasta 10 fotos por proyecto
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">
-                        Subir videos
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">Subir PDFs</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">
-                        Compartir tu CV
-                      </span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                        &#10003;
-                      </span>
-                      <span className="text-gray-600 text-lg">
-                        Eliminar boton de miportfolio en el perfil
-                      </span>
-                    </li>
+                    {plan.features?.map((feature) => (
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2 mt-0.5 font-bold">
+                          &#10003;
+                        </span>
+                        <span className="text-gray-600 text-lg">{feature}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <div className="flex justify-between font-medium text-lg pt-2">
                     <span className="text-gray-900">Total</span>
-                    <span className="text-gray-900">$1000</span>
+                    <span className="text-gray-900">${plan.price}</span>
                   </div>
                 </div>
               </div>

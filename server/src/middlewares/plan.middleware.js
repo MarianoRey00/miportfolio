@@ -26,7 +26,7 @@ export const validateCreatePlan = async (req, res, next) => {
       message: "El precio no puede estar vacio",
     });
   }
-  if (!features) {
+  if (features.length === 0) {
     errors.push({
       field: "features",
       message: "Las caracteristicas no pueden estar vacias.",

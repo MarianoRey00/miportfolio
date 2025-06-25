@@ -34,7 +34,7 @@ function Router() {
               element={<DashboardProfilePage />}
             ></Route>
             <Route
-              path="/panel/finalizar-compra"
+              path="/panel/finalizar-compra/:id"
               element={<UpgradePage />}
             ></Route>
             <Route path="/panel/planes" element={<Plans />}></Route>

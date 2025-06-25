@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../components/Input";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { VscArrowLeft } from "react-icons/vsc";
@@ -9,7 +9,7 @@ import { useNotification } from "../context/NotificationContext";
 function CreatePlan() {
   const [features, setFeatures] = useState([]);
   const [newFeature, setNewFeature] = useState("");
-  const { createPlan } = usePlans();
+  const { createPlan, errors, setErrors } = usePlans();
   const [plan, setPlan] = useState({
     title: "",
     description: "",
@@ -39,14 +39,20 @@ function CreatePlan() {
     setPlan({ ...plan, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = createPlan(plan);
+    const success = await createPlan(plan);
     if (success) {
       showNotification("¡Plan creado con exito!");
       navigate("/admin/planes");
     }
   };
+
+  useEffect(() => {
+    setErrors([]);
+  }, []);
+
+  console.log(errors);
 
   return (
     <>
@@ -68,7 +74,13 @@ function CreatePlan() {
           <label htmlFor="titulo" className="text-lg">
             Título
           </label>
-          <Input type="text" id="titulo" name="title" onChange={handleChange} />
+          <Input
+            type="text"
+            id="titulo"
+            name="title"
+            onChange={handleChange}
+            errors={errors}
+          />
         </div>
         <div className="flex flex-col gap-1 ">
           <label htmlFor="descripcion" className="text-lg">
@@ -79,6 +91,7 @@ function CreatePlan() {
             id="descripcion"
             name="description"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1 ">
@@ -90,6 +103,7 @@ function CreatePlan() {
             id="duracion"
             name="duration"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1 ">
@@ -101,6 +115,7 @@ function CreatePlan() {
             id="precio"
             name="price"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -123,6 +138,9 @@ function CreatePlan() {
               Agregar
             </button>
           </div>
+          <p className="text-red-600">
+            {errors?.find((error) => error.field === features)?.message}
+          </p>
 
           <div className="flex flex-col gap-2 mt-2">
             {features.map((feature, index) => (

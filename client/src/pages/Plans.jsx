@@ -38,7 +38,7 @@ function Plans() {
                   {authUser.plan !== plan.title && (
                     <div className="flex items-center justify-center">
                       <Link
-                        to="/panel/finalizar-compra"
+                        to={`/panel/finalizar-compra/${plan._id}`}
                         className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1 hover:bg-gray-700"
                       >
                         Adquirir Plan

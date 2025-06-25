@@ -84,6 +84,7 @@ export const verifyToken = async (req, res) => {
       username: userFound.username,
       email: userFound.email,
       role: userFound.role,
+      plan: userFound.plan,
     });
   });
 };

@@ -33,7 +33,10 @@ function Router() {
               path="/panel/perfil"
               element={<DashboardProfilePage />}
             ></Route>
-            <Route path="/panel/cambiar-plan" element={<UpgradePage />}></Route>
+            <Route
+              path="/panel/finalizar-compra"
+              element={<UpgradePage />}
+            ></Route>
             <Route path="/panel/planes" element={<Plans />}></Route>
             <Route path="/panel/compra-exitosa" element={<Success />}></Route>
             <Route path="/panel/compra-fallida" element={<Error />}></Route>

@@ -35,11 +35,11 @@ function Plans() {
                       Duración: {plan.duration}
                     </p>
                   </div>
-                  {authUser.plan === plan.title && (
+                  {authUser.plan !== plan.title && (
                     <div className="flex items-center justify-center">
                       <Link
-                        to="/panel/cambiar-plan"
-                        className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1"
+                        to="/panel/finalizar-compra"
+                        className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1 hover:bg-gray-700"
                       >
                         Adquirir Plan
                       </Link>

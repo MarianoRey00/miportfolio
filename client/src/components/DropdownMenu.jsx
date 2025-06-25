@@ -42,15 +42,6 @@ function DropdownMenu({
             Perfil
           </Link>
           <Link
-            to="/panel/cambiar-plan"
-            className="block px-4 py-2 text-sm hover:bg-slate-200 transition"
-            onClick={() => {
-              toggleDropdownMenu();
-            }}
-          >
-            Cambiar plan
-          </Link>
-          <Link
             to="/panel/planes"
             className="block px-4 py-2 text-sm hover:bg-slate-200 transition"
             onClick={() => {

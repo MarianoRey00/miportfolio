@@ -2,26 +2,38 @@ import { useState, useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-
+import { usePlans } from "../context/PlanContext";
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago("APP_USR-46c99d09-a8af-425c-b1ec-d5e5c40616ee", {
     locale: "es-AR",
   });
 
+  // const { getPlan } = usePlans();
+  // const [plan, setPlan] = useState({});
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const plan = getPlan();
+  //     setPlan(plan);
+  //   })();
+  // }, []);
+
   useEffect(() => {
     (async () => {
       const createPreference = async () => {
         try {
-          const response = await axios.post(
+          const res = await axios.post(
             "https://miportfolio-api.onrender.com/api/create-preference",
             {
-              title: "Miportfolio Premium",
-              quantity: 1,
+              title: "profesional",
               price: 1,
+              // title: plan.title,
+              // quantity: 1,
+              // price: plan.price,
             }
           );
-          const { id } = response.data;
+          const { id } = res.data;
           return id;
         } catch (error) {
           console.log(error);
@@ -92,13 +104,13 @@ function UpgradePage() {
                   </div>
                   <div className="ml-4 flex-1">
                     <h3 className="text-lg font-medium text-gray-900">
-                      Plan Profesional
+                      {plan.title}
                     </h3>
                     <p className="text-gray-600 mt-1">Duración ilimitada</p>
                   </div>
                   <div>
                     <span className="text-lg font-medium text-gray-900">
-                      $1000
+                      ${plan.price}
                     </span>
                   </div>
                 </div>

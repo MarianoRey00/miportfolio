@@ -193,7 +193,7 @@ export function ProjectCard({ project }) {
   return (
     <>
       <div
-        className={`w-[90%] md:w-[80%] lg:w-[100%] transition-all duration-300 overflow-hidden flex justify-between text-white rounded-xl shadow-gray shadow-md shadow-neutral-700 p-4 sm:p-6 md:p-7 mb-3 relative bg-zinc-900 border border-white  ${
+        className={`w-[90%] md:w-[80%] lg:w-[100%] transition-all duration-300 overflow-hidden flex justify-between text-white rounded-xl shadow-gray shadow-md shadow-neutral-700 p-4 sm:p-6 md:p-7 mb-3 relative  border border-white  ${
           isExpanded
             ? "h-[425px] xs:h-[360px] sm:h-[380px] md:h-[400px] lg:h-[420px]"
             : "h-24 xs:h-32 sm:h-36 md:h-44"

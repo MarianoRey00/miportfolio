@@ -35,14 +35,16 @@ function Plans() {
                       Duración: {plan.duration}
                     </p>
                   </div>
-                  <div className="flex items-center justify-center">
-                    <Link
-                      to="/panel/cambiar-plan"
-                      className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1"
-                    >
-                      Adquirir Plan
-                    </Link>
-                  </div>
+                  {authUser.plan === plan.title && (
+                    <div className="flex items-center justify-center">
+                      <Link
+                        to="/panel/cambiar-plan"
+                        className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1"
+                      >
+                        Adquirir Plan
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">

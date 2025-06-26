@@ -20,7 +20,7 @@ export const validateCreatePlan = async (req, res, next) => {
       message: "La duración no puede estar vacia.",
     });
   }
-  if (!price) {
+  if (price === null || price === undefined || price === "") {
     errors.push({
       field: "price",
       message: "El precio no puede estar vacio",
@@ -65,7 +65,7 @@ export const validateEditPlan = async (req, res, next) => {
       message: "La duración no puede estar vacia.",
     });
   }
-  if (!price) {
+  if (!price === null || price === undefined || price === "") {
     errors.push({
       field: "price",
       message: "El precio no puede estar vacio",

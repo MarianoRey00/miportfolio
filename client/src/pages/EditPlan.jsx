@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useNotification } from "../context/NotificationContext";
 
 function EditPlan() {
-  const { getPlan, editPlan } = usePlans();
+  const { getPlan, editPlan, errors, setErrors } = usePlans();
   const [plan, setPlan] = useState({
     title: "",
     description: "",
@@ -20,6 +20,7 @@ function EditPlan() {
   const { id } = useParams();
   useEffect(() => {
     (async () => {
+      setErrors([]);
       const plan = await getPlan(id);
       setPlan(plan);
     })();
@@ -49,9 +50,9 @@ function EditPlan() {
     setPlan({ ...plan, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = editPlan(id, plan);
+    const success = await editPlan(id, plan);
     if (success) {
       showNotification("¡Plan editado con exito!");
       navigate("/admin/planes");
@@ -71,7 +72,7 @@ function EditPlan() {
         <VscArrowLeft className="w-8 h-8 cursor-pointer hover:bg-neutral-600 p-1 rounded backdrop-blur-md" />
       </Link>
       <h1 className="text-sm uppercase font-semibold mb-6 text-orange-50">
-        Crear plan
+        Editar plan
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-1 ">
@@ -84,6 +85,7 @@ function EditPlan() {
             id="titulo"
             name="title"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1 ">
@@ -96,6 +98,7 @@ function EditPlan() {
             id="descripcion"
             name="description"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1 ">
@@ -108,6 +111,7 @@ function EditPlan() {
             id="duracion"
             name="duration"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1 ">
@@ -120,6 +124,7 @@ function EditPlan() {
             id="precio"
             name="price"
             onChange={handleChange}
+            errors={errors}
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -142,6 +147,9 @@ function EditPlan() {
               Agregar
             </button>
           </div>
+          <p className="text-red-600">
+            {errors?.find((error) => error.field === "features")?.message}
+          </p>
 
           <div className="flex flex-col gap-2 mt-2">
             {plan.features.map((feature, index) => (

@@ -52,8 +52,6 @@ function CreatePlan() {
     setErrors([]);
   }, []);
 
-  console.log(errors);
-
   return (
     <>
       <Toaster
@@ -139,7 +137,7 @@ function CreatePlan() {
             </button>
           </div>
           <p className="text-red-600">
-            {errors?.find((error) => error.field === features)?.message}
+            {errors?.find((error) => error.field === "features")?.message}
           </p>
 
           <div className="flex flex-col gap-2 mt-2">

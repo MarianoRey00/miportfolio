@@ -46,8 +46,13 @@ export function PlanProvider({ children }) {
   };
 
   const editPlan = async (id, plan) => {
-    const res = await editPlanRequest(id, plan);
-    setPlans(plans.map((plan) => (plan._id === id ? res.data : plan)));
+    try {
+      const res = await editPlanRequest(id, plan);
+      setPlans(plans.map((plan) => (plan._id === id ? res.data : plan)));
+      return true;
+    } catch (error) {
+      setErrors(error.response.data.errors);
+    }
   };
 
   return (

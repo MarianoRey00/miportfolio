@@ -8,6 +8,8 @@ import Preview from "../components/Preview.jsx";
 import PreviewModal from "../components/PreviewModal.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { Toaster } from "react-hot-toast";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 function DashboardProfilePage() {
   const { user, userLoading } = useUsers();
@@ -18,6 +20,11 @@ function DashboardProfilePage() {
     appearance: false,
     purchases: false,
   });
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
+
+  const toggleDropdownMenu = () => {
+    setIsDropdownMenuOpen(!isDropdownMenuOpen);
+  };
 
   function toggleView(selectedView) {
     setView({
@@ -81,25 +88,65 @@ function DashboardProfilePage() {
             </li>
           </ul>
 
-          <select
-            id="opciones"
-            name="opciones"
-            className="flex md:hidden right-0 mt-2 w-48 text-orange-50 bg-neutral-800 rounded-md shadow-lg overflow-hidden transition-all duration-200 p-2 border border-orange-50"
-            value={
-              view.profileData
-                ? "profileData"
-                : view.personalData
-                ? "personalData"
-                : "appearance"
-            }
-            onChange={(e) => toggleView(e.target.value)}
-          >
-            <option value="profileData">Datos del perfil</option>
-            <option value="personalData">Datos personales</option>
-            <option value="appearance">Apariencia</option>
-          </select>
+          <div className="md:hidden relative cursor-pointer">
+            <div
+              onClick={() => toggleDropdownMenu()}
+              className="flex justify-between items-center border border-white shadow-md shadow-neutral-700 w-full rounded-lg p-2"
+            >
+              {view.profileData && <p>Datos del perfil</p>}
+              {view.personalData && <p>Datos personales</p>}
+              {view.appearance && <p>Apariencia</p>}
+              {view.purchases && <p>Compras</p>}
+              {!isDropdownMenuOpen && <IoIosArrowDown className="w-5 h-5" />}
+              {isDropdownMenuOpen && <IoIosArrowUp className="w-5 h-5" />}
+            </div>
 
-          {/* <h1 className="lg:text-lg">Administrar detalles del perfil.</h1> */}
+            <div
+              className={`absolute left-0 mt-2 w-full bg-neutral-900 border border-white text-orange-50 rounded-md shadow-lg overflow-hidden transition-all duration-200 ${
+                isDropdownMenuOpen
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              }`}
+            >
+              <div
+                to="/panel/perfil"
+                className="block px-4 py-2 text-sm hover:bg-neutral-700 transition"
+                onClick={() => {
+                  toggleView("profileData"), toggleDropdownMenu();
+                }}
+              >
+                Datos del perfil
+              </div>
+              <div
+                to="/panel/perfil"
+                className="block px-4 py-2 text-sm hover:bg-neutral-700 transition"
+                onClick={() => {
+                  toggleView("personalData"), toggleDropdownMenu();
+                }}
+              >
+                Datos personales
+              </div>
+              <div
+                to="/panel/perfil"
+                className="block px-4 py-2 text-sm hover:bg-neutral-700 transition"
+                onClick={() => {
+                  toggleView("appearance"), toggleDropdownMenu();
+                }}
+              >
+                Apariencia
+              </div>
+              <div
+                to="/panel/perfil"
+                className="block px-4 py-2 text-sm hover:bg-neutral-700 transition"
+                onClick={() => {
+                  toggleView("purchases"), toggleDropdownMenu();
+                }}
+              >
+                Compras
+              </div>
+            </div>
+          </div>
+
           {view.profileData && (
             <ProfileData user={user} loading={userLoading} />
           )}

@@ -5,7 +5,7 @@ import EditProjectModal from "./EditProjectModal.jsx";
 import PulseLoader from "react-spinners/PulseLoader";
 import ProjectCardMobile from "../components/ProjectCardMobile";
 import ProjectCardDesktop from "../components/ProjectCardDesktop";
-
+import { useAuth } from "../context/AuthContext.jsx";
 export function ProjectCard({ project }) {
   const {
     deleteProject,
@@ -21,6 +21,7 @@ export function ProjectCard({ project }) {
   const [id, setId] = useState(null);
   const [modalContent, setModalContent] = useState("");
   const [deleteGalleryImageId, setDeleteGalleryImageId] = useState(null);
+  const { authUser } = useAuth();
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -212,6 +213,7 @@ export function ProjectCard({ project }) {
           handleDelete={handleDelete}
           deleteGalleryImageId={deleteGalleryImageId}
           handleDeleteProjectPdf={handleDeleteProjectPdf}
+          authUser={authUser}
         />
 
         <ProjectCardDesktop
@@ -227,6 +229,7 @@ export function ProjectCard({ project }) {
           handleDelete={handleDelete}
           deleteGalleryImageId={deleteGalleryImageId}
           handleDeleteProjectPdf={handleDeleteProjectPdf}
+          authUser={authUser}
         />
       </div>
       <EditProjectModal

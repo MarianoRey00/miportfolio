@@ -15,47 +15,49 @@ function Plans() {
       <Navbar background={"#18181b"} border={"1px solid #fff7ed "} />
       <div className="min-h-screen">
         <div className="py-10">
-          <h1 className="text-4xl font-bold text-center">
+          <h1 className="text-4xl font-semibold text-center">
             Elegí el plan que mas se adecue a vos
           </h1>
         </div>
-        <div className="flex justify-center p-8 gap-8">
+        <div className="flex flex-wrap py-4 md:justify-between px-4 md:px-10 lg:px-24">
           {plans.map((plan) => (
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-[45%]">
-              <div class="px-8 py-10 border-b border-gray-200 bg-customColor-blue">
-                <h2 class="text-3xl font-semibold text-white">{plan.title}</h2>
-                <p className="text-lg">{plan.description}</p>
+            <div className="w-full md:w-[45%] bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-10">
+              <div className="px-6 py-8 border-b border-gray-200 bg-neutral-900">
+                <h2 className="text-3xl font-semibold text-white">
+                  {plan.title}
+                </h2>
+                <p className="text-lg text-white">{plan.description}</p>
               </div>
 
-              <div class="p-8">
-                <div class="flex items-start">
-                  <div class="ml-2 flex-1">
-                    <h3 class="text-2xl  text-gray-900">${plan.price}</h3>
-                    <p class="text-gray-600 mt-1 text-xl">
+              <div className="p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between">
+                  <div className="mb-4 sm:mb-0">
+                    <h3 className="text-2xl text-gray-900">${plan.price}</h3>
+                    <p className="text-gray-600 mt-1 text-xl">
                       Duración: {plan.duration}
                     </p>
                   </div>
                   {authUser.plan !== plan.title && (
-                    <div className="flex items-center justify-center">
-                      <Link
-                        to={`/panel/finalizar-compra/${plan._id}`}
-                        className="py-4 px-6 text-center bg-customColor-blue rounded-lg font-medium mt-1 hover:bg-gray-700"
-                      >
-                        Adquirir Plan
-                      </Link>
-                    </div>
+                    <Link
+                      to={`/panel/finalizar-compra/${plan._id}`}
+                      className="py-3 px-5 bg-neutral-900 text-white text-center rounded-lg font-medium hover:bg-neutral-700"
+                    >
+                      Adquirir Plan
+                    </Link>
                   )}
                 </div>
 
-                <div class="mt-6 pt-6 border-t border-gray-200">
-                  <h4 class="font-medium text-gray-900 mb-3">Incluye:</h4>
-                  <ul class="space-y-4">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} class="flex items-start">
-                        <span className="text-green-600 mr-2 mt-0.5 font-bold">
-                          &#10003;
+                <div className="mt-6 pt-6 border-t border-gray-200 h-72">
+                  <h4 className="font-medium text-gray-900 mb-3">Incluye:</h4>
+                  <ul className="">
+                    {plan.features.map((feature) => (
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2 mt-1 font-bold">
+                          ✓
                         </span>
-                        <span class="text-gray-600 text-lg">{feature}</span>
+                        <span className="text-gray-700 text-base">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>

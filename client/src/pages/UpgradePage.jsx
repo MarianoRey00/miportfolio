@@ -51,10 +51,10 @@ function UpgradePage() {
       <Navbar background={"#18181b"} border={"1px solid #fff7ed"} />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-orange-50">
-            Completa tu compra
+          <h1 className="text-5xl font-semibold text-orange-50">
+            Finaliza tu compra
           </h1>
-          <p className="text-orange-50 mt-2">
+          <p className="text-orange-50 mt-2 text-lg">
             Estas a un solo paso de mejorar tu plan
           </p>
         </div>

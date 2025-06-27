@@ -9,6 +9,7 @@ import { CiUnlock } from "react-icons/ci";
 import { HiOutlinePlus } from "react-icons/hi";
 import { BsFiletypePdf } from "react-icons/bs";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ProjectCardMobile({
   isExpanded,
@@ -23,6 +24,7 @@ function ProjectCardMobile({
   handleDelete,
   deleteGalleryImageId,
   handleDeleteProjectPdf,
+  authUser,
 }) {
   const [view, setView] = useState({
     gallery: true,
@@ -212,66 +214,33 @@ function ProjectCardMobile({
               </div>
             )}
 
-            {view.video && (
-              <div className="flex items-center gap-2">
-                {project.video ? (
-                  <div className="relative">
-                    <video
-                      className="w-56 max-w-80 max-h-32 rounded object-cover"
-                      controls
-                      src={project.video?.url}
-                      alt=""
-                    />
-                    <span
-                      className="absolute top-1 right-1 bg-orange-50 text-neutral-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-neutral-900 hover:text-orange-50"
-                      onClick={() => handleDeleteProjectVideo(project._id)}
-                    >
-                      {projectSaveLoading ? (
-                        <PulseLoader color="#000000" size={2} />
-                      ) : (
-                        "✕"
-                      )}
-                    </span>
-                  </div>
-                ) : (
-                  <p className="text-sm">Sin video</p>
-                )}
-                <button
-                  onClick={() => openModal("video", project._id)}
-                  className={`${
-                    isExpanded ? "block" : "hidden"
-                  } relative group p-2 hover:bg-neutral-700 rounded`}
-                >
-                  <EditButton width={14} height={14} stroke={"#FFF7ED"} />
-                </button>
-              </div>
-            )}
-
-            {view.pdf && (
-              <div className="flex gap-2">
-                {project.pdf ? (
-                  <div className="flex gap-2 border rounded-xl py-2 sm:py-3 pl-4 pr-8 relative max-w-[90%]">
-                    <BsFiletypePdf className=" w-8 h-8" />
-                    <p className="text-sm break-all truncate mt-[6px]">
-                      {project.pdf?.name}
-                    </p>
-                    <span
-                      className="absolute top-[-5px] right-[-5px] bg-orange-50 text-neutral-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-neutral-900 hover:text-orange-50 hover:border"
-                      onClick={() => handleDeleteProjectPdf(project._id)}
-                    >
-                      {projectSaveLoading ? (
-                        <PulseLoader color="#000000" size={2} />
-                      ) : (
-                        "✕"
-                      )}
-                    </span>
-                  </div>
-                ) : (
-                  <p className="text-sm mt-1">Sin PDF</p>
-                )}
-                <div className="flex items-center justify-center">
+            {view.video &&
+              (authUser.plan !== "Gratuito" ? (
+                <div className="flex items-center gap-2">
+                  {project.video ? (
+                    <div className="relative">
+                      <video
+                        className="w-56 max-w-80 max-h-32 rounded object-cover"
+                        controls
+                        src={project.video?.url}
+                        alt=""
+                      />
+                      <span
+                        className="absolute top-1 right-1 bg-orange-50 text-neutral-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-neutral-900 hover:text-orange-50"
+                        onClick={() => handleDeleteProjectVideo(project._id)}
+                      >
+                        {projectSaveLoading ? (
+                          <PulseLoader color="#000000" size={2} />
+                        ) : (
+                          "✕"
+                        )}
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-sm">Sin video</p>
+                  )}
                   <button
-                    onClick={() => openModal("PDF", project._id)}
+                    onClick={() => openModal("video", project._id)}
                     className={`${
                       isExpanded ? "block" : "hidden"
                     } relative group p-2 hover:bg-neutral-700 rounded`}
@@ -279,8 +248,61 @@ function ProjectCardMobile({
                     <EditButton width={14} height={14} stroke={"#FFF7ED"} />
                   </button>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="h-[125px] border border-white rounded-xl flex items-center justify-center p-4">
+                  <p className="text-orange-50 font-medium  text-center">
+                    Para usar esta funcionalidad <br />
+                    <Link to="/panel/planes" className="underline">
+                      cambiá de plan
+                    </Link>
+                  </p>
+                </div>
+              ))}
+
+            {view.pdf &&
+              (authUser.plan !== "Gratuito" ? (
+                <div className="flex gap-2">
+                  {project.pdf ? (
+                    <div className="flex gap-2 border rounded-xl py-2 sm:py-3 pl-4 pr-8 relative max-w-[90%]">
+                      <BsFiletypePdf className=" w-8 h-8" />
+                      <p className="text-sm break-all truncate mt-[6px]">
+                        {project.pdf?.name}
+                      </p>
+                      <span
+                        className="absolute top-[-5px] right-[-5px] bg-orange-50 text-neutral-900 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-neutral-900 hover:text-orange-50 hover:border"
+                        onClick={() => handleDeleteProjectPdf(project._id)}
+                      >
+                        {projectSaveLoading ? (
+                          <PulseLoader color="#000000" size={2} />
+                        ) : (
+                          "✕"
+                        )}
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-sm mt-1">Sin PDF</p>
+                  )}
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={() => openModal("PDF", project._id)}
+                      className={`${
+                        isExpanded ? "block" : "hidden"
+                      } relative group p-2 hover:bg-neutral-700 rounded`}
+                    >
+                      <EditButton width={14} height={14} stroke={"#FFF7ED"} />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-[125px] border border-white rounded-xl flex items-center justify-center p-4">
+                  <p className="text-orange-50 font-medium  text-center">
+                    Para usar esta funcionalidad <br />
+                    <Link to="/panel/planes" className="underline">
+                      cambiá de plan
+                    </Link>
+                  </p>
+                </div>
+              ))}
           </div>
         </div>
       )}

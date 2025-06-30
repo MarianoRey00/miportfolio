@@ -3,7 +3,7 @@ import { usePlans } from "../context/PlanContext";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import Logo2 from "../components/Logo2.jsx";
-import CellMockup from "../assets/Mockup.png";
+import CellMockup from "../assets/Mockup2.png";
 import Navbar from "../components/Navbar";
 import { BsFileEarmarkArrowUp } from "react-icons/bs";
 import { BsLightningCharge } from "react-icons/bs";

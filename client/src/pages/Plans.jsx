@@ -6,7 +6,6 @@ import { useAuth } from "../context/AuthContext";
 function Plans() {
   const { getPlans, plans } = usePlans();
   const { authUser } = useAuth();
-  console.log(authUser);
   useEffect(() => {
     getPlans();
   }, []);
@@ -21,12 +20,12 @@ function Plans() {
         </div>
         <div className="flex flex-wrap py-4 md:justify-between px-4 md:px-10 lg:px-24">
           {plans.map((plan) => (
-            <div className="w-full md:w-[45%] bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-10">
+            <div className="w-full md:w-[45%] bg-orange-50 rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-10">
               <div className="px-6 py-8 border-b border-gray-200 bg-neutral-900">
-                <h2 className="text-3xl font-semibold text-white">
+                <h2 className="text-3xl font-semibold text-orange-50">
                   {plan.title}
                 </h2>
-                <p className="text-lg text-white">{plan.description}</p>
+                <p className="text-lg text-orange-50">{plan.description}</p>
               </div>
 
               <div className="p-6">

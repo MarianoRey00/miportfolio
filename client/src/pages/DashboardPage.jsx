@@ -30,7 +30,7 @@ function DashboardPage() {
   };
 
   return (
-    <>
+    <div className="">
       <Toaster
         toastOptions={{
           style: {
@@ -48,7 +48,7 @@ function DashboardPage() {
           <div className="w-full lg:w-[59%] min-h-screen pb-16 flex justify-center">
             <div className="w-full lg:max-w-[90%] flex flex-col items-center">
               <button
-                className="bg-neutral-900 hover:bg-neutral-800 border-white border-2 p-2 rounded-xl mt-3 mb-6 flex justify-center items-center gap-2 h-14 text-base w-[90%] md:w-[80%] lg:w-[100%]"
+                className="bg-neutral-900 hover:bg-neutral-800 border-white border p-2 rounded-xl mt-3 mb-6 flex justify-center items-center gap-2 h-14 text-base w-[90%] md:w-[80%] lg:w-[100%]"
                 onClick={() => openCreateModal()}
               >
                 <HiOutlinePlus className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -57,7 +57,7 @@ function DashboardPage() {
               <Link
                 to={`/${user.username}`}
                 target="_blank"
-                className="bg-neutral-900 hover:bg-neutral-800 border-white border-2 p-2 rounded-xl mt-3 mb-6 flex justify-center items-center gap-2 h-14 text-base w-[90%] md:w-[80%] lg:w-[100%]"
+                className="bg-neutral-900 hover:bg-neutral-800 border-white border p-2 rounded-xl mt-3 mb-6 flex justify-center items-center gap-2 h-14 text-base w-[90%] md:w-[80%] lg:w-[100%]"
               >
                 <button>Ver portfolio</button>
               </Link>
@@ -86,7 +86,7 @@ function DashboardPage() {
           />
         </>
       )}
-    </>
+    </div>
   );
 }
 

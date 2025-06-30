@@ -104,7 +104,7 @@ function HomePage() {
             </svg>
           </Link>
         </div>
-        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[25%] flex justify-start">
+        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[25%] flex justify-center md:justify-start">
           <img
             src={CellMockup}
             alt="Imagen de un perfil de miportfolio."
@@ -170,7 +170,7 @@ function HomePage() {
         <h2 className="text-2xl font-semibold mb-6 text-center md:text-4xl">
           ¿Por qué nos eligen nuestros usuarios?
         </h2>
-        <div className="flex justify-between">
+        <div className="flex flex-col md:flex-row justify-between">
           <div className="w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
             <div className="border border-white p-3 rounded-full w-[60px] flex justify-center items-center">
               <BsLightningCharge className="w-8 h-8" />

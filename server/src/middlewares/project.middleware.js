@@ -404,6 +404,11 @@ export const validateEditGallery = async (req, res, next) => {
       field: "gallery",
       message: "La galeria no puede estar vacia",
     });
+  } else if (req.files.gallery.length > 10) {
+    errors.push({
+      field: "gallery",
+      message: "La galeria no puede tener mas de 10 fotos",
+    });
   } else if (req.files?.gallery) {
     const images = Array.isArray(req.files.gallery)
       ? req.files.gallery
@@ -425,11 +430,6 @@ export const validateEditGallery = async (req, res, next) => {
           message: "El peso maximo de cada foto es de 3MB.",
         });
       }
-    });
-  } else if (req.files.gallery.length > 10) {
-    errors.push({
-      field: "gallery",
-      message: "La galeria no puede tener mas de 10 fotos",
     });
   }
 

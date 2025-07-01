@@ -116,14 +116,14 @@ export const validateCreateProject = async (req, res, next) => {
       message: "La galeria no puede tener mas de 10 fotos",
     });
   }
-  if (user.plan === "Gratuito") {
-    if (req.files?.gallery?.length > 6) {
-      errors.push({
-        field: "gallery",
-        message: "La galeria no puede tener mas de 10 fotos",
-      });
-    }
-  }
+  // if (user.plan === "Gratuito") {
+  //   if (req.files?.gallery?.length > 6) {
+  //     errors.push({
+  //       field: "gallery",
+  //       message: "La galeria no puede tener mas de 10 fotos",
+  //     });
+  //   }
+  // }
 
   if (req.files?.gallery) {
     const images = Array.isArray(req.files.gallery)

@@ -119,8 +119,7 @@ export const validateCreateProject = async (req, res, next) => {
   if (plan === "Gratuito" && req.files?.gallery?.length > 6) {
     errors.push({
       field: "gallery",
-      message:
-        "La galeria no puede tener mas de 6 fotos, para cambiar esto mejore su plan",
+      message: "Tu plan incluye hasta 6 fotos en la galeria por proyecto.",
     });
   }
 
@@ -148,6 +147,13 @@ export const validateCreateProject = async (req, res, next) => {
     });
   }
 
+  if (req.files?.video && plan === "Gratuito") {
+    errors.push({
+      field: "video",
+      message: "Tu plan no incluye la opción de subir videos.",
+    });
+  }
+
   if (req.files?.video) {
     const videoExtension = path.extname(req.files.video.name).toLowerCase();
     if (!validVideoExtensions.includes(videoExtension)) {
@@ -163,6 +169,13 @@ export const validateCreateProject = async (req, res, next) => {
     errors.push({
       field: "video",
       message: "El video no puede pesar mas de 50MB.",
+    });
+  }
+
+  if (req.files?.pdf && plan === "Gratuito") {
+    errors.push({
+      field: "pdf",
+      message: "Tu plan no incluye la opción de subir pdf.",
     });
   }
 
@@ -368,6 +381,9 @@ export const validateEditImage = async (req, res, next) => {
 };
 
 export const validateEditGallery = async (req, res, next) => {
+  const { plan } = req.body;
+  console.log(plan);
+
   let newGallery = [];
   const errors = [];
   const validImageExtensions = [

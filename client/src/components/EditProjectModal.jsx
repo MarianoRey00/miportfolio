@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useProjects } from "../context/ProjectContext";
+import { useAuth } from "../context/AuthContext";
 import PulseLoader from "react-spinners/PulseLoader";
 import toast from "react-hot-toast";
 import Input from "../components/Input";
@@ -7,6 +8,7 @@ import InputFile from "../components/InputFile";
 
 function EditProjectModal({ isOpen, onClose, data, id }) {
   if (!isOpen) return null;
+  const { authUser } = useAuth();
   const [titleMaxLength, setTitleMaxLength] = useState(40);
   const [descriptionMaxLength, setDescriptionMaxLength] = useState(300);
   const [prevImage, setPrevImage] = useState();
@@ -114,6 +116,8 @@ function EditProjectModal({ isOpen, onClose, data, id }) {
         formData.append("gallery", file);
       }
 
+      formData.append("plan", authUser.plan);
+
       const success = await editProjectGallery(projectId, formData);
       if (success) {
         toast.success("¡Proyecto editado con éxito!");
@@ -126,7 +130,11 @@ function EditProjectModal({ isOpen, onClose, data, id }) {
 
   async function handleSubmitGalleryImage() {
     try {
-      const success = await addImageToGallery(projectId, project);
+      const projectWithPlan = {
+        ...project,
+        plan: authUser.plan,
+      };
+      const success = await addImageToGallery(projectId, projectWithPlan);
       if (success) {
         toast.success("¡Proyecto editado con éxito!");
         onClose(true);
@@ -138,7 +146,11 @@ function EditProjectModal({ isOpen, onClose, data, id }) {
 
   async function handleSubmitPdf() {
     try {
-      const success = await editProjectPdf(projectId, project);
+      const projectWithPlan = {
+        ...project,
+        plan: authUser.plan,
+      };
+      const success = await editProjectPdf(projectId, projectWithPlan);
       if (success) {
         toast.success("¡Proyecto editado con éxito!");
         onClose(true);
@@ -148,7 +160,11 @@ function EditProjectModal({ isOpen, onClose, data, id }) {
 
   async function handleSubmitVideo() {
     try {
-      const success = await editProjectVideo(projectId, project);
+      const projectWithPlan = {
+        ...project,
+        plan: authUser.plan,
+      };
+      const success = await editProjectVideo(projectId, projectWithPlan);
       if (success) {
         toast.success("¡Proyecto editado con éxito!");
         onClose(true);

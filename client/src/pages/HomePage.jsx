@@ -3,7 +3,8 @@ import { usePlans } from "../context/PlanContext";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import Logo2 from "../components/Logo2.jsx";
-import CellMockup from "../assets/Mockup2.png";
+import CellMockup from "../assets/Mockup4.png";
+import CellMockup2 from "../assets/Mockup5.png";
 import Navbar from "../components/Navbar";
 import { BsFileEarmarkArrowUp } from "react-icons/bs";
 import { BsLightningCharge } from "react-icons/bs";
@@ -17,59 +18,9 @@ function HomePage() {
   return (
     <>
       <Navbar background={"#fff7ed"} />
-      {/* <Navbar background={"#18181b"} border={"1px solid #fff7ed"} /> */}
-
-      {/* <section className="flex flex-col justify-between items-center md:items-start bg-orange-50 px-10 py-12 gap-6 md:flex md:flex-row md:justify-between md:bg-orange-50 md:px-10 md:py-12">
-        <div className="md:w-[50%] text-customColor-blue ">
-          <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-7xl">
-            <span>
-              Crea tu portfolio online en minutos con <span className="hidden">miportfolio</span>
-            </span>
-            <Logo2 className="w-[230px] h-[60px] lg:w-[400px] lg:h-[120px] inline-block lg:ml-4" />
-            .
-          </h1>
-          <p className="text-lg  mt-8 md:text-xl">
-            Empezá a usar la mejor página de Link in Bio para compartir tus
-            trabajos.
-          </p>
-          <Link
-            to="/register"
-            className="bg-customColor-blue mt-12 text-orange-50 w-56 h-12 py-3 px-8 block md:h-16 md:py-5 hover:bg-slate-900"
-          >
-            Empezar ahora
-            <svg
-              className="inline ml-4"
-              width="24"
-              height="12"
-              viewBox="0 0 31 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M0 8L30 8" stroke="white" stroke-width="2" />
-              <path
-                d="M30 7.99167C26.6667 8.12486 20 6.713 20 0"
-                stroke="white"
-                stroke-width="2"
-              />
-              <path
-                d="M30 8.00833C26.6667 7.87514 20 9.287 20 16"
-                stroke="white"
-                stroke-width="2"
-              />
-            </svg>
-          </Link>
-        </div>
-        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[25%] flex justify-center">
-          <img
-            src={CellMockup}
-            alt=""
-            className="Imagen de un perfil de miportfolio."
-          />
-        </div>
-      </section> */}
 
       <section className="flex flex-col justify-between items-center md:items-start bg-neutral-900 px-10 py-12 gap-6 md:flex md:flex-row md:justify-between md:px-10 md:py-12">
-        <div className="md:w-[70%] text-orange-50 md:pt-8">
+        <div className="md:w-[60%] text-orange-50 md:pt-8">
           <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-[90px]">
             <span>Crea tu portfolio con miportfolio.</span>
           </h1>
@@ -104,11 +55,11 @@ function HomePage() {
             </svg>
           </Link>
         </div>
-        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[25%] flex justify-center md:justify-start">
+        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[40%] flex justify-center">
           <img
             src={CellMockup}
             alt="Imagen de un perfil de miportfolio."
-            className="h-[80%] w-[90%]"
+            className=""
           />
         </div>
       </section>
@@ -165,6 +116,22 @@ function HomePage() {
           </Link>
         </div>
       </section> */}
+      <section className=" px-8 flex border-t">
+        <div className="w-[50%] py-32 pr-16">
+          <h2 className="text-7xl font-semibold">Compartí tu trabajo</h2>
+          <p className="mt-10 text-lg">
+            {/* miportfolio permite subir fotos, videos y archivos PDF, haciendolo
+            ideal para un sin fin de áreas. */}
+            Si tu especialidad puede ser compartida mediante una foto, un video
+            o un pdf, miportfolio es ideal para vos.
+          </p>
+        </div>
+        <img
+          src={CellMockup2}
+          alt="Imagen de un perfil de miportfolio."
+          className="w-[50%]"
+        />
+      </section>
 
       <section className="bg-neutral-900 text-gray-100 px-8 py-16 border-t">
         <h2 className="text-2xl font-semibold mb-6 text-center md:text-4xl">

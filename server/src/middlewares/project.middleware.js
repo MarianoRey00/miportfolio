@@ -21,6 +21,7 @@ export const validateCreateProject = async (req, res, next) => {
   let pdf;
   // const user = await User.findById()
   console.log("plan: ", plan);
+  console.log("req: ", req);
   console.log("req.body: ", req.body);
   const errors = [];
   const validImageExtensions = [

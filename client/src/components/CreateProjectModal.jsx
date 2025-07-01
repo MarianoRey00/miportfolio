@@ -74,7 +74,7 @@ function CreateProjectModal({ isOpen, onClose }) {
     });
 
     try {
-      const success = await createProject(project);
+      const success = await createProject(project, authUser.plan);
       if (success) {
         toast.success("¡Proyecto creado con exito!");
         onClose(true);
@@ -246,7 +246,7 @@ function CreateProjectModal({ isOpen, onClose }) {
                 </div>
               ) : (
                 <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
-                  <p className="text-orange-50 font-medium text-lg">
+                  <p className="text-orange-50 font-medium text-lg text-center">
                     Para usar esta funcionalidad{" "}
                     <Link to="/panel/planes" className="underline">
                       cambiá de plan
@@ -267,7 +267,7 @@ function CreateProjectModal({ isOpen, onClose }) {
                 </div>
               ) : (
                 <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
-                  <p className="text-orange-50 font-medium text-lg">
+                  <p className="text-orange-50 font-medium text-lg text-center">
                     Para usar esta funcionalidad{" "}
                     <Link to="/panel/planes" className="underline">
                       cambiá de plan

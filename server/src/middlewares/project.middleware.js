@@ -14,11 +14,13 @@ import User from "../models/user.model.js";
 import path from "path";
 
 export const validateCreateProject = async (req, res, next) => {
-  const { title, description, link } = req.body;
+  const { title, description, link, plan } = req.body;
   let image;
   let gallery = [];
   let video = null;
   let pdf;
+  // const user = await User.findById()
+  console.log(plan);
   const errors = [];
   const validImageExtensions = [
     ".jpg",
@@ -113,6 +115,14 @@ export const validateCreateProject = async (req, res, next) => {
       field: "gallery",
       message: "La galeria no puede tener mas de 10 fotos",
     });
+  }
+  if (user.plan === "Gratuito") {
+    if (req.files?.gallery?.length > 6) {
+      errors.push({
+        field: "gallery",
+        message: "La galeria no puede tener mas de 10 fotos",
+      });
+    }
   }
 
   if (req.files?.gallery) {

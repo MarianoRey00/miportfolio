@@ -20,9 +20,7 @@ export const validateCreateProject = async (req, res, next) => {
   let video = null;
   let pdf;
   // const user = await User.findById()
-  console.log("plan: ", plan);
-  console.log("req: ", req);
-  console.log("req.body: ", req.body);
+  console.log(plan);
   const errors = [];
   const validImageExtensions = [
     ".jpg",
@@ -118,14 +116,13 @@ export const validateCreateProject = async (req, res, next) => {
       message: "La galeria no puede tener mas de 10 fotos",
     });
   }
-  // if (user.plan === "Gratuito") {
-  //   if (req.files?.gallery?.length > 6) {
-  //     errors.push({
-  //       field: "gallery",
-  //       message: "La galeria no puede tener mas de 10 fotos",
-  //     });
-  //   }
-  // }
+  if (plan === "Gratuito" && req.files?.gallery?.length > 6) {
+    errors.push({
+      field: "gallery",
+      message:
+        "La galeria no puede tener mas de 6 fotos, para cambiar esto mejore su plan",
+    });
+  }
 
   if (req.files?.gallery) {
     const images = Array.isArray(req.files.gallery)

@@ -28,7 +28,9 @@ export const createProjectRequest = (project, plan) => {
     }
   }
 
-  return axios.post("/projects", form, plan, {
+  form.append("plan", plan);
+
+  return axios.post("/projects", form, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

@@ -382,8 +382,6 @@ export const validateEditImage = async (req, res, next) => {
 
 export const validateEditGallery = async (req, res, next) => {
   const { plan } = req.body;
-  console.log(plan);
-
   let newGallery = [];
   const errors = [];
   const validImageExtensions = [
@@ -403,6 +401,11 @@ export const validateEditGallery = async (req, res, next) => {
     errors.push({
       field: "gallery",
       message: "La galeria no puede estar vacia",
+    });
+  } else if (plan === "Gratuito" && req.files.gallery.length > 6) {
+    errors.push({
+      field: "gallery",
+      message: "Tu plan incluye hasta 6 fotos en la galeria por proyecto.",
     });
   } else if (req.files.gallery.length > 10) {
     errors.push({
@@ -461,6 +464,7 @@ export const validateEditGallery = async (req, res, next) => {
 };
 
 export const validateAddImageToGallery = async (req, res, next) => {
+  const { plan } = req.body;
   const errors = [];
   const validImageExtensions = [
     ".jpg",
@@ -518,7 +522,17 @@ export const validateAddImageToGallery = async (req, res, next) => {
     await fs.remove(req.files.galleryImage.tempFilePath);
 
     const project = await Project.findById(req.params.id);
-    if (project.gallery.length >= 10) {
+    if (plan === "Gratuito" && project.gallery.length >= 6) {
+      return res.status(400).json({
+        errors: [
+          {
+            field: "galleryImage",
+            message:
+              "Tu plan incluye hasta 6 fotos en la galeria por proyecto.",
+          },
+        ],
+      });
+    } else if (project.gallery.length >= 10) {
       return res.status(400).json({
         errors: [
           {
@@ -541,6 +555,7 @@ export const validateAddImageToGallery = async (req, res, next) => {
 };
 
 export const validateEditVideo = async (req, res, next) => {
+  const { plan } = req.body;
   let video;
   const errors = [];
   const validVideoExtensions = [
@@ -559,8 +574,12 @@ export const validateEditVideo = async (req, res, next) => {
       field: "video",
       message: "El video no puede estar vacio",
     });
-  }
-  if (req.files?.video) {
+  } else if (plan === "Gratuito" && req.files?.video) {
+    errors.push({
+      field: "video",
+      message: "Tu plan no incluye la opción de subir videos.",
+    });
+  } else if (req.files?.video) {
     const videoExtension = path.extname(req.files.video.name).toLowerCase();
     if (!validVideoExtensions.includes(videoExtension)) {
       errors.push({
@@ -602,6 +621,7 @@ export const validateEditVideo = async (req, res, next) => {
 };
 
 export const validateEditPdf = async (req, res, next) => {
+  const { plan } = req.body;
   let pdf;
   const errors = [];
   const validPdfExtension = ".pdf";
@@ -612,8 +632,12 @@ export const validateEditPdf = async (req, res, next) => {
       field: "pdf",
       message: "El pdf no puede estar vacio",
     });
-  }
-  if (req.files?.pdf) {
+  } else if (plan === "Gratuito" && req.files?.pdf) {
+    errors.push({
+      field: "pdf",
+      message: "Tu plan no incluye la opción de subir pdfs.",
+    });
+  } else if (req.files?.pdf) {
     const pdfExtension = path.extname(req.files.pdf.name).toLowerCase();
     if (validPdfExtension !== pdfExtension) {
       errors.push({

@@ -33,7 +33,7 @@ function UpgradePage() {
               title: plan.title,
               price: plan.price,
               quantity: 1,
-              external_reference: authUser.id,
+              external_reference: authUser._id,
             }
           );
           const { id } = res.data;

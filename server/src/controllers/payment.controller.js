@@ -5,7 +5,8 @@ import User from "../models/user.model.js";
 export const createPreference = async (req, res) => {
   const client = new MercadoPagoConfig({
     accessToken:
-      "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
+      // "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
+      process.env.MERCADO_PAGO_ACCESS_TOKEN,
   });
 
   //credenciales de produccion de la cuenta de prueba de vendedor.
@@ -46,12 +47,6 @@ export const webhook = async (req, res) => {
   try {
     const paymentData = req.body;
 
-    console.log("paymentData: ", paymentData);
-
-    // Valida que venga información necesaria
-    // if (!paymentData || !paymentData.id || !paymentData.type) {
-    //   return res.status(400).send("Invalid notification");
-    // }
     const client = new MercadoPagoConfig({
       accessToken:
         "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",

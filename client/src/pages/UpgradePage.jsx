@@ -15,7 +15,6 @@ function UpgradePage() {
   const { authUser } = useAuth();
   const [plan, setPlan] = useState({});
   const { id } = useParams();
-
   useEffect(() => {
     (async () => {
       const plan = await getPlan(id);
@@ -33,7 +32,7 @@ function UpgradePage() {
               title: plan.title,
               price: plan.price,
               quantity: 1,
-              external_reference: authUser._id,
+              external_reference: authUser.id,
             }
           );
           const { id } = res.data;

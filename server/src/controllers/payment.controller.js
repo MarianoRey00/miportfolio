@@ -19,7 +19,7 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
-      external_reference: req.body._id,
+      external_reference: req.body.external_reference,
       // external_reference: "684cdd5d1617bf3cbdc55626",
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel/compra-exitosa",

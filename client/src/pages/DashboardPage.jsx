@@ -83,6 +83,8 @@ function DashboardPage() {
           <CreateProjectModal
             isOpen={isCreateModalOpen}
             onClose={() => setIsCreateModalOpen(false)}
+            projectsLength={projects.length}
+            plan={user.plan}
           />
         </>
       )}

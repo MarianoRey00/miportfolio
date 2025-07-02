@@ -51,6 +51,21 @@ function ProfilePersonalData({ user, loading }) {
                 </button>
               </div>
             </div>
+
+            <div className="rounded-xl border border-white p-4 shadow-md shadow-neutral-700">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-sm font-medium">Plan</p>
+                  <p className="">{user.plan}</p>
+                </div>
+                <button
+                  onClick={() => openModal("contraseña", user.id)}
+                  className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
+                >
+                  <EditButton width={16} height={16} stroke={"#FFF7ED"} />
+                </button>
+              </div>
+            </div>
           </>
         )}
       </div>

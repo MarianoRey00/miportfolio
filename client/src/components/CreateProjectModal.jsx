@@ -7,7 +7,7 @@ import InputFile from "../components/InputFile";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
-function CreateProjectModal({ isOpen, onClose }) {
+function CreateProjectModal({ isOpen, onClose, projectsLength, plan }) {
   if (!isOpen) return null;
   const { createProject, errors, setErrors, projectSaveLoading } =
     useProjects();
@@ -100,194 +100,211 @@ function CreateProjectModal({ isOpen, onClose }) {
           >
             X
           </button>
-          <h1 className="text-xl text-center mb-6">Crear nuevo proyecto</h1>
-          <form
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-            className="flex flex-col gap-4"
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSubmit();
-              }
-            }}
-          >
-            <div className="flex flex-col gap-2">
-              <label htmlFor="imagen">Portada *</label>
-              <InputFile
-                id="imagen"
-                name="image"
-                onChange={handleChange}
-                errors={errors}
-              />
+          {(plan === "Gratuito" && projectsLength >= 6) ||
+          (plan === "Profesional" && projectsLength >= 10) ? (
+            <div className="flex flex-col justify-center items-center h-full gap-6">
+              <h2 className="text-lg font-medium text-center">
+                Tu plan alcanzó el límite de proyectos
+              </h2>
+              <button
+                onClick={onClose}
+                className="bg-neutral-900 rounded-lg py-2 w-full text-orange-50"
+              >
+                Volver
+              </button>
             </div>
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-between">
-                <label htmlFor="titulo">Título *</label>
-                <p
-                  className={`text-sm ml-auto ${
-                    project.title.length > titleMaxLength
-                      ? "text-red-600"
-                      : "text-neutral-800"
-                  }`}
-                >
-                  {project.title.length}/{titleMaxLength}
-                </p>
-              </div>
-              <Input
-                type="text"
-                id="titulo"
-                name="title"
-                value={project.title}
-                onChange={handleChange}
-                placeholder="Título"
-                errors={errors}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-between">
-                <label htmlFor="descripcion">Descripción *</label>
-                <p
-                  className={`text-sm ml-auto ${
-                    project.description.length > descriptionMaxLength
-                      ? "text-red-600"
-                      : "text-neutral-800"
-                  }`}
-                >
-                  {project.description.length}/{descriptionMaxLength}
-                </p>
-              </div>
-              <textarea
-                name="description"
-                id="descripcion"
-                rows={5}
-                value={project.description}
-                onChange={handleChange}
-                placeholder="Descripción"
-                className="text-zinc-900 border border-customColor-blue px-3 py-2 rounded-xl bg-orange-50 resize-none"
-              ></textarea>
-              <p className="text-red-600">
-                {
-                  errors?.find((error) => error.field === "description")
-                    ?.message
-                }
-              </p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="link">Link</label>
-              <Input
-                type="text"
-                id="link"
-                name="link"
-                value={project.link}
-                onChange={handleChange}
-                placeholder="https://link.com"
-                errors={errors}
-              />
-            </div>
-            <div className="mt-6">
-              <ul className="flex justify-between gap-3">
-                <li
-                  onClick={() => toggleView("gallery")}
-                  className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
+          ) : (
+            <>
+              <h1 className="text-xl text-center mb-6">Crear nuevo proyecto</h1>
+              <form
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+                className="flex flex-col gap-4"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
+              >
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="imagen">Portada *</label>
+                  <InputFile
+                    id="imagen"
+                    name="image"
+                    onChange={handleChange}
+                    errors={errors}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between">
+                    <label htmlFor="titulo">Título *</label>
+                    <p
+                      className={`text-sm ml-auto ${
+                        project.title.length > titleMaxLength
+                          ? "text-red-600"
+                          : "text-neutral-800"
+                      }`}
+                    >
+                      {project.title.length}/{titleMaxLength}
+                    </p>
+                  </div>
+                  <Input
+                    type="text"
+                    id="titulo"
+                    name="title"
+                    value={project.title}
+                    onChange={handleChange}
+                    placeholder="Título"
+                    errors={errors}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between">
+                    <label htmlFor="descripcion">Descripción *</label>
+                    <p
+                      className={`text-sm ml-auto ${
+                        project.description.length > descriptionMaxLength
+                          ? "text-red-600"
+                          : "text-neutral-800"
+                      }`}
+                    >
+                      {project.description.length}/{descriptionMaxLength}
+                    </p>
+                  </div>
+                  <textarea
+                    name="description"
+                    id="descripcion"
+                    rows={5}
+                    value={project.description}
+                    onChange={handleChange}
+                    placeholder="Descripción"
+                    className="text-zinc-900 border border-customColor-blue px-3 py-2 rounded-xl bg-orange-50 resize-none"
+                  ></textarea>
+                  <p className="text-red-600">
+                    {
+                      errors?.find((error) => error.field === "description")
+                        ?.message
+                    }
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="link">Link</label>
+                  <Input
+                    type="text"
+                    id="link"
+                    name="link"
+                    value={project.link}
+                    onChange={handleChange}
+                    placeholder="https://link.com"
+                    errors={errors}
+                  />
+                </div>
+                <div className="mt-6">
+                  <ul className="flex justify-between gap-3">
+                    <li
+                      onClick={() => toggleView("gallery")}
+                      className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
                 ${
                   view.gallery
                     ? "bg-neutral-800 text-orange-50 shadow-lg border border-neutral-800"
                     : "bg-orange-50 text-neutral-800 hover:bg-neutral-800 hover:text-orange-50 border border-black"
                 }`}
-                >
-                  Galería
-                </li>
-                <li
-                  onClick={() => toggleView("video")}
-                  className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
+                    >
+                      Galería
+                    </li>
+                    <li
+                      onClick={() => toggleView("video")}
+                      className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
                 ${
                   view.video
                     ? "bg-neutral-800 text-orange-50 shadow-lg border border-neutral-800"
                     : "bg-orange-50 text-neutral-800 hover:bg-neutral-800 hover:text-orange-50 border border-black"
                 }`}
-                >
-                  Video
-                </li>
-                <li
-                  onClick={() => toggleView("pdf")}
-                  className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
+                    >
+                      Video
+                    </li>
+                    <li
+                      onClick={() => toggleView("pdf")}
+                      className={`cursor-pointer w-[30%] py-1.5 rounded-lg text-center text-sm
                 ${
                   view.pdf
                     ? "bg-neutral-800 text-orange-50 shadow-lg border border-neutral-800"
                     : "bg-orange-50 text-neutral-800 hover:bg-neutral-800 hover:text-orange-50 border border-black"
                 }`}
-                >
-                  PDF
-                </li>
-              </ul>
-            </div>
-            {view.gallery && (
-              <div className="flex flex-col gap-2">
-                <label htmlFor="galeria">Galeria</label>
-                <InputFile
-                  id="galeria"
-                  name="gallery"
-                  onChange={handleChange}
-                  errors={errors}
-                  multiple
-                />
-              </div>
-            )}
-            {view.video &&
-              (authUser.plan !== "Gratuito" ? (
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="video">Video</label>
-                  <InputFile
-                    id="video"
-                    name="video"
-                    onChange={handleChange}
-                    errors={errors}
-                  />
+                    >
+                      PDF
+                    </li>
+                  </ul>
                 </div>
-              ) : (
-                <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
-                  <p className="text-orange-50 font-medium text-lg text-center">
-                    Para usar esta funcionalidad{" "}
-                    <Link to="/panel/planes" className="underline">
-                      cambiá de plan
-                    </Link>
-                  </p>
-                </div>
-              ))}
-            {view.pdf &&
-              (authUser.plan !== "Gratuito" ? (
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="pdf">PDF</label>
-                  <InputFile
-                    id="pdf"
-                    name="pdf"
-                    onChange={handleChange}
-                    errors={errors}
-                  />
-                </div>
-              ) : (
-                <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
-                  <p className="text-orange-50 font-medium text-lg text-center">
-                    Para usar esta funcionalidad{" "}
-                    <Link to="/panel/planes" className="underline">
-                      cambiá de plan
-                    </Link>
-                  </p>
-                </div>
-              ))}
+                {view.gallery && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="galeria">Galeria</label>
+                    <InputFile
+                      id="galeria"
+                      name="gallery"
+                      onChange={handleChange}
+                      errors={errors}
+                      multiple
+                    />
+                  </div>
+                )}
+                {view.video &&
+                  (authUser.plan !== "Gratuito" ? (
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="video">Video</label>
+                      <InputFile
+                        id="video"
+                        name="video"
+                        onChange={handleChange}
+                        errors={errors}
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
+                      <p className="text-orange-50 font-medium text-lg text-center">
+                        Para usar esta funcionalidad{" "}
+                        <Link to="/panel/planes" className="underline">
+                          cambiá de plan
+                        </Link>
+                      </p>
+                    </div>
+                  ))}
+                {view.pdf &&
+                  (authUser.plan !== "Gratuito" ? (
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="pdf">PDF</label>
+                      <InputFile
+                        id="pdf"
+                        name="pdf"
+                        onChange={handleChange}
+                        errors={errors}
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-[136px] bg-neutral-800 rounded-xl flex items-center justify-center">
+                      <p className="text-orange-50 font-medium text-lg text-center">
+                        Para usar esta funcionalidad{" "}
+                        <Link to="/panel/planes" className="underline">
+                          cambiá de plan
+                        </Link>
+                      </p>
+                    </div>
+                  ))}
 
-            <button
-              type="submit"
-              className="bg-neutral-900 text-white border border-customColor-blue px-3 py-2 rounded-xl placeholder-customColor-blue hover:bg-neutral-800"
-              disabled={projectSaveLoading}
-            >
-              {projectSaveLoading ? (
-                <PulseLoader color="#ffffff" size={7} />
-              ) : (
-                "Crear"
-              )}
-            </button>
-          </form>
+                <button
+                  type="submit"
+                  className="bg-neutral-900 text-white border border-customColor-blue px-3 py-2 rounded-xl placeholder-customColor-blue hover:bg-neutral-800"
+                  disabled={projectSaveLoading}
+                >
+                  {projectSaveLoading ? (
+                    <PulseLoader color="#ffffff" size={7} />
+                  ) : (
+                    "Crear"
+                  )}
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </>

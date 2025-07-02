@@ -19,8 +19,7 @@ export const validateCreateProject = async (req, res, next) => {
   let gallery = [];
   let video = null;
   let pdf;
-  // const user = await User.findById()
-  console.log(plan);
+
   const errors = [];
   const validImageExtensions = [
     ".jpg",

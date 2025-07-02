@@ -4,9 +4,7 @@ import User from "../models/user.model.js";
 
 export const createPreference = async (req, res) => {
   const client = new MercadoPagoConfig({
-    accessToken:
-      // "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
-      process.env.MERCADO_PAGO_ACCESS_TOKEN,
+    accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
   });
 
   //credenciales de produccion de la cuenta de prueba de vendedor.
@@ -21,8 +19,8 @@ export const createPreference = async (req, res) => {
           category_id: "others",
         },
       ],
-      // external_reference: req.body.user_id,
-      external_reference: "684cdd5d1617bf3cbdc55626",
+      external_reference: req.body.user.id,
+      // external_reference: "684cdd5d1617bf3cbdc55626",
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel/compra-exitosa",
         failure: "https://miportfolio18.vercel.app/panel/compra-fallida",
@@ -48,8 +46,7 @@ export const webhook = async (req, res) => {
     const paymentData = req.body;
 
     const client = new MercadoPagoConfig({
-      accessToken:
-        "APP_USR-1982143083468999-120418-e0f852feda4d009ed3f6c3c2f1aadba9-342378781",
+      accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
     });
 
     const payment = await new Payment(client).get({ id: paymentData.data.id });

@@ -3,6 +3,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { usePlans } from "../context/PlanContext";
+import { useAuth } from "../context/AuthContext";
 import { useParams } from "react-router-dom";
 function UpgradePage() {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -11,8 +12,10 @@ function UpgradePage() {
   });
 
   const { getPlan } = usePlans();
+  const { authUser } = useAuth();
   const [plan, setPlan] = useState({});
   const { id } = useParams();
+
   useEffect(() => {
     (async () => {
       const plan = await getPlan(id);
@@ -30,6 +33,7 @@ function UpgradePage() {
               title: plan.title,
               price: plan.price,
               quantity: 1,
+              external_reference: authUser.id,
             }
           );
           const { id } = res.data;

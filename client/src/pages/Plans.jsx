@@ -36,14 +36,15 @@ function Plans() {
                       Duración: {plan.duration}
                     </p>
                   </div>
-                  {authUser.plan !== plan.title && (
-                    <Link
-                      to={`/panel/finalizar-compra/${plan._id}`}
-                      className="py-3 px-5 bg-neutral-900 text-white text-center rounded-lg font-medium hover:bg-neutral-700"
-                    >
-                      Adquirir Plan
-                    </Link>
-                  )}
+                  {authUser.plan !== plan.title &&
+                    plan.title !== "Gratuito" && (
+                      <Link
+                        to={`/panel/finalizar-compra/${plan._id}`}
+                        className="py-3 px-5 bg-neutral-900 text-white text-center rounded-lg font-medium hover:bg-neutral-700"
+                      >
+                        Adquirir Plan
+                      </Link>
+                    )}
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200 h-72">

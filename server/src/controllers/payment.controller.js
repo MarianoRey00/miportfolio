@@ -7,7 +7,6 @@ export const createPreference = async (req, res) => {
     accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
   });
 
-  //credenciales de produccion de la cuenta de prueba de vendedor.
   try {
     const body = {
       items: [
@@ -20,7 +19,6 @@ export const createPreference = async (req, res) => {
         },
       ],
       external_reference: req.body.external_reference,
-      // external_reference: "684cdd5d1617bf3cbdc55626",
       back_urls: {
         success: "https://miportfolio18.vercel.app/panel/compra-exitosa",
         failure: "https://miportfolio18.vercel.app/panel/compra-fallida",

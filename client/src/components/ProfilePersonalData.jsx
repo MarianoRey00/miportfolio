@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import EditProfileModal from "./EditProfileModal";
 import EditButton from "./EditButton";
 import PulseLoader from "react-spinners/PulseLoader";
-
+import { Link } from "react-router-dom";
 function ProfilePersonalData({ user, loading }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [id, setId] = useState(null);
@@ -58,12 +58,12 @@ function ProfilePersonalData({ user, loading }) {
                   <p className="text-sm font-medium">Plan</p>
                   <p className="">{user.plan}</p>
                 </div>
-                <button
-                  onClick={() => openModal("contraseña", user.id)}
+                <Link
+                  to="/panel/planes"
                   className="rounded-md border border-white p-2 hover:bg-neutral-700 transition"
                 >
                   <EditButton width={16} height={16} stroke={"#FFF7ED"} />
-                </button>
+                </Link>
               </div>
             </div>
           </>

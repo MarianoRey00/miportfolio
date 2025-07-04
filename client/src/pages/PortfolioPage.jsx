@@ -13,10 +13,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { BsSpotify } from "react-icons/bs";
 import { FaPinterest } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io5";
-import { IoCopy } from "react-icons/io5";
 import PulseLoader from "react-spinners/PulseLoader";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
+import { FaRegCopy } from "react-icons/fa6";
 
 function PortfolioPage() {
   const navigate = useNavigate();
@@ -120,7 +120,7 @@ function PortfolioPage() {
                   </div>
                 )}
                 <div className="flex items-center">
-                  <IoCopy
+                  <FaRegCopy
                     style={{ color: publicAppearance.textColor }}
                     className="w-7 h-7 cursor-pointer hover:scale-110"
                     onClick={handleCopy}

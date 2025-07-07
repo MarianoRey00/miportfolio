@@ -138,7 +138,7 @@ function HomePage() {
           ¿Por qué nos eligen nuestros usuarios?
         </h2>
         <div className="flex flex-col md:flex-row justify-between">
-          <div className="w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
+          <div className="w-full md:w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
             <div className="border border-white p-3 rounded-full w-[60px] flex justify-center items-center">
               <BsLightningCharge className="w-8 h-8" />
             </div>
@@ -150,7 +150,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
+          <div className="w-full md:w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
             <div className="border border-white p-3 rounded-full w-[60px] flex justify-center items-center">
               <LuPalette className="w-8 h-8" />
             </div>
@@ -159,7 +159,7 @@ function HomePage() {
               <p>Vas a poder personalizar tu portfolio a tu gusto</p>
             </div>
           </div>
-          <div className="w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
+          <div className="w-full md:w-[30%] border border-white shadow-md shadow-neutral-700 h-80 rounded-lg p-8 flex flex-col justify-between">
             <div className="border border-white p-3 rounded-full w-[60px] flex justify-center items-center">
               <BsFileEarmarkArrowUp className="w-8 h-8" />
             </div>

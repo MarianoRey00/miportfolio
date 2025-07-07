@@ -116,7 +116,7 @@ function HomePage() {
           </Link>
         </div>
       </section> */}
-      <section className=" px-8 flex border-t">
+      <section className=" px-8 flex flex-col md:flex-row border-t">
         <div className="w-[50%] py-32 pr-16">
           <h2 className="text-7xl font-semibold">Compartí tu trabajo</h2>
           <p className="mt-10 text-lg">

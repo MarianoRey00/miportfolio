@@ -206,6 +206,7 @@ export const verifyEmail = async (req, res) => {
 
     await transporter.verify();
     console.log("Servidor listo para enviar correos");
+    // asd;
 
     // 2. Configurar los detalles del mensaje
     const mailOptions = {

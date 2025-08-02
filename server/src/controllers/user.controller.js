@@ -194,6 +194,9 @@ export const verifyEmail = async (req, res) => {
     return res.status(400).json({ message: "Email es requerido" });
   }
 
+  console.log("Email:", process.env.EMAIL_USER);
+  console.log("Pass:", process.env.EMAIL_PASS);
+
   try {
     // 1. Configurar el transporte SMTP
     const transporter = nodemailer.createTransport({

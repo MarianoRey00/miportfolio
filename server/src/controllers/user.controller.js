@@ -7,6 +7,7 @@ import { createAppearance } from "./appearance.controller.js";
 import { deleteImage } from "../libs/cloudinary.js";
 import { deleteProjects } from "../controllers/project.controller.js";
 import { deleteAppearance } from "../controllers/appearance.controller.js";
+import nodemailer from "nodemailer";
 
 export const register = async (req, res) => {
   try {
@@ -182,3 +183,45 @@ export const deleteUser = async (req, res) => {
     return res.status(500).json(console.error(error));
   }
 };
+
+// mandar email con un link
+// volver a la pagina y agregar 2 veces la nueva contraseña
+
+export const verifyEmail = async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email es requerido" });
+  }
+
+  try {
+    // 1. Configurar el transporte SMTP
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // o tu servicio de correo (ej. Outlook, SendGrid, etc)
+      auth: {
+        user: "tucorreo@gmail.com",
+        pass: "tu_contraseña_o_app_password",
+      },
+    });
+
+    // 2. Configurar los detalles del mensaje
+    const mailOptions = {
+      from: "tucorreo@gmail.com",
+      to: email,
+      subject: "Verificación de correo",
+      html: `<p>Gracias por registrarte. Por favor, haz clic en el siguiente enlace para verificar tu correo:</p>
+             <a href="https://tuapp.com/verificar?email=${email}">Verificar email</a>`,
+    };
+
+    // 3. Enviar el correo
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log("Email enviado:", info.response);
+    res.status(200).json({ message: "Correo enviado exitosamente" });
+  } catch (error) {
+    console.error("Error al enviar el correo:", error);
+    res.status(500).json({ message: "Error al enviar el correo" });
+  }
+};
+
+export const changePassword = (req, res) => {};

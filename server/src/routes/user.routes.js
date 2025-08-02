@@ -12,6 +12,7 @@ import {
   editProfilePicture,
   editPassword,
   deleteUser,
+  verifyEmail,
 } from "../controllers/user.controller.js";
 import {
   validateLogin,
@@ -30,6 +31,7 @@ const router = Router();
 router.post("/register", validateRegister, register);
 router.post("/login", validateLogin, login);
 router.post("/logout", logout);
+router.post("/recover", verifyEmail);
 router.get("/verify", verifyToken);
 router.get("/user/:username", authRequired, getUserByUsername);
 router.get("/user/profile/:username", getPublicUserByUsername);

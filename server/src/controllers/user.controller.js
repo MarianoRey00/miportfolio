@@ -199,14 +199,14 @@ export const verifyEmail = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail", // o tu servicio de correo (ej. Outlook, SendGrid, etc)
       auth: {
-        user: "tucorreo@gmail.com",
-        pass: "tu_contraseña_o_app_password",
+        user: "reygonzalezmariano@gmail.com",
+        pass: "guillermofrancella",
       },
     });
 
     // 2. Configurar los detalles del mensaje
     const mailOptions = {
-      from: "tucorreo@gmail.com",
+      from: "reygonzalezmariano@gmail.com",
       to: email,
       subject: "Verificación de correo",
       html: `<p>Gracias por registrarte. Por favor, haz clic en el siguiente enlace para verificar tu correo:</p>

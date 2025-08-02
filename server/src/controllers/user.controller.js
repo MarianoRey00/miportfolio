@@ -197,16 +197,19 @@ export const verifyEmail = async (req, res) => {
   try {
     // 1. Configurar el transporte SMTP
     const transporter = nodemailer.createTransport({
-      service: "gmail", // o tu servicio de correo (ej. Outlook, SendGrid, etc)
+      service: "gmail",
       auth: {
-        user: "reygonzalezmariano@gmail.com",
-        pass: process.env.GMAIL_PASSWORD,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
+    await transporter.verify();
+    console.log("Servidor listo para enviar correos");
+
     // 2. Configurar los detalles del mensaje
     const mailOptions = {
-      from: "reygonzalezmariano@gmail.com",
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Verificación de correo",
       html: `<p>Gracias por registrarte. Por favor, haz clic en el siguiente enlace para verificar tu correo:</p>
@@ -214,6 +217,7 @@ export const verifyEmail = async (req, res) => {
     };
 
     // 3. Enviar el correo
+
     const info = await transporter.sendMail(mailOptions);
 
     console.log("Email enviado:", info.response);

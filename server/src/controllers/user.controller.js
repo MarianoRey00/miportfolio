@@ -200,7 +200,7 @@ export const verifyEmail = async (req, res) => {
       service: "gmail", // o tu servicio de correo (ej. Outlook, SendGrid, etc)
       auth: {
         user: "reygonzalezmariano@gmail.com",
-        pass: "guillermofrancella",
+        pass: process.env.GMAIL_PASSWORD,
       },
     });
 

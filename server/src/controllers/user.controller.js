@@ -194,31 +194,21 @@ export const verifyEmail = async (req, res) => {
     return res.status(400).json({ message: "Email es requerido" });
   }
 
-  // console.log("Email:", process.env.EMAIL_USER);
-  // console.log("Pass:", process.env.EMAIL_PASSWORD);
-
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        // user: process.env.EMAIL_USER,
-        // pass: process.env.EMAIL_PASSWORD,
-        user: "reygonzalezmariano@gmail.com",
-        pass: "kweafckzrtcxacxn",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
-    await transporter.verify();
-    console.log("Servidor listo para enviar correos");
-    // asd;
-
-    // 2. Configurar los detalles del mensaje
     const mailOptions = {
-      from: "reygonzalezmariano@gmail.com",
+      from: process.env.EMAIL_USER,
       to: email,
-      subject: "Verificación de correo",
+      subject: "Cambio de contraseña",
       html: `<p>Gracias por registrarte. Por favor, haz clic en el siguiente enlace para verificar tu correo:</p>
-             <a href="https://tuapp.com/verificar?email=${email}">Verificar email</a>`,
+             <a href="https://tuapp.com/verificar?email=${email}">Cambiar contraseña</a>`,
     };
 
     // 3. Enviar el correo
@@ -233,4 +223,4 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
-export const changePassword = (req, res) => {};
+// export const changePassword = (req, res) => {};

@@ -3,7 +3,7 @@ import { usePlans } from "../context/PlanContext";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import Logo2 from "../components/Logo2.jsx";
-import CellMockup from "../assets/Mockup.png";
+import CellMockup from "../assets/Mockup3.png";
 import CellMockup2 from "../assets/Mockup2.png";
 import Navbar from "../components/Navbar";
 import { BsFileEarmarkArrowUp } from "react-icons/bs";
@@ -21,7 +21,7 @@ function HomePage() {
 
       <section className="flex flex-col justify-between items-center md:items-start bg-neutral-900 px-10 py-12 gap-6 md:flex md:flex-row md:justify-between md:px-10 md:py-12">
         <div className="md:w-[60%] text-orange-50 md:pt-8">
-          <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-[90px]">
+          <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-[70px]">
             <span>Crea tu portfolio con miportfolio.</span>
           </h1>
           <p className="text-lg mt-8 md:text-xl">
@@ -55,18 +55,20 @@ function HomePage() {
             </svg>
           </Link>
         </div>
-        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[40%] flex justify-center">
+        <div className="w-full xxs:w-[95%] xs:w-[80%] md:w-[60%] flex justify-center">
           <img
             src={CellMockup}
             alt="Imagen de un perfil de miportfolio."
-            className=""
+            className="w-full h-full"
           />
         </div>
       </section>
 
-      <section className=" px-8 flex flex-col md:flex-row border-t">
-        <div className="w-[50%] py-32 pr-16">
-          <h2 className="text-7xl font-semibold">Compartí tus trabajos</h2>
+      <section className="px-8 flex flex-col md:flex-row border-t">
+        <div className="lg:w-[50%] lg:py-32 lg:pr-16 mt-6">
+          <h2 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-7xl ">
+            Compartí tus trabajos
+          </h2>
           <p className="mt-10 text-lg">
             Si tu especialidad puede ser compartida mediante una foto, un video
             o un pdf, miportfolio es ideal para vos.
@@ -75,7 +77,7 @@ function HomePage() {
         <img
           src={CellMockup2}
           alt="Imagen de un perfil de miportfolio."
-          className="w-[50%]"
+          className="lg:w-[50%] my-16"
         />
       </section>
 

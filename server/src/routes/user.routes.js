@@ -50,6 +50,7 @@ router.put(
   validateEditUserPassword,
   editPassword
 );
+router.put("/user/change-password/:email");
 router.delete("/user/:id", authRequired, adminAuthRequired, deleteUser);
 
 export default router;

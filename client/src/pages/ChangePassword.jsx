@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useUsers } from "../context/UserContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,12 +8,25 @@ import { PiEyeSlashLight } from "react-icons/pi";
 import Navbar from "../components/Navbar";
 import PulseLoader from "react-spinners/PulseLoader";
 import Input from "../components/Input";
+import { useSearchParams } from "react-router-dom";
 
 function ChangePassword() {
-  const [viewNewPassword, setViewNewPassword] = useState(false);
+  const { changePassword } = useUsers();
+  const [viewPassword, setViewPassword] = useState(false);
+  const [password, setPassword] = useState({
+    password: "",
+  });
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get("email");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPassword({ ...password, [name]: value });
+  };
+
   async function handleSubmit() {
     try {
-      const success = await editUserPassword(newUser.id, newUser);
+      const success = await editUserPassword(email, password);
       if (success) {
         toast.success("¡Contraseña actualizada con exito!");
         onClose(true);
@@ -21,18 +34,8 @@ function ChangePassword() {
     } catch (error) {}
   }
 
-  async function handleSubmit() {
-    try {
-      const success = await editUser(newUser.id, newUser);
-      if (success) {
-        toast.success("¡Usuario actualizado con exito!");
-        onClose(true);
-      }
-    } catch (error) {}
-  }
-
-  const toggleViewNewPassword = (value) => {
-    setViewNewPassword(value);
+  const toggleViewPassword = (value) => {
+    setViewPassword(value);
   };
   return (
     <>
@@ -41,40 +44,54 @@ function ChangePassword() {
         <div className="flex flex-col lg:justify-center lg:items-center w-full xs:w-[75%] md:w-[50%] lg:w-[40%] px-4 mb-28">
           <div>
             <p className="text-3xl mb-8 text-left text-customColor-blue">
-              Ingresar
+              Elegir nueva contraseña
             </p>
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col mt-10 gap-4">
-                <div className="flex flex-col">
-                  <label htmlFor="nueva contraseña">Nueva contraseña *</label>
-                  <div className="text-zinc-900 border bg-orange-50 border-neutral-900 px-3 py-2 rounded-xl flex">
-                    <input
-                      type={viewNewPassword ? "text" : "password"}
-                      id="nueva contraseña"
-                      name="newPassword"
-                      className="text-zinc-900 w-full bg-orange-50 focus:outline-none placeholder-customColor-blue"
-                      onChange={handleChange}
+              <div className="mb-4 w-full lg:w-96 flex flex-col gap-2">
+                <label
+                  className="text-neutral-900 text-sm"
+                  htmlFor="contraseña"
+                >
+                  Contraseña *
+                </label>
+                <div className="text-zinc-900 border border-customColor-blue px-3 py-2 rounded-xl bg-orange-50 w-full flex">
+                  <input
+                    type={viewPassword ? "text" : "password"}
+                    name="password"
+                    id="contraseña"
+                    className="text-zinc-900 w-full bg-orange-50 focus:outline-none"
+                    placeholder="Contraseña"
+                    aria-label="contraseña"
+                    onChange={handleChange}
+                  />
+                  {viewPassword === false ? (
+                    <PiEyeLight
+                      className="text-black text-2xl cursor-pointer"
+                      onClick={() => toggleViewPassword(true)}
                     />
-                    {viewNewPassword === false ? (
-                      <PiEyeLight
-                        className="text-black text-2xl cursor-pointer"
-                        onClick={() => toggleViewNewPassword(true)}
-                      />
-                    ) : (
-                      <PiEyeSlashLight
-                        className="text-black text-2xl cursor-pointer"
-                        onClick={() => toggleViewNewPassword(false)}
-                      />
-                    )}
-                  </div>
-                  <p className="text-red-600">
-                    {
-                      errors?.find((error) => error.field === "newPassword")
-                        ?.message
-                    }
-                  </p>
+                  ) : (
+                    <PiEyeSlashLight
+                      className="text-black text-2xl cursor-pointer"
+                      onClick={() => toggleViewPassword(false)}
+                    />
+                  )}
                 </div>
+                {/* <p className="text-red-600">
+                  {errors?.find((error) => error.field === "password")?.message}
+                </p> */}
               </div>
+
+              <button
+                type="submit"
+                className="text-orange-50 px-3 py-2 bg-neutral-900 rounded-xl w-full hover:bg-neutral-800"
+              >
+                {/* {loading ? (
+                  <PulseLoader color="#ffffff" size={7} />
+                ) : (
+                  "Ingresar"
+                )} */}{" "}
+                Enviar
+              </button>
             </form>
           </div>
         </div>

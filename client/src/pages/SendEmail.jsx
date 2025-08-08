@@ -52,7 +52,7 @@ function ChangePassword() {
                 type="submit"
                 className="text-orange-50 px-3 py-2 bg-neutral-900 rounded-xl w-full hover:bg-neutral-800"
               >
-                ingresar
+                Enviar
               </button>
             </form>
           </div>

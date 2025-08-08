@@ -237,8 +237,8 @@ export const verifyEmail = async (req, res) => {
 
 export const changePassword = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
-      req.body.email,
+    const user = await User.findOneAndUpdate(
+      req.params.email,
       { password: req.body.password },
       { new: true }
     );

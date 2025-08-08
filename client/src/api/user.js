@@ -25,3 +25,6 @@ export const editUserPasswordRequest = (id, user) =>
 export const deleteUserRequest = (id) => axios.delete(`/user/${id}`);
 
 export const verifyEmailRequest = (email) => axios.post(`/verify-email`, email);
+
+export const changePasswordRequest = (email, password) =>
+  axios.put(`/change-password/${email}`, password);

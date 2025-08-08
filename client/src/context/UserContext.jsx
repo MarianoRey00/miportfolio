@@ -9,6 +9,7 @@ import {
   editUserPasswordRequest,
   deleteUserRequest,
   verifyEmailRequest,
+  changePasswordRequest,
 } from "../api/user.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -169,6 +170,16 @@ export function UserProvider({ children }) {
     }
   };
 
+  const changePassword = async (email, password) => {
+    try {
+      await changePasswordRequest(email, password);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setErrors(error.response.data.errors);
+      }
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -187,6 +198,7 @@ export function UserProvider({ children }) {
         userLoading,
         userSaveLoading,
         verifyEmail,
+        changePassword,
       }}
     >
       {children}

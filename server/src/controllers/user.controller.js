@@ -257,7 +257,7 @@ export const changePassword = async (req, res) => {
     console.log(user._id);
     console.log("id:", user.id);
     await User.findByIdAndUpdate(
-      user._id,
+      user.id,
       { password: req.body.password },
       { new: true }
     );

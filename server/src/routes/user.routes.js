@@ -38,6 +38,7 @@ router.get("/user/:username", authRequired, getUserByUsername);
 router.get("/user/profile/:username", getPublicUserByUsername);
 router.get("/user/id/:id", authRequired, getUserById);
 router.get("/users", authRequired, adminAuthRequired, getUsers);
+router.put("/user/change-password/:email", changePassword);
 router.put("/user/:id/edit", authRequired, validateEditUser, editProfile);
 router.put(
   "/user/:id/edit-picture",
@@ -51,7 +52,6 @@ router.put(
   validateEditUserPassword,
   editPassword
 );
-router.put("/user/change-password/:email", changePassword);
 router.delete("/user/:id", authRequired, adminAuthRequired, deleteUser);
 
 export default router;

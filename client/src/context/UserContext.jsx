@@ -171,6 +171,7 @@ export function UserProvider({ children }) {
   };
 
   const changePassword = async (email, password) => {
+    console.log(email, password);
     try {
       await changePasswordRequest(email, password);
     } catch (error) {

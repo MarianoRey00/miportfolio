@@ -24,9 +24,11 @@ function ChangePassword() {
     setPassword({ ...password, [name]: value });
   };
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
+      console.log(email);
+      console.log(password);
       const success = await changePassword(email, password);
       if (success) {
         toast.success("¡Contraseña actualizada con exito!");

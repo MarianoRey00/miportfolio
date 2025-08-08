@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const res = await registerRequest(user);
       setAuthUser(res.data);
+      console.log("authuser:", authUser);
       setIsAuthenticated(true);
     } catch (error) {
       if (error.response && error.response.data) {
@@ -79,33 +80,6 @@ export const AuthProvider = ({ children }) => {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   const checkLogin = async () => {
-  //     const cookies = Cookies.get();
-  //     if (!cookies.token) {
-  //       setIsAuthenticated(false);
-  //       setLoading(false);
-  //       return;
-  //     }
-  //     try {
-  //       const res = await verifyTokenRequest();
-  //       if (!res.data) {
-  //         return setIsAuthenticated(false);
-  //       }
-  //       setIsAuthenticated(true);
-  //       setAuthUser(res.data);
-  //       if (res.data.role === "Admin") {
-  //         setIsAdmin(true);
-  //       }
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setIsAuthenticated(false);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   checkLogin();
-  // }, []);
 
   useEffect(() => {
     const checkLogin = async () => {

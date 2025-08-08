@@ -21,7 +21,7 @@ function HomePage() {
 
       <section className="flex flex-col justify-between items-center md:items-start bg-neutral-900 px-10 py-12 gap-6 md:flex md:flex-row md:justify-between md:px-10 md:py-12">
         <div className="md:w-[60%] text-orange-50 md:pt-8">
-          <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-[70px]">
+          <h1 className=" font-semibold text-4xl md:text-5xl lg:text-[70px]">
             <span>Crea tu portfolio con miportfolio.</span>
           </h1>
           <p className="text-lg mt-8 md:text-xl">
@@ -66,7 +66,7 @@ function HomePage() {
 
       <section className="px-8 flex flex-col md:flex-row border-t">
         <div className="lg:w-[50%] lg:py-32 lg:pr-16 mt-6">
-          <h2 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-7xl ">
+          <h2 className="font-semibold text-4xl md:text-5xl lg:text-7xl ">
             Compartí tus trabajos
           </h2>
           <p className="mt-10 text-lg">

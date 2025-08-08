@@ -13,6 +13,7 @@ function UpgradePage() {
 
   const { getPlan } = usePlans();
   const { authUser } = useAuth();
+  console.log(authUser);
   const [plan, setPlan] = useState({});
   const { id } = useParams();
   useEffect(() => {

@@ -13,6 +13,7 @@ import {
   editPassword,
   deleteUser,
   verifyEmail,
+  changePassword,
 } from "../controllers/user.controller.js";
 import {
   validateLogin,
@@ -50,7 +51,7 @@ router.put(
   validateEditUserPassword,
   editPassword
 );
-router.put("/user/change-password/:email");
+router.put("/user/change-password/:email", changePassword);
 router.delete("/user/:id", authRequired, adminAuthRequired, deleteUser);
 
 export default router;

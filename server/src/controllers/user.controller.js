@@ -223,7 +223,7 @@ export const verifyEmail = async (req, res) => {
       to: email,
       subject: "Cambio de contraseña",
       html: `<p>Para cambiar tu contraseña hace click en el siguiente enlace:</p>
-             <a href="https://tuapp.com/verificar?email=${email}">Cambiar contraseña</a>`,
+             <a href="https://miportfolio18.vercel.app/cambiar-contraseña?email=${email}">Cambiar contraseña</a>`,
     };
 
     await transporter.sendMail(mailOptions);

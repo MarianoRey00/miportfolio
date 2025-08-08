@@ -254,6 +254,8 @@ export const verifyEmail = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.email });
+    console.log(user._id);
+    console.log("id:", user.id);
     await User.findByIdAndUpdate(
       user._id,
       { password: req.body.password },

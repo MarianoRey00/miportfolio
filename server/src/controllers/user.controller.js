@@ -254,12 +254,13 @@ export const verifyEmail = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.email });
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
+    await User.findByIdAndUpdate(
+      user._id,
+      { password: req.body.password },
+      { new: true }
+    );
 
-    user.password = req.body.password;
-    await user.save(); // Esto ejecuta middleware de pre-save (hash, validaciones, etc)
+    console.log("contraseña actualizada");
 
     return res.status(200).json({ message: "Contraseña actualizada" });
   } catch (error) {

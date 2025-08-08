@@ -21,6 +21,7 @@ import EditPlan from "../pages/EditPlan";
 import Success from "../pages/Success";
 import Error from "../pages/Error";
 import Pending from "../pages/Pending";
+import SendEmail from "../pages/SendEmail";
 
 function Router() {
   return (
@@ -59,6 +60,7 @@ function Router() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/enviar-email" element={<SendEmail />}></Route>
           <Route path="/error-404" element={<Error404 />}></Route>
         </Route>
       </Routes>

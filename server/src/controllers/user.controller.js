@@ -185,10 +185,28 @@ export const deleteUser = async (req, res) => {
 };
 
 export const verifyEmail = async (req, res) => {
+  console.log(email);
   const { email } = req.body;
+  const errors = [];
 
   if (!email) {
-    return res.status(400).json({ message: "El email es requerido" });
+    errors.push({
+      field: "email",
+      message: "El email es requerido",
+    });
+  }
+
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    errors.push({
+      field: "email",
+      message: "El email no esta registrado",
+    });
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).json({ errors });
   }
 
   try {
@@ -208,20 +226,19 @@ export const verifyEmail = async (req, res) => {
              <a href="https://tuapp.com/verificar?email=${email}">Cambiar contraseña</a>`,
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
-    console.log("Email enviado:", info.response);
-    res.status(200).json({ message: "Correo enviado exitosamente" });
+    res.status(200);
   } catch (error) {
     console.error("Error al enviar el correo:", error);
-    res.status(500).json({ message: "Error al enviar el correo" });
+    res.status(500);
   }
 };
 
 export const changePassword = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
-      { email: req.body.email },
+      req.body.email,
       { password: req.body.password },
       { new: true }
     );

@@ -8,6 +8,7 @@ import {
   editUserPictureRequest,
   editUserPasswordRequest,
   deleteUserRequest,
+  verifyEmailRequest,
 } from "../api/user.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -68,7 +69,6 @@ export function UserProvider({ children }) {
 
   const getUserById = async (id) => {
     const res = await getUserByIdRequest(id);
-    console.log("datita", res.data);
     return res.data;
   };
 
@@ -158,6 +158,17 @@ export function UserProvider({ children }) {
     }
   };
 
+  const verifyEmail = async (email) => {
+    try {
+      await verifyEmailRequest(email);
+      return true;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setErrors(error.response.data.errors);
+      }
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -175,6 +186,7 @@ export function UserProvider({ children }) {
         setErrors,
         userLoading,
         userSaveLoading,
+        verifyEmail,
       }}
     >
       {children}

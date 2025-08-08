@@ -115,9 +115,12 @@ function LoginPage() {
                   Registrarse
                 </Link>
               </p>
-              <p className="text-center mt-6 text-customColor-blue">
+              <Link
+                to="/enviar-email"
+                className="text-center mt-2 text-customColor-blue underline"
+              >
                 Olvide mi contraseña
-              </p>
+              </Link>
             </form>
           </div>
         </div>

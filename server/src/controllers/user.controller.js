@@ -243,6 +243,9 @@ export const changePassword = async (req, res) => {
       { new: true }
     );
 
+    console.log(req.params.email);
+    console.log(req.body.password);
+
     return res.status(200).json(user);
   } catch (error) {
     return res.status(500).json({ message: error.message });

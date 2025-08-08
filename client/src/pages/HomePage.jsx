@@ -3,8 +3,8 @@ import { usePlans } from "../context/PlanContext";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import Logo2 from "../components/Logo2.jsx";
-import CellMockup from "../assets/Mockup4.png";
-import CellMockup2 from "../assets/Mockup5.png";
+import CellMockup from "../assets/Mockup.png";
+import CellMockup2 from "../assets/Mockup2.png";
 import Navbar from "../components/Navbar";
 import { BsFileEarmarkArrowUp } from "react-icons/bs";
 import { BsLightningCharge } from "react-icons/bs";
@@ -64,64 +64,10 @@ function HomePage() {
         </div>
       </section>
 
-      {/* <section className="bg-customColor-blue px-8 py-32">
-        <div className="flex flex-col border border-white px-6 py-16 rounded-xl gap-4 md:flex-row lg:gap-16">
-          <div className="lg:w-[50%]">
-            <h2 className="text-3xl mb-4 md:text-4xl lg:text-5xl">
-              ¡Compartí tu trabajo!
-            </h2>
-            <p className="text-base mb-8 md:text-lg font-sans font-medium">
-              miportfolio permite subir fotos, videos y archivos PDF, haciendolo
-              ideal para un sin fin de áreas.
-            </p>
-            <Link to="/register">
-              <button className="hidden md:block rounded-lg py-4 px-8 bg-customColor-purple">
-                Registrarse
-              </button>
-            </Link>
-          </div>
-          <div className="grid gap-4 md:gap-2 lg:gap-8 xs:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-customColor-purple text-xs px-2 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:w-32 lg:px-0">
-              <p>Cocina</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-2 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base">
-              <p>Música</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:w-32 lg:px-0">
-              <p>Pintura</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base">
-              <p>Programación</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:w-32 lg:px-0">
-              <p>Animación</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:w-32 lg:px-0">
-              <p>Fotografia</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:w-32 lg:px-0">
-              <p>Diseño</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base">
-              <p>Arquitectura</p>
-            </div>
-            <div className="bg-customColor-purple text-xs px-4 h-10 rounded flex items-center justify-center sm:text-sm sm:px-4 lg:text-base lg:px-4">
-              <p>Escritura</p>
-            </div>
-          </div>
-          <Link to="/register">
-            <button className="block w-32 py-4 px-4 text-sm rounded-lg mt-6 bg-customColor-purple sm:text-lg sm:px-6 sm:w-40 md:hidden">
-              Registrarse
-            </button>
-          </Link>
-        </div>
-      </section> */}
       <section className=" px-8 flex flex-col md:flex-row border-t">
         <div className="w-[50%] py-32 pr-16">
-          <h2 className="text-7xl font-semibold">Compartí tu trabajo</h2>
+          <h2 className="text-7xl font-semibold">Compartí tus trabajos</h2>
           <p className="mt-10 text-lg">
-            {/* miportfolio permite subir fotos, videos y archivos PDF, haciendolo
-            ideal para un sin fin de áreas. */}
             Si tu especialidad puede ser compartida mediante una foto, un video
             o un pdf, miportfolio es ideal para vos.
           </p>

@@ -237,14 +237,14 @@ export const verifyEmail = async (req, res) => {
 
 export const changePassword = async (req, res) => {
   try {
+    console.log("Email recibido:", req.params.email);
+    console.log("Password recibido:", req.body.password);
+
     const user = await User.findOneAndUpdate(
-      req.params.email,
+      { email: req.params.email },
       { password: req.body.password },
       { new: true }
     );
-
-    console.log(req.params.email);
-    console.log(req.body.password);
 
     return res.status(200).json(user);
   } catch (error) {

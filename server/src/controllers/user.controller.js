@@ -235,19 +235,35 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
+// export const changePassword = async (req, res) => {
+//   try {
+//     console.log("Email recibido:", req.params.email);
+//     console.log("Password recibido:", req.body.password);
+
+//     const user = await User.findOneAndUpdate(
+//       { email: req.params.email },
+//       { password: req.body.password },
+//       { new: true }
+//     );
+
+//     return res.status(200).json(user);
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// };
 export const changePassword = async (req, res) => {
   try {
-    console.log("Email recibido:", req.params.email);
-    console.log("Password recibido:", req.body.password);
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
 
-    const user = await User.findOneAndUpdate(
-      { email: req.params.email },
-      { password: req.body.password },
-      { new: true }
-    );
+    user.password = req.body.password;
+    await user.save(); // Esto ejecuta middleware de pre-save (hash, validaciones, etc)
 
-    return res.status(200).json(user);
+    return res.status(200).json({ message: "Contraseña actualizada" });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: error.message });
   }
 };

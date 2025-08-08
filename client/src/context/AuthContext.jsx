@@ -5,7 +5,6 @@ import {
   logoutRequest,
   verifyTokenRequest,
 } from "../api/auth.js";
-// import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const res = await registerRequest(user);
       setAuthUser(res.data);
-      console.log("authuser:", authUser);
       setIsAuthenticated(true);
     } catch (error) {
       if (error.response && error.response.data) {

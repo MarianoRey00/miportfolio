@@ -59,7 +59,7 @@ function HomePage() {
           <img
             src={CellMockup}
             alt="Imagen de un perfil de miportfolio."
-            className="w-full h-full"
+            className="lg:ml-20"
           />
         </div>
       </section>

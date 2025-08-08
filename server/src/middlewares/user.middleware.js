@@ -225,6 +225,7 @@ export const validateEditUserPicture = async (req, res, next) => {
     ".avif",
     ".bmp",
     ".tiff",
+    ".jfif",
   ];
   const maxImageSize = 3 * 1024 * 1024;
 
@@ -243,7 +244,7 @@ export const validateEditUserPicture = async (req, res, next) => {
     if (!validPictureExtensions.includes(pictureExtension)) {
       errors.push({
         field: "picture",
-        message: `La foto debe tener una extensión valida ${validImageExtensions.join(
+        message: `La foto debe tener una extensión valida ${validPictureExtensions.join(
           " "
         )}`,
       });

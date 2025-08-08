@@ -10,6 +10,30 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Input from "../components/Input";
 
 function ChangePassword() {
+  const [viewNewPassword, setViewNewPassword] = useState(false);
+  async function handleSubmit() {
+    try {
+      const success = await editUserPassword(newUser.id, newUser);
+      if (success) {
+        toast.success("¡Contraseña actualizada con exito!");
+        onClose(true);
+      }
+    } catch (error) {}
+  }
+
+  async function handleSubmit() {
+    try {
+      const success = await editUser(newUser.id, newUser);
+      if (success) {
+        toast.success("¡Usuario actualizado con exito!");
+        onClose(true);
+      }
+    } catch (error) {}
+  }
+
+  const toggleViewNewPassword = (value) => {
+    setViewNewPassword(value);
+  };
   return (
     <>
       <Navbar background={"#fff7ed"} border={"1px solid #18181b"} />
@@ -21,35 +45,6 @@ function ChangePassword() {
             </p>
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col mt-10 gap-4">
-                <div className="flex flex-col">
-                  <label htmlFor="contraseña actual">Contraseña actual *</label>
-                  <div className="text-zinc-900 border bg-orange-50 border-neutral-900 px-3 py-2 rounded-xl flex">
-                    <input
-                      type={viewActualPassword ? "text" : "password"}
-                      id="contraseña actual"
-                      name="actualPassword"
-                      className="text-zinc-900 w-full bg-orange-50 focus:outline-none placeholder-customColor-blue"
-                      onChange={handleChange}
-                    />
-                    {viewActualPassword === false ? (
-                      <PiEyeLight
-                        className="text-black text-2xl cursor-pointer"
-                        onClick={() => toggleViewActualPassword(true)}
-                      />
-                    ) : (
-                      <PiEyeSlashLight
-                        className="text-black text-2xl cursor-pointer"
-                        onClick={() => toggleViewActualPassword(false)}
-                      />
-                    )}
-                  </div>
-                  <p className="text-red-600">
-                    {
-                      errors?.find((error) => error.field === "actualPassword")
-                        ?.message
-                    }
-                  </p>
-                </div>
                 <div className="flex flex-col">
                   <label htmlFor="nueva contraseña">Nueva contraseña *</label>
                   <div className="text-zinc-900 border bg-orange-50 border-neutral-900 px-3 py-2 rounded-xl flex">

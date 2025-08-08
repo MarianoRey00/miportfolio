@@ -185,8 +185,8 @@ export const deleteUser = async (req, res) => {
 };
 
 export const verifyEmail = async (req, res) => {
-  console.log(email);
   const { email } = req.body;
+  console.log(email);
   const errors = [];
 
   if (!email) {

@@ -55,7 +55,7 @@ function ProfilePurchases({ user }) {
                       />
                     </svg>
                     <p className="text-xl font-medium text-neutral-100">
-                      {sale.title}
+                      Plan {sale.title}
                     </p>
                   </div>
                   <div>

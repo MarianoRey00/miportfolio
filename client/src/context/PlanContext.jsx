@@ -32,6 +32,7 @@ export function PlanProvider({ children }) {
     try {
       const res = await createPlanRequest(project);
       setPlans([...plans, res.data]);
+      return true;
     } catch (error) {
       setErrors(error.response.data.errors);
     }

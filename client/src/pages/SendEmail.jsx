@@ -23,7 +23,6 @@ function ChangePassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
     await verifyEmail(email);
   };
 

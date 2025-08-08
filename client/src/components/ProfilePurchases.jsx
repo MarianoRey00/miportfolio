@@ -58,13 +58,24 @@ function ProfilePurchases({ user }) {
                       {sale.title}
                     </p>
                   </div>
-                  <p className="mt-2.5 text-neutral-400">
-                    {new Date(sale.createdAt).toLocaleString()}
-                  </p>
+                  <div>
+                    <p className="mt-2.5 text-neutral-400">
+                      Fecha de compra:{" "}
+                      {new Date(sale.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
                 </div>
                 <p className="text-neutral-300">
                   <span className="font-medium text-neutral-200">Precio:</span>{" "}
                   ${sale.price}
+                </p>
+                <p>
+                  Fecha de vencimiento:{" "}
+                  {new Date(
+                    new Date(sale.createdAt).setMonth(
+                      new Date(sale.createdAt).getMonth() + 1
+                    )
+                  ).toLocaleDateString()}
                 </p>
               </div>
             ))}

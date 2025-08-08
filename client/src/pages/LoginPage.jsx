@@ -115,6 +115,9 @@ function LoginPage() {
                   Registrarse
                 </Link>
               </p>
+              <p className="text-center mt-6 text-customColor-blue">
+                Olvide mi contraseña
+              </p>
             </form>
           </div>
         </div>

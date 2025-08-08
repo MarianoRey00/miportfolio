@@ -184,14 +184,11 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-// mandar email con un link
-// volver a la pagina y agregar 2 veces la nueva contraseña
-
 export const verifyEmail = async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
-    return res.status(400).json({ message: "Email es requerido" });
+    return res.status(400).json({ message: "El email es requerido" });
   }
 
   try {
@@ -207,11 +204,9 @@ export const verifyEmail = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Cambio de contraseña",
-      html: `<p>Gracias por registrarte. Por favor, haz clic en el siguiente enlace para verificar tu correo:</p>
+      html: `<p>Para cambiar tu contraseña hace click en el siguiente enlace:</p>
              <a href="https://tuapp.com/verificar?email=${email}">Cambiar contraseña</a>`,
     };
-
-    // 3. Enviar el correo
 
     const info = await transporter.sendMail(mailOptions);
 
@@ -223,4 +218,16 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
-// export const changePassword = (req, res) => {};
+export const changePassword = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      { email: req.body.email },
+      { password: req.body.password },
+      { new: true }
+    );
+
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

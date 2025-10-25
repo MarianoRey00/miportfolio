@@ -188,6 +188,9 @@ export const verifyEmail = async (req, res) => {
   const { email } = req.body;
   console.log(email);
   const errors = [];
+  console.log("adsasd");
+
+  // con el email sacar el id del usuario y usar eso en la url.
 
   if (!email) {
     errors.push({
